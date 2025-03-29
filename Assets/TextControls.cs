@@ -70,24 +70,29 @@ public class TextControls : MonoBehaviour
             if (currentCharIdx == parsedString.Length)
                 break;
 
+            char currentInput = ' ';
+
             foreach (var c in Input.inputString)
             {
+                currentInput = c;
+            }
 
-                if(parsedString[currentCharIdx] == ' ' || c == parsedString[currentCharIdx])
+            bool checkChar = char.ToUpper(parsedString[currentCharIdx]) == char.ToUpper(currentInput) ? true : false;
+
+            print(currentInput);
+
+            if (parsedString[currentCharIdx] == ' ' || checkChar)
+            {
+                StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx, GetCharColor(associatedTextObj, currentCharIdx), completedAffirmationCharColor, .5f));
+                StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx, GetCharFontSize(associatedTextObj, currentCharIdx), GetCharFontSize(associatedTextObj, currentCharIdx) / 1.2f, .5f));
+
+                if (currentCharIdx < parsedString.Length - 1)
                 {
-                    StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx, GetCharColor(associatedTextObj, currentCharIdx), completedAffirmationCharColor, .5f));
-                    StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx, GetCharFontSize(associatedTextObj, currentCharIdx), GetCharFontSize(associatedTextObj, currentCharIdx) / 1.2f, .5f));
-
-                    if(currentCharIdx < parsedString.Length - 1)
-                    {
-                        StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx + 1, Color.white, nextAffirmationCharColor, .5f));
-                        StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx + 1, GetCharFontSize(associatedTextObj, currentCharIdx + 1), GetCharFontSize(associatedTextObj, currentCharIdx + 1) * 1.2f, .5f));
-                    }
-
-                    currentCharIdx++;
-
-                    break;
+                    StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx + 1, Color.white, nextAffirmationCharColor, .5f));
+                    StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx + 1, GetCharFontSize(associatedTextObj, currentCharIdx + 1), GetCharFontSize(associatedTextObj, currentCharIdx + 1) * 1.2f, .5f));
                 }
+
+                currentCharIdx++;
             }
 
             timePassed += Time.deltaTime;
@@ -179,7 +184,7 @@ public class TextControls : MonoBehaviour
     {
         //associatedTextObj.text = InitialiseText("Testing Individual Lerps", 50, Color.white);
 
-        //StartCoroutine(Affirm("I am beautiful", 30));
+        StartCoroutine(Affirm("I am beautiful", 30));
 
         //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
     }
