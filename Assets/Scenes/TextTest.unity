@@ -594,7 +594,7 @@ MonoBehaviour:
   - Test1
   - Test2
   - test3
-  spawnCollider: {fileID: 1751078331}
+  spawnBox: {fileID: 275693824}
   currentActiveWords: []
   defaultTextPrefab: {fileID: 1394782037390834848, guid: 744ce5667ad85d647bee242bf2c395bf, type: 3}
 --- !u!4 &1746636940

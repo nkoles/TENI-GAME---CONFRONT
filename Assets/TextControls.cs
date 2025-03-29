@@ -20,7 +20,8 @@ public class TextControls : MonoBehaviour
     public string[] testAttackStrings;
     public Transform spawnBox;
 
-    public List<TextMeshProUGUI> currentActiveWords = new List<TextMeshProUGUI>();
+    public List<AttackTextInterraction> currentActiveWords = new List<AttackTextInterraction>();
+    public int wordsDestroyedCount;
 
     public GameObject defaultTextPrefab;
 
@@ -127,8 +128,11 @@ public class TextControls : MonoBehaviour
 
         List<int> spawnedWordIndexes = new List<int>();
 
-        while(timePassed <= attackDuration || spawnedWordIndexes.Count >= attackStrings.Count)
+        while(timePassed < attackDuration || wordsDestroyedCount < attackStrings.Count)
         {
+            if (timePassed >= attackDuration || wordsDestroyedCount >= attackStrings.Count)
+                break;
+
             if(currentActiveWords.Count == 0 || spawnTimePassed >= spawnTime)
             {
                 int randomStringIdx = Random.Range(0, attackStrings.Count);
@@ -150,7 +154,7 @@ public class TextControls : MonoBehaviour
 
                 textHandler.InitialiseRichTagging();
 
-                currentActiveWords.Add(textObj);
+                currentActiveWords.Add(textHandler);
 
                 spawnTimePassed = 0;
             }
@@ -158,7 +162,14 @@ public class TextControls : MonoBehaviour
             timePassed += Time.deltaTime;
             spawnTimePassed += Time.deltaTime;
 
+            print(timePassed);
+
             yield return null;
+        }
+
+        for(int i = currentActiveWords.Count-1; i >= 0; i--)
+        {
+            StartCoroutine(currentActiveWords[i].OnDestruction());
         }
 
         print("attack finished");

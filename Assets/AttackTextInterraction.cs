@@ -15,6 +15,7 @@ public class AttackTextInterraction : MonoBehaviour, IPointerClickHandler, IPoin
     private List<int> destroyedCharIdx = new List<int>();
 
     private bool isInitialised;
+    private bool isDestroyed;
 
     private void Awake()
     {
@@ -23,11 +24,6 @@ public class AttackTextInterraction : MonoBehaviour, IPointerClickHandler, IPoin
 
     public void OnPointerClick(PointerEventData data)
     {
-        if(destroyedCharIdx.Count >= parsedString.Length)
-        {
-            OnDestruction();
-        }
-
         int randomChar = Random.Range(0, parsedString.Length);
 
         while(destroyedCharIdx.Contains(randomChar))
@@ -36,6 +32,12 @@ public class AttackTextInterraction : MonoBehaviour, IPointerClickHandler, IPoin
         }
 
         destroyedCharIdx.Add(randomChar);
+
+        if (destroyedCharIdx.Count >= parsedString.Length)
+        {
+            isDestroyed = true;
+            StartCoroutine(OnDestruction());
+        }
 
         StartCoroutine(TextControls.LerpCharColor(m_TextAsset, randomChar, TextControls.GetCharColor(m_TextAsset, randomChar), Color.clear, 0.5f));
     }
@@ -86,13 +88,21 @@ public class AttackTextInterraction : MonoBehaviour, IPointerClickHandler, IPoin
         }
     }
 
-    private void OnDestruction()
+    public IEnumerator OnDestruction()
     {
         TextControls textController = FindAnyObjectByType<TextControls>();
 
-        if(textController.currentActiveWords.Contains(m_TextAsset))
-            textController.currentActiveWords.Remove(m_TextAsset);
+        if(textController.currentActiveWords.Contains(this))
+        {
+            textController.currentActiveWords.Remove(this);
+            textController.wordsDestroyedCount++;
+        }
 
-        Destroy(this);
+        for (int i = 0; i < parsedString.Length; ++i)
+        {
+            yield return TextControls.LerpCharColor(m_TextAsset, i, TextControls.GetCharColor(m_TextAsset, i), Color.clear, 0.1f);
+        }
+
+        Destroy(gameObject);
     }
 }
