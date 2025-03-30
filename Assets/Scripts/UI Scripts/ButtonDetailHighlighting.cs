@@ -10,9 +10,6 @@ public class ButtonDetailHighlighting : MonoBehaviour
     static public UnityEvent<int> ButtonSelected = new UnityEvent<int>();
     static public UnityEvent ButtonDeselected = new UnityEvent();
 
-    static public UnityEvent ChoosingAction = new UnityEvent();
-    static public UnityEvent ChoseAction = new UnityEvent();
-
     public TextMeshProUGUI buttonDescriptionTMProTarget;
     public float textSpeed;
 
@@ -21,18 +18,6 @@ public class ButtonDetailHighlighting : MonoBehaviour
 
     [Header("0 = Attack, 1 = Passive, 2 = Affirm, 3 = Confront")]
     public string[] buttonDescription;
-
-    private void Awake()
-    {
-        ChoosingAction.AddListener(OnChoosingAction);
-        ChoseAction.AddListener(OnChoseAction);
-    }
-
-    //Testing
-    private void Start()
-    {
-        ChoosingAction.Invoke();
-    }
 
     private void OnChoosingAction()
     {
