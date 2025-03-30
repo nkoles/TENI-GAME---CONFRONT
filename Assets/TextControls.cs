@@ -184,7 +184,7 @@ public class TextControls : MonoBehaviour
     {
         //associatedTextObj.text = InitialiseText("Testing Individual Lerps", 50, Color.white);
 
-        StartCoroutine(Affirm("I am beautiful", 30));
+        StartCoroutine(Affirm("fuck it we ball", 30));
 
         //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
     }
