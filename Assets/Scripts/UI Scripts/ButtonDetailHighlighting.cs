@@ -19,15 +19,21 @@ public class ButtonDetailHighlighting : MonoBehaviour
     [Header("0 = Attack, 1 = Passive, 2 = Affirm, 3 = Confront")]
     public string[] buttonDescription;
 
-    private void OnChoosingAction()
+    public void Awake()
     {
+        OnChoosingAction();
+    }
+
+    public void OnChoosingAction()
+    {
+        buttonDescriptionTMProTarget.gameObject.SetActive(true);
         buttonDescriptionTMProTarget.text = "";
 
         ButtonSelected.AddListener(OnButtonSelected);
         ButtonDeselected.AddListener(OnButtonDeselected);
     }
 
-    private void OnChoseAction()
+    public void OnChoseAction(Actions action)
     {
         ButtonSelected.RemoveListener(OnButtonSelected);
         ButtonDeselected.RemoveListener(OnButtonDeselected);
@@ -35,7 +41,7 @@ public class ButtonDetailHighlighting : MonoBehaviour
         StartCoroutine(MoveDecisionsAway(true));
     }
 
-    private void OnButtonDeselected()
+    public void OnButtonDeselected()
     {
         StopAllCoroutines();
         _typingRoutine = null;
@@ -47,17 +53,17 @@ public class ButtonDetailHighlighting : MonoBehaviour
     {
         if(_typingRoutine == null)
         {
-            _typingRoutine = StartCoroutine(TypeText(textSpeed, buttonDescription[buttonID]));
+            _typingRoutine = StartCoroutine(TypeText(textSpeed, buttonDescription[buttonID], buttonDescriptionTMProTarget));
         }
     }
 
-    private IEnumerator TypeText(float speed, string text)
+    public IEnumerator TypeText(float speed, string text, TextMeshProUGUI tmproAsset)
     {
-        buttonDescriptionTMProTarget.text = "";
+        tmproAsset.text = "";
 
         foreach(var c in text)
         {
-            buttonDescriptionTMProTarget.text += c;
+            tmproAsset.text += c;
 
             yield return new WaitForSeconds(speed / text.Length);
         }

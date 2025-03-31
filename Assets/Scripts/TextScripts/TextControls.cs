@@ -25,6 +25,8 @@ public class TextControls : MonoBehaviour
 
     public GameObject defaultTextPrefab;
 
+    public int lastHealedHP;
+
     public IEnumerator Affirm(string text, float time)
     {
         associatedTextObj.gameObject.SetActive(true);
@@ -68,7 +70,18 @@ public class TextControls : MonoBehaviour
             print(parsedString.Length - 1);
 
             if (currentCharIdx == parsedString.Length)
+            {
+                lastHealedHP = (int)(time - timePassed);
+
                 break;
+            }
+
+            if(timePassed > time)
+            {
+                lastHealedHP = 0;
+
+                break;
+            }
 
             char currentInput = ' ';
 
@@ -184,7 +197,7 @@ public class TextControls : MonoBehaviour
     {
         //associatedTextObj.text = InitialiseText("Testing Individual Lerps", 50, Color.white);
 
-        StartCoroutine(Affirm("fuck it we ball", 30));
+        //StartCoroutine(Affirm("fuck it we ball", 30));
 
         //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
     }
