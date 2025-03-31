@@ -10,12 +10,22 @@ public class StationaryScript : MonoBehaviour
     public string type;
     public Tile tile;
     public Tilemap tilemap;
+    private Tilemap secondaryTilemap;
     public Rigidbody2D rb;
     public Vector2 direction;
 
     // Start is called before the first frame update
     void Start()
     {
+        if(tilemap == null)
+        {
+            tilemap = GameObject.FindWithTag(type + " Tilemap").GetComponent<Tilemap>();
+        }
+        if(type != "Walls")
+        {
+            secondaryTilemap = GameObject.FindWithTag("Walls Tilemap").GetComponent<Tilemap>();
+        }
+
         rb = gameObject.GetComponent<Rigidbody2D>();
         StartCoroutine(ChangeDirection());
     }
@@ -26,10 +36,20 @@ public class StationaryScript : MonoBehaviour
         Vector3 vector = transform.position / tilemap.gameObject.transform.localScale.z;
         vector = Quaternion.Euler(0, 0, -45) * vector;
 
-        if(!tilemap.HasTile(Vector3Int.FloorToInt(vector)))
+        if(tilemap.GetTile(Vector3Int.FloorToInt(vector)) != tile)
         {
             //Vector3Int.FloorToInt(vector);
             tilemap.SetTile(Vector3Int.FloorToInt(vector), tile);
+        }
+        if(secondaryTilemap != null)
+        {
+            if(secondaryTilemap.GetTile(Vector3Int.FloorToInt(vector)) != tile)
+            {
+                vector = transform.position / secondaryTilemap.gameObject.transform.localScale.z;
+                vector = Quaternion.Euler(0, 0, -45) * vector;
+                //Vector3Int.FloorToInt(vector);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(vector), null);
+            }
         }
 
         if(Mathf.Abs(transform.position.x) + Mathf.Abs(transform.position.y) >= 3.0f)
