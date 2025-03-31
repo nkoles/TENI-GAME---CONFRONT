@@ -7,10 +7,11 @@ public class EnemyManager : MonoBehaviour
     public int hp, maxHP;
 
     public string[] dialogueText;
-    public GameObject[] obstacles;
-    public Transform[] spawnPoints;
+    public GameObject[] schoolObstacles;
+    public Transform[] lateralSpawnPoints;
     public string[] enemyWords;
     public string[] playerWords;
+    public int phase;
 
     public GameObject arrow;
 
@@ -32,7 +33,7 @@ public class EnemyManager : MonoBehaviour
         {
             int randPoint = Random.Range(0, 4);
 
-            Instantiate(arrow, spawnPoints[randPoint].position, Quaternion.Euler(0, 0, 45 + (90 * randPoint)));
+            Instantiate(arrow, lateralSpawnPoints[randPoint].position, Quaternion.Euler(0, 0, 45 + (90 * randPoint)));
 
             int randTime = Random.Range(0, 5);
 
@@ -40,5 +41,76 @@ public class EnemyManager : MonoBehaviour
 
             time -= randTime;
         }
+    }
+
+    public IEnumerator Dodging(float time, int difficulty)
+    {
+        switch(phase)
+        {
+            case 1:
+            {
+                List<GameObject> objects = new List<GameObject>();
+
+                foreach(GameObject thing in schoolObstacles)
+                {
+                    objects.Add(thing);
+                }
+
+                for(int i = 0; i < difficulty; i++)
+                {
+                    int randObject = Random.Range(0, objects.Count);
+
+                    if(objects[randObject] == schoolObstacles[0])
+                    {
+                        float randX = Random.Range(-3.0f, 3.0f);
+                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)) * -1, 3.0f - Mathf.Abs(randX));
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == schoolObstacles[1])
+                    {
+                        float randX = Random.Range(-3.0f, 3.0f);
+                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)) * -1, 3.0f - Mathf.Abs(randX));
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == schoolObstacles[2])
+                    {
+                        float randX = Random.Range(-3.0f, 3.0f);
+                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)) * -1, 3.0f - Mathf.Abs(randX));
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == schoolObstacles[3])
+                    {
+                        //Instantiate(objects[randObject], /*Logic*/);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == schoolObstacles[4])
+                    {
+                        GameObject temp = Instantiate(objects[randObject], GameplayManager.Instance.player.heart.transform.position, Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == schoolObstacles[5])
+                    {
+                        //Instantiate(objects[randObject], /*Logic*/);
+                        objects.Remove(objects[randObject]);
+                    }
+                }
+
+                break;
+            }
+
+            default:
+            {
+                break;
+            }
+        }
+
+        yield return new WaitForSeconds(time);
     }
 }
