@@ -7,6 +7,7 @@ TagManager:
   - Walls Tilemap
   - Page Tilemap
   - Damageable
+  - Walls
   layers:
   - Default
   - TransparentFX

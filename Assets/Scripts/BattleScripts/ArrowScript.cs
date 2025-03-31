@@ -44,8 +44,8 @@ public class ArrowScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        rb.velocity= new Vector2(xDir * speed, yDir * speed);
+        rb.velocity = new Vector2(xDir * speed, yDir * speed);
     }
 }

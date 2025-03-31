@@ -9,6 +9,7 @@ public class StationaryScript : MonoBehaviour
     public float speed = .5f;
     public string type;
     public Tile tile;
+    private Tile currentTile;
     public Tilemap tilemap;
     private Tilemap secondaryTilemap;
     public Rigidbody2D rb;
@@ -43,12 +44,23 @@ public class StationaryScript : MonoBehaviour
         }
         if(secondaryTilemap != null)
         {
-            if(secondaryTilemap.GetTile(Vector3Int.FloorToInt(vector)) != tile)
+            vector = transform.position / secondaryTilemap.gameObject.transform.localScale.z;
+            vector = Quaternion.Euler(0, 0, -45) * vector;
+
+            if(secondaryTilemap.GetTile(Vector3Int.FloorToInt(vector)) != currentTile)
             {
-                vector = transform.position / secondaryTilemap.gameObject.transform.localScale.z;
-                vector = Quaternion.Euler(0, 0, -45) * vector;
+                currentTile = secondaryTilemap.GetTile<Tile>(Vector3Int.FloorToInt(vector));
                 //Vector3Int.FloorToInt(vector);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(vector), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x, vector.y+1, vector.z)), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x+1, vector.y+1, vector.z)), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x+1, vector.y, vector.z)), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x+1, vector.y-1, vector.z)), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x, vector.y-1, vector.z)), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y-1, vector.z)), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y, vector.z)), null);
+                secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y+1, vector.z)), null);
+                Debug.Log("test");
             }
         }
 
@@ -99,7 +111,7 @@ public class StationaryScript : MonoBehaviour
         else
         {
             bool change = Random.value < 0.5f;
-            Debug.Log(change);
+            //Debug.Log(change);
 
             if(change)
             {
