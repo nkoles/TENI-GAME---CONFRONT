@@ -9,6 +9,7 @@ public class GameplayManager : MonoBehaviour
     public PlayerManager player;
     public EnemyManager enemy;
     public UIManager ui;
+    public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
 
     void Awake()
     {
@@ -43,7 +44,9 @@ public class GameplayManager : MonoBehaviour
 
     public void Passive(int time)
     {
-        StartCoroutine(Dodge(time));
+        passiveAmount++;
+
+        StartCoroutine(Dodge(time, passiveAmount++));
         StartCoroutine(Block(time));
         StartCoroutine(EndTurn(time));
     }
@@ -55,10 +58,11 @@ public class GameplayManager : MonoBehaviour
         StartTurn();
     }
 
-    public IEnumerator Dodge(int time)
+    public IEnumerator Dodge(int time, int difficulty)
     {
         player.heart.transform.position = new Vector3(0, 0, player.heart.transform.position.z);
         player.heart.SetActive(true);
+        //enemy.Dodging(time, difficulty);
 
         yield return new WaitForSeconds(time);
 
