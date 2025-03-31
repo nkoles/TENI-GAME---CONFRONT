@@ -197,9 +197,21 @@ public class TextControls : MonoBehaviour
     {
         //associatedTextObj.text = InitialiseText("Testing Individual Lerps", 50, Color.white);
 
-        //StartCoroutine(Affirm("fuck it we ball", 30));
+        //Test Typing
+        //StartCoroutine(Affirm("Stay Calm", 30));
 
+        //Test Passive
         //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
+    }
+
+    public void TestAffirmation()
+    {
+        StartCoroutine(Affirm("Stay Calm", 30));
+    }
+
+    public void TestPassive()
+    {
+        StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
     }
 
     private void Update()
