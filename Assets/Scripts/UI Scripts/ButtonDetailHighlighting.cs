@@ -33,7 +33,7 @@ public class ButtonDetailHighlighting : MonoBehaviour
         ButtonDeselected.AddListener(OnButtonDeselected);
     }
 
-    public void OnChoseAction(Actions action)
+    public void OnChoseAction()
     {
         ButtonSelected.RemoveListener(OnButtonSelected);
         ButtonDeselected.RemoveListener(OnButtonDeselected);

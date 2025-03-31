@@ -17,6 +17,8 @@ public class AttackTextInterraction : MonoBehaviour, IPointerClickHandler, IPoin
     private bool isInitialised;
     private bool isDestroyed;
 
+    private Coroutine _destructionRoutine;
+
     private void Awake()
     {
         m_TextAsset = GetComponent<TextMeshProUGUI>();
@@ -24,22 +26,34 @@ public class AttackTextInterraction : MonoBehaviour, IPointerClickHandler, IPoin
 
     public void OnPointerClick(PointerEventData data)
     {
-        int randomChar = Random.Range(0, parsedString.Length);
-
-        while(destroyedCharIdx.Contains(randomChar))
+        if(!isDestroyed)
         {
-            randomChar = Random.Range(0, parsedString.Length);
+            int randomChar = 0;
+
+            for (int i = 0; i < parsedString.Length; ++i)
+            {
+                if (!destroyedCharIdx.Contains(i))
+                {
+                    randomChar = i;
+
+                    break;
+                }
+            }
+
+            destroyedCharIdx.Add(randomChar);
+
+            if (destroyedCharIdx.Count >= parsedString.Length)
+            {
+                isDestroyed = true;
+
+                if (_destructionRoutine == null)
+                    _destructionRoutine = StartCoroutine(OnDestruction());
+
+                return;
+            }
+
+            StartCoroutine(TextControls.LerpCharColor(m_TextAsset, randomChar, TextControls.GetCharColor(m_TextAsset, randomChar), Color.clear, 0.5f));
         }
-
-        destroyedCharIdx.Add(randomChar);
-
-        if (destroyedCharIdx.Count >= parsedString.Length)
-        {
-            isDestroyed = true;
-            StartCoroutine(OnDestruction());
-        }
-
-        StartCoroutine(TextControls.LerpCharColor(m_TextAsset, randomChar, TextControls.GetCharColor(m_TextAsset, randomChar), Color.clear, 0.5f));
     }
 
     public void OnPointerEnter(PointerEventData data)

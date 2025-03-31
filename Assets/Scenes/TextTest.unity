@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &20313198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +598,7 @@ MonoBehaviour:
   currentActiveWords: []
   wordsDestroyedCount: 0
   defaultTextPrefab: {fileID: 1394782037390834848, guid: 744ce5667ad85d647bee242bf2c395bf, type: 3}
+  lastHealedHP: 0
 --- !u!4 &1746636940
 Transform:
   m_ObjectHideFlags: 0

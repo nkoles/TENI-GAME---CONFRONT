@@ -69,19 +69,19 @@ public class TextControls : MonoBehaviour
             print(currentCharIdx);
             print(parsedString.Length - 1);
 
-            if (currentCharIdx == parsedString.Length)
-            {
-                lastHealedHP = (int)(time - timePassed);
+            //if (currentCharIdx == parsedString.Length)
+            //{
+            //    lastHealedHP = (int)(time - timePassed);
 
-                break;
-            }
+            //    break;
+            //}
 
-            if(timePassed > time)
-            {
-                lastHealedHP = 0;
+            //if(timePassed > time)
+            //{
+            //    lastHealedHP = 0;
 
-                break;
-            }
+            //    break;
+            //}
 
             char currentInput = ' ';
 
@@ -115,6 +115,9 @@ public class TextControls : MonoBehaviour
 
         print("yippee");
 
+        if (currentCharIdx == 0)
+            currentCharIdx++;
+
         StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx-1, GetCharColor(associatedTextObj, currentCharIdx-1), completedAffirmationCharColor, .5f));
         StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx-1, GetCharFontSize(associatedTextObj, 0), GetCharFontSize(associatedTextObj, 0) / 1.2f, .5f));
 
@@ -134,6 +137,8 @@ public class TextControls : MonoBehaviour
 
     public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
     {
+        wordsDestroyedCount = 0;
+
         List<string> attackStrings = new List<string>();
 
         for(int i = 0;  i < _attackStrings.Length; ++i)
@@ -146,19 +151,14 @@ public class TextControls : MonoBehaviour
 
         List<int> spawnedWordIndexes = new List<int>();
 
-        while(timePassed < attackDuration || wordsDestroyedCount < attackStrings.Count)
+        while(true)
         {
-            if (timePassed >= attackDuration || wordsDestroyedCount >= attackStrings.Count)
+            if (timePassed >= attackDuration || wordsDestroyedCount >= _attackStrings.Length)
                 break;
 
-            if(currentActiveWords.Count == 0 || spawnTimePassed >= spawnTime)
+            if(currentActiveWords.Count == 0 || spawnTimePassed >= spawnTime && spawnedWordIndexes.Count < _attackStrings.Length)
             {
                 int randomStringIdx = Random.Range(0, attackStrings.Count);
-
-                while(spawnedWordIndexes.Contains(randomStringIdx))
-                {
-                    randomStringIdx = Random.Range(0, attackStrings.Count);
-                }
 
                 spawnedWordIndexes.Add(randomStringIdx);
 
@@ -170,20 +170,24 @@ public class TextControls : MonoBehaviour
                 AttackTextInterraction textHandler = textObj.gameObject.GetComponent<AttackTextInterraction>();
                 textObj.text = attackStrings[randomStringIdx];
 
-                textHandler.InitialiseRichTagging();
+                attackStrings.RemoveAt(randomStringIdx);
 
+                textHandler.InitialiseRichTagging();
                 currentActiveWords.Add(textHandler);
 
                 spawnTimePassed = 0;
+
             }
 
             timePassed += Time.deltaTime;
             spawnTimePassed += Time.deltaTime;
 
-            print(timePassed);
+            //print(timePassed);
 
             yield return null;
         }
+
+        print("exit loop");
 
         for(int i = currentActiveWords.Count-1; i >= 0; i--)
         {
@@ -197,9 +201,9 @@ public class TextControls : MonoBehaviour
     {
         //associatedTextObj.text = InitialiseText("Testing Individual Lerps", 50, Color.white);
 
-        //StartCoroutine(Affirm("fuck it we ball", 30));
+        //StartCoroutine(Affirm("I am beautiful", 30));
 
-        //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
+        StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 2, 10));
     }
 
     private void Update()

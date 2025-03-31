@@ -18,7 +18,7 @@ public enum Actions
 
 public class SequenceManager : MonoBehaviour
 {
-    public UnityEvent<Actions> ActionChosen = new UnityEvent<Actions>();
+    public UnityEvent<int> ActionChosen = new UnityEvent<int>();
     public UnityEvent<Actions> ActionCompleted = new UnityEvent<Actions>();
 
     public DialogueDictionnary dialogueRepo;
@@ -35,16 +35,13 @@ public class SequenceManager : MonoBehaviour
         ActionChosen.AddListener(SetupAction);
         ActionCompleted.AddListener(ResultOfAction);
 
-        ActionChosen.AddListener(buttonController.OnChoseAction);
+        //ActionChosen.AddListener(buttonController.OnChoseAction);
     }
 
-    public void SetupAction(int actionID)
+    public void SetupAction(int _actionType)
     {
-        SetupAction(actionID);
-    }
+        Actions actionType = (Actions)_actionType;
 
-    public void SetupAction(Actions actionType)
-    {
         switch(actionType)
         {
             case Actions.Attack:
@@ -52,7 +49,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Passive:
                 break;
             case Actions.Affirm:
-                StartCoroutine(StartAction(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f), actionType));
+                StartAction(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f), actionType);
                 break;
             case Actions.Confront:
                 break;
@@ -72,7 +69,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Affirm:
                 GameplayManager.Instance.UpdatePlayerHealth(textControls.lastHealedHP);
 
-                RenableBattleUI("Healed" + textControls.lastHealedHP);
+                StartCoroutine(RenableBattleUI("Healed" + textControls.lastHealedHP));
 
                 break;
             case Actions.Confront:
