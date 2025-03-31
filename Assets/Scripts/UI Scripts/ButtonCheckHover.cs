@@ -14,6 +14,6 @@ public class ButtonCheckHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        ButtonDetailHighlighting.ButtonDeselected.Invoke();
+        //ButtonDetailHighlighting.ButtonDeselected.Invoke();
     }
 }

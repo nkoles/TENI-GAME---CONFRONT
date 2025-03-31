@@ -891,6 +891,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 686119535}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1177756812}
         m_TargetAssemblyTypeName: SequenceManager, Assembly-CSharp
         m_MethodName: SetupAction
@@ -898,7 +910,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1854,9 +1866,18 @@ MonoBehaviour:
   ActionCompleted:
     m_PersistentCalls:
       m_Calls: []
-  dialogueRepo: {fileID: 0}
-  textControls: {fileID: 0}
-  buttonController: {fileID: 0}
+  dialogueRepo: {fileID: 1177756814}
+  textControls: {fileID: 1765812200}
+  battleUIObjects: {fileID: 686119535}
+  bossUI: {fileID: 1697225179}
+  actionUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1819790128}
+  - {fileID: 0}
+  - {fileID: 0}
+  helperText: {fileID: 1839031824}
+  buttonController: {fileID: 1391012235}
 --- !u!4 &1177756813
 Transform:
   m_ObjectHideFlags: 0
@@ -1893,7 +1914,7 @@ MonoBehaviour:
   - I need this
   - 'Stay calm '
   - 'Just breathe '
-  - "It\u2019ll work out"
+  - It will work out
   passiveStrings: []
   confrontStrings: []
 --- !u!1 &1219681575
@@ -2731,7 +2752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Text Example, can be changed to ones desire
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

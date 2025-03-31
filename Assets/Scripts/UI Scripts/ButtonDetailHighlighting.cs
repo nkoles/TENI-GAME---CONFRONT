@@ -27,13 +27,13 @@ public class ButtonDetailHighlighting : MonoBehaviour
     public void OnChoosingAction()
     {
         buttonDescriptionTMProTarget.gameObject.SetActive(true);
-        buttonDescriptionTMProTarget.text = "";
+        //buttonDescriptionTMProTarget.text = "";
 
         ButtonSelected.AddListener(OnButtonSelected);
         ButtonDeselected.AddListener(OnButtonDeselected);
     }
 
-    public void OnChoseAction()
+    public void OnChoseAction(int actionID)
     {
         ButtonSelected.RemoveListener(OnButtonSelected);
         ButtonDeselected.RemoveListener(OnButtonDeselected);

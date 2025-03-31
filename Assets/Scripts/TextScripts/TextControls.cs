@@ -29,6 +29,8 @@ public class TextControls : MonoBehaviour
 
     public IEnumerator Affirm(string text, float time)
     {
+        print("entered");
+
         associatedTextObj.gameObject.SetActive(true);
 
         associatedTextObj.text = InitialiseText(text, associatedTextObj.fontSize, Color.clear);
@@ -69,19 +71,19 @@ public class TextControls : MonoBehaviour
             print(currentCharIdx);
             print(parsedString.Length - 1);
 
-            //if (currentCharIdx == parsedString.Length)
-            //{
-            //    lastHealedHP = (int)(time - timePassed);
+            if (currentCharIdx == parsedString.Length)
+            {
+                lastHealedHP = (int)(time - timePassed);
 
-            //    break;
-            //}
+                break;
+            }
 
-            //if(timePassed > time)
-            //{
-            //    lastHealedHP = 0;
+            if (timePassed > time)
+            {
+                lastHealedHP = 0;
 
-            //    break;
-            //}
+                break;
+            }
 
             char currentInput = ' ';
 
@@ -203,7 +205,7 @@ public class TextControls : MonoBehaviour
 
         //StartCoroutine(Affirm("I am beautiful", 30));
 
-        StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 2, 10));
+        //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 2, 10));
     }
 
     private void Update()

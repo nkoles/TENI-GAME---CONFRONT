@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -25,8 +26,11 @@ public class SequenceManager : MonoBehaviour
 
     public TextControls textControls;
 
-    GameObject[] battleUIObjects;
-    TextMeshProUGUI helperText;
+    public GameObject battleUIObjects;
+    public GameObject bossUI;
+    public GameObject[] actionUI;
+
+    public TextMeshProUGUI helperText;
 
     public ButtonDetailHighlighting buttonController; 
 
@@ -42,6 +46,8 @@ public class SequenceManager : MonoBehaviour
     {
         Actions actionType = (Actions)_actionType;
 
+        //ActionChosen.Invoke(_actionType);
+
         switch(actionType)
         {
             case Actions.Attack:
@@ -49,7 +55,9 @@ public class SequenceManager : MonoBehaviour
             case Actions.Passive:
                 break;
             case Actions.Affirm:
-                StartAction(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f), actionType);
+                print("Affirm Action");
+
+                StartCoroutine(StartAction(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f), actionType));
                 break;
             case Actions.Confront:
                 break;
@@ -67,9 +75,9 @@ public class SequenceManager : MonoBehaviour
             case Actions.Passive:
                 break;
             case Actions.Affirm:
-                GameplayManager.Instance.UpdatePlayerHealth(textControls.lastHealedHP);
+                //GameplayManager.Instance.UpdatePlayerHealth(textControls.lastHealedHP);
 
-                StartCoroutine(RenableBattleUI("Healed" + textControls.lastHealedHP));
+                StartCoroutine(RenableBattleUI("Healed: " + textControls.lastHealedHP + "HP", action));
 
                 break;
             case Actions.Confront:
@@ -79,20 +87,25 @@ public class SequenceManager : MonoBehaviour
         }
     }
     
-    private IEnumerator RenableBattleUI(string text)
+    private IEnumerator RenableBattleUI(string text, Actions action)
     {
-        foreach(var g in battleUIObjects)
+        actionUI[(int)action].SetActive(false);
+        bossUI.SetActive(true);
+
+        foreach(var t in battleUIObjects.GetComponentsInChildren<Transform>())
         {
-            g.SetActive(true);
+            t.gameObject.SetActive(true);
         }
 
         yield return buttonController.TypeText(.3f, text, helperText);
 
-        buttonController.OnChoosingAction();
+        //buttonController.OnChoosingAction();
     }
 
     IEnumerator StartAction(IEnumerator actionRoutine, Actions actionTag)
     {
+        print("Starting Action");
+
         yield return actionRoutine;
 
         ActionCompleted.Invoke(actionTag);
