@@ -14,6 +14,7 @@ public class StationaryScript : MonoBehaviour
     private Tilemap secondaryTilemap;
     public Rigidbody2D rb;
     public Vector2 direction;
+    public Vector3 target;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,13 @@ public class StationaryScript : MonoBehaviour
         }
 
         rb = gameObject.GetComponent<Rigidbody2D>();
-        StartCoroutine(ChangeDirection());
+
+        float randX = Random.Range(-3.0f, 3.0f);
+        float randY = Random.Range((-3.0f + Mathf.Abs(randX)) * -1, 3.0f - Mathf.Abs(randX));
+        target = new Vector3(randX, randY, 0);
+        direction = Vector3.Normalize(target - transform.position);
+
+        //StartCoroutine(ChangeDirection());
     }
 
     // Update is called once per frame
@@ -60,19 +67,26 @@ public class StationaryScript : MonoBehaviour
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y-1, vector.z)), null);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y, vector.z)), null);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y+1, vector.z)), null);
-                Debug.Log("test");
             }
         }
 
-        if(Mathf.Abs(transform.position.x) + Mathf.Abs(transform.position.y) >= 3.0f)
+        /*if(Mathf.Abs(transform.position.x) + Mathf.Abs(transform.position.y) >= 3.0f)
         {
             direction = new Vector2(direction.x * -1, direction.y * -1);
-        }
+        }*/
     }
 
     void FixedUpdate()
     {
         rb.velocity = new Vector2(direction.x * speed, direction.y * speed);
+
+        if(Vector3.Distance(target, transform.position) < .25f/*transform.position.x <= target.x + .25f && transform.position.x >= target.x -.25f && transform.position.y <= target.y + .25f && transform.position.y >= target.y -.25f*/)
+        {
+            float randX = Random.Range(-3.0f, 3.0f);
+            float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
+            target = new Vector3(randX, randY, 0);
+            direction = Vector3.Normalize(target - transform.position);
+        }
     }
 
     public IEnumerator ChangeDirection()
@@ -131,6 +145,11 @@ public class StationaryScript : MonoBehaviour
         yield return new WaitForSeconds(timer);
 
         StartCoroutine(ChangeDirection());
+    }
+
+    void OnDisable()
+    {
+        tilemap.ClearAllTiles();
     }
 
     void OnTriggerEnter2D(Collider2D collider)

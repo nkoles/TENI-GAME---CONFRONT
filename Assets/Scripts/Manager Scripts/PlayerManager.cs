@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -29,6 +30,19 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(hp <=0)
+        {
+            GameplayManager.Instance.logicAmount = 0;
+            GameplayManager.Instance.emotionAmount = 0;
+            GameplayManager.Instance.passiveAmount = 0;
+            GameplayManager.Instance.confrontAmount = 0;
+            Debug.Log("Lose!");
+            Lose();
+        }
+    }
+
+    public void Lose()
+    {
+        SceneManager.LoadScene(1);
     }
 }
