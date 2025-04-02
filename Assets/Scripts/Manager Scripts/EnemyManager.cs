@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
 
     public string[] dialogueText;
     public GameObject[] schoolObstacles;
-    public Transform[] lateralSpawnPoints;
+    public Vector3[] lateralSpawnPoints;
     public string[] enemyWords;
     public string[] playerWords;
     public int phase;
@@ -31,9 +31,9 @@ public class EnemyManager : MonoBehaviour
     {
         while(time > 4)
         {
-            int randPoint = Random.Range(0, 4);
+            int randPoint = Random.Range(0, lateralSpawnPoints.Length);
 
-            Instantiate(arrow, lateralSpawnPoints[randPoint].position, Quaternion.Euler(0, 0, 45 + (90 * randPoint)));
+            Instantiate(arrow, lateralSpawnPoints[randPoint], Quaternion.Euler(0, 0, 45 - (90 * randPoint)));
 
             int randTime = Random.Range(0, 5);
 
@@ -63,7 +63,7 @@ public class EnemyManager : MonoBehaviour
                     if(objects[randObject] == schoolObstacles[0])
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
-                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)) * -1, 3.0f - Mathf.Abs(randX));
+                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
                         GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
@@ -71,7 +71,7 @@ public class EnemyManager : MonoBehaviour
                     else if(objects[randObject] == schoolObstacles[1])
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
-                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)) * -1, 3.0f - Mathf.Abs(randX));
+                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
                         GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
@@ -79,25 +79,25 @@ public class EnemyManager : MonoBehaviour
                     else if(objects[randObject] == schoolObstacles[2])
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
-                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)) * -1, 3.0f - Mathf.Abs(randX));
+                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
                         GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
                     else if(objects[randObject] == schoolObstacles[3])
                     {
-                        //Instantiate(objects[randObject], /*Logic*/);
-                        objects.Remove(objects[randObject]);
-                    }
-                    else if(objects[randObject] == schoolObstacles[4])
-                    {
                         GameObject temp = Instantiate(objects[randObject], GameplayManager.Instance.player.heart.transform.position, Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
+                    else if(objects[randObject] == schoolObstacles[4])
+                    {
+                        Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        objects.Remove(objects[randObject]);
+                    }
                     else if(objects[randObject] == schoolObstacles[5])
                     {
-                        //Instantiate(objects[randObject], /*Logic*/);
+                        Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
                         objects.Remove(objects[randObject]);
                     }
                 }

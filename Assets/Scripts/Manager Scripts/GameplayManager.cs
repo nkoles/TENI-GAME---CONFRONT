@@ -46,8 +46,8 @@ public class GameplayManager : MonoBehaviour
     {
         passiveAmount++;
 
-        StartCoroutine(Dodge(time, passiveAmount++));
-        StartCoroutine(Block(time));
+        StartCoroutine(Dodge(time, passiveAmount));
+        //StartCoroutine(Block(time));
         StartCoroutine(EndTurn(time));
     }
 
@@ -62,7 +62,7 @@ public class GameplayManager : MonoBehaviour
     {
         player.heart.transform.position = new Vector3(0, 0, player.heart.transform.position.z);
         player.heart.SetActive(true);
-        //enemy.Dodging(time, difficulty);
+        StartCoroutine(enemy.Dodging(time, difficulty));
 
         yield return new WaitForSeconds(time);
 
@@ -117,6 +117,7 @@ public class GameplayManager : MonoBehaviour
                 player.StartCoroutine(player.Invulnerable());
             }
         }
+        Debug.Log(player.hp);
     }
 
     public void UpdateEnemyHealth(int amount)

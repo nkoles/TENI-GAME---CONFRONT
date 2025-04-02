@@ -31,7 +31,7 @@ public class DiamondScript : MonoBehaviour
             hit = false;
             Destroy(arrow);
             arrow = null;
-            Debug.Log("Hit!");
+            //Debug.Log("Hit!");
 
             if(aggro)
             {
@@ -103,7 +103,7 @@ public class DiamondScript : MonoBehaviour
             //update player health
             Destroy(arrow);
             arrow = null;
-            Debug.Log("Damage");
+            //Debug.Log("Damage");
         }
     }
 }
