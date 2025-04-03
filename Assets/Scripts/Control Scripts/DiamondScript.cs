@@ -9,6 +9,7 @@ public class DiamondScript : MonoBehaviour
     public GameObject arrow;
     public string key;
     public bool hit, aggro;
+    public int damage = 1;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,11 +28,12 @@ public class DiamondScript : MonoBehaviour
     {
         if(arrow != null)
         {
+            GameplayManager.Instance.ui.dialogue.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
             gameObject.GetComponent<SpriteRenderer>().color = new Color(0,0,255,255);
             hit = false;
             Destroy(arrow);
             arrow = null;
-            //Debug.Log("Hit!");
+            GameplayManager.Instance.UpdateEnemyHealth(damage);
 
             if(aggro)
             {
@@ -74,6 +76,12 @@ public class DiamondScript : MonoBehaviour
         direction.action.canceled += ChangeColour;
     }
 
+    void OnDisable()
+    {
+        direction.action.started -= Direction;
+        direction.action.canceled -= ChangeColour;
+    }
+
     public void OnTriggerEnter2D(Collider2D collider)
     {
         
@@ -98,6 +106,7 @@ public class DiamondScript : MonoBehaviour
     {
         if(hit)
         {
+            GameplayManager.Instance.ui.dialogue.text += " <i>" + arrow.GetComponent<ArrowScript>().word.text + "</i>";
             StartCoroutine(ColourBlack(1));
             hit = false;
             //update player health

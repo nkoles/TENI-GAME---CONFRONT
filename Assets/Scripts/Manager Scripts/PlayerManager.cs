@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -36,13 +35,6 @@ public class PlayerManager : MonoBehaviour
             GameplayManager.Instance.emotionAmount = 0;
             GameplayManager.Instance.passiveAmount = 0;
             GameplayManager.Instance.confrontAmount = 0;
-            Debug.Log("Lose!");
-            Lose();
         }
-    }
-
-    public void Lose()
-    {
-        SceneManager.LoadScene(1);
     }
 }

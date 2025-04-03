@@ -8,9 +8,9 @@ public class EnemyManager : MonoBehaviour
 
     public string[] dialogueText;
     public GameObject[] schoolObstacles;
+    public string[] SchoolAttackingWords;
     public Vector3[] lateralSpawnPoints;
     public string[] enemyWords;
-    public string[] playerWords;
     public int phase;
 
     public GameObject arrow;
@@ -31,15 +31,31 @@ public class EnemyManager : MonoBehaviour
     {
         while(time > 4)
         {
-            int randPoint = Random.Range(0, lateralSpawnPoints.Length);
+            int randPhrase = Random.Range(0, SchoolAttackingWords.Length);
+            int lastChar = 0;
 
-            Instantiate(arrow, lateralSpawnPoints[randPoint], Quaternion.Euler(0, 0, 45 - (90 * randPoint)));
+            while(time > 4 && lastChar < SchoolAttackingWords[randPhrase].Length)
+            {
+                int randPoint = Random.Range(0, lateralSpawnPoints.Length);
+                string phrase = "";
+                
+                while(SchoolAttackingWords[randPhrase][lastChar].ToString() != " ")
+                {
+                    phrase += SchoolAttackingWords[randPhrase][lastChar];
+                    lastChar++;
+                }
 
-            int randTime = Random.Range(0, 5);
+                GameObject temp = Instantiate(arrow, lateralSpawnPoints[randPoint], Quaternion.Euler(0, 0, 45 - (90 * randPoint)));
 
-            yield return new WaitForSeconds(randTime);
+                temp.GetComponent<ArrowScript>().word.text = phrase;
+                lastChar++;
 
-            time -= randTime;
+                int randTime = Random.Range(1, 5);
+
+                yield return new WaitForSeconds(randTime);
+
+                time -= randTime;
+            }
         }
     }
 
