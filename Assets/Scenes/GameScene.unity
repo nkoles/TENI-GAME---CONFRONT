@@ -851,8 +851,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
-  m_SizeDelta: {x: 640, y: 480}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &513961452
 GameObject:
@@ -1944,7 +1944,7 @@ MonoBehaviour:
   bossUI: {fileID: 1697225179}
   actionUI:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 433084378}
   - {fileID: 1819790128}
   - {fileID: 0}
   - {fileID: 0}
@@ -1989,8 +1989,6 @@ MonoBehaviour:
   - It will work out
   passiveStrings:
   - Test1
-  - Test2
-  - Test3
   confrontStrings: []
 --- !u!1 &1219681575
 GameObject:
@@ -2636,7 +2634,7 @@ MonoBehaviour:
   testColor: {r: 1, g: 1, b: 1, a: 1}
   completedAffirmationCharColor: {r: 0.4245283, g: 1, b: 0.97968924, a: 1}
   nextAffirmationCharColor: {r: 1, g: 0.5424528, b: 0.9403229, a: 1}
-  attackTextStringContainer: {fileID: 1765812201}
+  attackTextStringContainer: {fileID: 467403964}
   testAttackStrings: []
   spawnBox: {fileID: 467403964}
   currentActiveWords: []

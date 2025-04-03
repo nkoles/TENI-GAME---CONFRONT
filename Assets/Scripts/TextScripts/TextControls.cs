@@ -153,6 +153,8 @@ public class TextControls : MonoBehaviour
 
         List<int> spawnedWordIndexes = new List<int>();
 
+        Vector2 opposingSigns = Vector2.zero;
+
         while(true)
         {
             if (timePassed >= attackDuration || wordsDestroyedCount >= _attackStrings.Length)
@@ -164,8 +166,18 @@ public class TextControls : MonoBehaviour
 
                 spawnedWordIndexes.Add(randomStringIdx);
 
+                Vector3 dir = (Vector3)Random.insideUnitCircle;
+
+                if (spawnedWordIndexes.Count % 2 == 0)
+                {
+                    dir *= opposingSigns;
+                } else
+                {
+                    opposingSigns = new Vector2(-dir.x / dir.x, -dir.y / dir.y);
+                }
+
                 TextMeshProUGUI textObj = Instantiate(defaultTextPrefab,
-                                                      (Vector3)Random.insideUnitCircle * spawnBoxRadius + centerSpawn.position,
+                                                      centerSpawn.position,
                                                       Quaternion.identity,
                                                       attackTextStringContainer).GetComponent<TextMeshProUGUI>();
 
@@ -176,7 +188,8 @@ public class TextControls : MonoBehaviour
 
                 attackStrings.RemoveAt(randomStringIdx);
 
-                textHandler.InitialiseRichTagging();
+                textHandler.Initialise(dir);
+
                 currentActiveWords.Add(textHandler);
 
                 spawnTimePassed = 0;

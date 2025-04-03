@@ -57,7 +57,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Passive:
                 print("Passive Action");
 
-                action = textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, 20, 2, 10);
+                action = textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, 30);
 
                 break;
             case Actions.Affirm:
