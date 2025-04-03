@@ -25,8 +25,12 @@ public class TextControls : MonoBehaviour
 
     public GameObject defaultTextPrefab;
 
+    public int lastHealedHP;
+
     public IEnumerator Affirm(string text, float time)
     {
+        print("entered");
+
         associatedTextObj.gameObject.SetActive(true);
 
         associatedTextObj.text = InitialiseText(text, associatedTextObj.fontSize, Color.clear);
@@ -68,26 +72,42 @@ public class TextControls : MonoBehaviour
             print(parsedString.Length - 1);
 
             if (currentCharIdx == parsedString.Length)
+            {
+                lastHealedHP = (int)(time - timePassed);
+
                 break;
+            }
+
+            if (timePassed > time)
+            {
+                lastHealedHP = 0;
+
+                break;
+            }
+
+            char currentInput = ' ';
 
             foreach (var c in Input.inputString)
             {
+                currentInput = c;
+            }
 
-                if(parsedString[currentCharIdx] == ' ' || c == parsedString[currentCharIdx])
+            bool checkChar = char.ToUpper(parsedString[currentCharIdx]) == char.ToUpper(currentInput) ? true : false;
+
+            print(currentInput);
+
+            if (parsedString[currentCharIdx] == ' ' || checkChar)
+            {
+                StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx, GetCharColor(associatedTextObj, currentCharIdx), completedAffirmationCharColor, .5f));
+                StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx, GetCharFontSize(associatedTextObj, currentCharIdx), GetCharFontSize(associatedTextObj, currentCharIdx) / 1.2f, .5f));
+
+                if (currentCharIdx < parsedString.Length - 1)
                 {
-                    StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx, GetCharColor(associatedTextObj, currentCharIdx), completedAffirmationCharColor, .5f));
-                    StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx, GetCharFontSize(associatedTextObj, currentCharIdx), GetCharFontSize(associatedTextObj, currentCharIdx) / 1.2f, .5f));
-
-                    if(currentCharIdx < parsedString.Length - 1)
-                    {
-                        StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx + 1, Color.white, nextAffirmationCharColor, .5f));
-                        StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx + 1, GetCharFontSize(associatedTextObj, currentCharIdx + 1), GetCharFontSize(associatedTextObj, currentCharIdx + 1) * 1.2f, .5f));
-                    }
-
-                    currentCharIdx++;
-
-                    break;
+                    StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx + 1, Color.white, nextAffirmationCharColor, .5f));
+                    StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx + 1, GetCharFontSize(associatedTextObj, currentCharIdx + 1), GetCharFontSize(associatedTextObj, currentCharIdx + 1) * 1.2f, .5f));
                 }
+
+                currentCharIdx++;
             }
 
             timePassed += Time.deltaTime;
@@ -96,6 +116,9 @@ public class TextControls : MonoBehaviour
         }
 
         print("yippee");
+
+        if (currentCharIdx == 0)
+            currentCharIdx++;
 
         StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx-1, GetCharColor(associatedTextObj, currentCharIdx-1), completedAffirmationCharColor, .5f));
         StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx-1, GetCharFontSize(associatedTextObj, 0), GetCharFontSize(associatedTextObj, 0) / 1.2f, .5f));
@@ -114,8 +137,11 @@ public class TextControls : MonoBehaviour
         print("finished");
     }
 
+    //PASSIVE
     public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
     {
+        wordsDestroyedCount = 0;
+
         List<string> attackStrings = new List<string>();
 
         for(int i = 0;  i < _attackStrings.Length; ++i)
@@ -128,44 +154,58 @@ public class TextControls : MonoBehaviour
 
         List<int> spawnedWordIndexes = new List<int>();
 
-        while(timePassed < attackDuration || wordsDestroyedCount < attackStrings.Count)
+        Vector2 opposingSigns = Vector2.zero;
+
+        while(true)
         {
-            if (timePassed >= attackDuration || wordsDestroyedCount >= attackStrings.Count)
+            if (timePassed >= attackDuration || wordsDestroyedCount >= _attackStrings.Length)
                 break;
 
-            if(currentActiveWords.Count == 0 || spawnTimePassed >= spawnTime)
+            if(currentActiveWords.Count == 0 || spawnTimePassed >= spawnTime && spawnedWordIndexes.Count < _attackStrings.Length)
             {
                 int randomStringIdx = Random.Range(0, attackStrings.Count);
 
-                while(spawnedWordIndexes.Contains(randomStringIdx))
-                {
-                    randomStringIdx = Random.Range(0, attackStrings.Count);
-                }
-
                 spawnedWordIndexes.Add(randomStringIdx);
 
+                Vector3 dir = (Vector3)Random.insideUnitCircle;
+
+                if (spawnedWordIndexes.Count % 2 == 0)
+                {
+                    dir *= opposingSigns;
+                } else
+                {
+                    opposingSigns = new Vector2(-dir.x / dir.x, -dir.y / dir.y);
+                }
+
                 TextMeshProUGUI textObj = Instantiate(defaultTextPrefab,
-                                                      (Vector3)Random.insideUnitCircle * spawnBoxRadius + centerSpawn.position,
+                                                      centerSpawn.position,
                                                       Quaternion.identity,
                                                       attackTextStringContainer).GetComponent<TextMeshProUGUI>();
+
+                print(textObj.gameObject.transform.parent.name);
 
                 AttackTextInterraction textHandler = textObj.gameObject.GetComponent<AttackTextInterraction>();
                 textObj.text = attackStrings[randomStringIdx];
 
-                textHandler.InitialiseRichTagging();
+                attackStrings.RemoveAt(randomStringIdx);
+
+                textHandler.Initialise(dir);
 
                 currentActiveWords.Add(textHandler);
 
                 spawnTimePassed = 0;
+
             }
 
             timePassed += Time.deltaTime;
             spawnTimePassed += Time.deltaTime;
 
-            print(timePassed);
+            //print(timePassed);
 
             yield return null;
         }
+
+        print("exit loop");
 
         for(int i = currentActiveWords.Count-1; i >= 0; i--)
         {
@@ -181,7 +221,7 @@ public class TextControls : MonoBehaviour
 
         //StartCoroutine(Affirm("I am beautiful", 30));
 
-        //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
+        //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 2, 10));
     }
 
     private void Update()
