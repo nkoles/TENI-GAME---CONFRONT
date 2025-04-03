@@ -53,17 +53,17 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
             {
                 int randomChar = 0;
 
-                //for (int i = 0; i < parsedString.Length; ++i)
-                //{
-                //    if (!destroyedCharIdx.Contains(i))
-                //    {
-                //        randomChar = i;
+                for (int i = 0; i < parsedString.Length; ++i)
+                {
+                    if (!destroyedCharIdx.Contains(i))
+                    {
+                        randomChar = i;
 
-                //        break;
-                //    }
-                //}
+                        break;
+                    }
+                }
 
-                randomChar = TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true);
+                //randomChar = TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true);
 
                 destroyedCharIdx.Add(randomChar);
 
