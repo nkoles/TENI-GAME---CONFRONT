@@ -48,44 +48,55 @@ public class SequenceManager : MonoBehaviour
 
         print("action invoked");
 
+        IEnumerator action = null;
+
         switch(actionType)
         {
             case Actions.Attack:
                 break;
             case Actions.Passive:
+                print("Passive Action");
+
+                action = textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, 20, 2, 10);
+
                 break;
             case Actions.Affirm:
                 print("Affirm Action");
 
-                StartCoroutine(StartAction(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f), actionType));
+                action = textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f);
+
                 break;
             case Actions.Confront:
                 break;
             case Actions.BossAction:
                 break;
         }
+
+        StartCoroutine(StartAction(action , actionType));
     }
     
     public void ResultOfAction(Actions action)
     {
-
+        string resultText = "";
 
         switch (action)
         {
             case Actions.Attack:
+                resultText = "Dealt Damge: " + "";
                 break;
             case Actions.Passive:
+                resultText = "Endured Damage: " + "";
                 break;
             case Actions.Affirm:
-                //GameplayManager.Instance.UpdatePlayerHealth(textControls.lastHealedHP);
-                StartCoroutine(RenableBattleUI("Healed: " + textControls.lastHealedHP + "HP" + "\n Press any key to Continue", action));
-
+                resultText = "Healed: " + textControls.lastHealedHP + "HP" + "\n Press any key to Continue";
                 break;
             case Actions.Confront:
                 break;
             case Actions.BossAction:
                 break;
         }
+
+        StartCoroutine(RenableBattleUI(resultText, action));
     }
     
     private IEnumerator RenableBattleUI(string text, Actions action)

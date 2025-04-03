@@ -169,6 +169,8 @@ public class TextControls : MonoBehaviour
                                                       Quaternion.identity,
                                                       attackTextStringContainer).GetComponent<TextMeshProUGUI>();
 
+                print(textObj.gameObject.transform.parent.name);
+
                 AttackTextInterraction textHandler = textObj.gameObject.GetComponent<AttackTextInterraction>();
                 textObj.text = attackStrings[randomStringIdx];
 
