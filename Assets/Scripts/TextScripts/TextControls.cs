@@ -137,6 +137,7 @@ public class TextControls : MonoBehaviour
         print("finished");
     }
 
+    //PASSIVE
     public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
     {
         wordsDestroyedCount = 0;

@@ -88,7 +88,7 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Endured Damage: " + "";
                 break;
             case Actions.Affirm:
-                resultText = "Healed: " + textControls.lastHealedHP + "HP" + "\n Press any key to Continue";
+                resultText = "Healed: " + textControls.lastHealedHP + "HP" + "\nPress any key to Continue";
                 break;
             case Actions.Confront:
                 break;
@@ -128,7 +128,7 @@ public class SequenceManager : MonoBehaviour
 
     IEnumerator WaitForInput()
     {
-        while (!Input.anyKeyDown)
+        while (!Input.anyKeyDown || !Input.GetMouseButtonDown(0))
             yield return null;
     }
 }
