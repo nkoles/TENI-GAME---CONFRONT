@@ -40,10 +40,12 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
     {
         isEntered = true;
 
+        Select(true);
+
         //print(TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true));
         //print(parsedString[TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true)]);
 
-        SelectChar(true, TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true));
+        //SelectChar(true, TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true));
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -127,18 +129,18 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         }
     }
 
-    private void SelectChar(bool isOver, int idx)
-    {
-        Color colorToChangeTo = Color.white;
+    //private void SelectChar(bool isOver, int idx)
+    //{
+    //    Color colorToChangeTo = Color.white;
 
-        if (isOver)
-            colorToChangeTo = Color.magenta;
+    //    if (isOver)
+    //        colorToChangeTo = Color.magenta;
         
         
 
-        TextControls.ChangeCharColor(m_TextAsset, idx, colorToChangeTo);
-        TextControls.ChangeCharFontSize(m_TextAsset, idx, TextControls.GetCharFontSize(m_TextAsset, idx) * 1.2f);
-    }
+    //    TextControls.ChangeCharColor(m_TextAsset, idx, colorToChangeTo);
+    //    TextControls.ChangeCharFontSize(m_TextAsset, idx, TextControls.GetCharFontSize(m_TextAsset, idx) * 1.2f);
+    //}
 
     private void Select(bool isOver)
     {
