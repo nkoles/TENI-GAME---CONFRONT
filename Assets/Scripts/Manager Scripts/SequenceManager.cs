@@ -112,7 +112,7 @@ public class SequenceManager : MonoBehaviour
         yield return buttonController.TypeText(.3f, text, helperText);
         yield return WaitForInput();
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(.5f);
 
         buttonController.OnChoosingAction();
     }
