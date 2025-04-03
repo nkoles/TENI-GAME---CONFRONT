@@ -181,7 +181,7 @@ public class TextControls : MonoBehaviour
 
         //StartCoroutine(Affirm("I am beautiful", 30));
 
-        StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
+        //StartCoroutine(Attack(testAttackStrings, spawnBox, 50, 5, 10));
     }
 
     private void Update()
