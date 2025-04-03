@@ -38,17 +38,15 @@ public class SequenceManager : MonoBehaviour
     {
         ActionChosen.AddListener(SetupAction);
         ActionCompleted.AddListener(ResultOfAction);
-
-        ActionChosen.AddListener(buttonController.OnChoseAction);
     }
 
     public void SetupAction(int _actionType)
     {
         Actions actionType = (Actions)_actionType;
 
-        print("action invoked");
+        buttonController.OnChoseAction(_actionType);
 
-        //ActionChosen.Invoke(_actionType);
+        print("action invoked");
 
         switch(actionType)
         {
@@ -80,8 +78,7 @@ public class SequenceManager : MonoBehaviour
                 break;
             case Actions.Affirm:
                 //GameplayManager.Instance.UpdatePlayerHealth(textControls.lastHealedHP);
-
-                StartCoroutine(RenableBattleUI("Healed: " + textControls.lastHealedHP + "HP", action));
+                StartCoroutine(RenableBattleUI("Healed: " + textControls.lastHealedHP + "HP" + "\n Press any key to Continue", action));
 
                 break;
             case Actions.Confront:
@@ -102,8 +99,9 @@ public class SequenceManager : MonoBehaviour
         }
 
         yield return buttonController.TypeText(.3f, text, helperText);
-
         yield return WaitForInput();
+
+        yield return new WaitForSeconds(2);
 
         buttonController.OnChoosingAction();
     }
