@@ -39,12 +39,14 @@ public class SequenceManager : MonoBehaviour
         ActionChosen.AddListener(SetupAction);
         ActionCompleted.AddListener(ResultOfAction);
 
-        //ActionChosen.AddListener(buttonController.OnChoseAction);
+        ActionChosen.AddListener(buttonController.OnChoseAction);
     }
 
     public void SetupAction(int _actionType)
     {
         Actions actionType = (Actions)_actionType;
+
+        print("action invoked");
 
         //ActionChosen.Invoke(_actionType);
 
@@ -68,6 +70,8 @@ public class SequenceManager : MonoBehaviour
     
     public void ResultOfAction(Actions action)
     {
+
+
         switch (action)
         {
             case Actions.Attack:
@@ -99,7 +103,9 @@ public class SequenceManager : MonoBehaviour
 
         yield return buttonController.TypeText(.3f, text, helperText);
 
-        //buttonController.OnChoosingAction();
+        yield return WaitForInput();
+
+        buttonController.OnChoosingAction();
     }
 
     IEnumerator StartAction(IEnumerator actionRoutine, Actions actionTag)
@@ -109,5 +115,11 @@ public class SequenceManager : MonoBehaviour
         yield return actionRoutine;
 
         ActionCompleted.Invoke(actionTag);
+    }
+
+    IEnumerator WaitForInput()
+    {
+        while (!Input.anyKeyDown)
+            yield return null;
     }
 }
