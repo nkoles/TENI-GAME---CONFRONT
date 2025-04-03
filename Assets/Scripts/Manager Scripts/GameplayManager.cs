@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GameplayManager : MonoBehaviour
@@ -19,7 +20,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,9 +47,8 @@ public class GameplayManager : MonoBehaviour
     {
         passiveAmount++;
 
-        StartCoroutine(Dodge(time, passiveAmount));
-        //StartCoroutine(Block(time));
-        StartCoroutine(EndTurn(time));
+        StartCoroutine(Block(time));
+        StartCoroutine(EndTurn(time*2));
     }
 
     public IEnumerator EndTurn(int time)
@@ -60,6 +60,7 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator Dodge(int time, int difficulty)
     {
+        player.diamond.SetActive(true);
         player.heart.transform.position = new Vector3(0, 0, player.heart.transform.position.z);
         player.heart.SetActive(true);
         StartCoroutine(enemy.Dodging(time, difficulty));
@@ -67,6 +68,7 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         player.heart.SetActive(false);
+        player.diamond.SetActive(true);
     }
 
     public IEnumerator Counter(int time)
@@ -86,7 +88,8 @@ public class GameplayManager : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        player.diamond.SetActive(false);
+        ui.dialogueBox.SetActive(false);
+        StartCoroutine(Dodge(time, passiveAmount));
     }
 
     public IEnumerator Attack(int time)
@@ -100,9 +103,10 @@ public class GameplayManager : MonoBehaviour
 
     public void UpdatePlayerHealth(int amount)
     {
-        if(!player.invulnerable)
+        if(!player.invulnerable || amount < 0)
         {
             player.hp -= amount;
+            Debug.Log("Player HP: " + player.hp);
 
             if(player.hp <= 0)
             {
@@ -117,12 +121,12 @@ public class GameplayManager : MonoBehaviour
                 player.StartCoroutine(player.Invulnerable());
             }
         }
-        Debug.Log(player.hp);
     }
 
     public void UpdateEnemyHealth(int amount)
     {
         enemy.hp -= amount;
+        Debug.Log("Enemy HP: " + enemy.hp);
 
         if(enemy.hp <= 0)
         {
@@ -151,6 +155,6 @@ public class GameplayManager : MonoBehaviour
 
     public void Lose()
     {
-
+        SceneManager.LoadScene(1);
     }
 }

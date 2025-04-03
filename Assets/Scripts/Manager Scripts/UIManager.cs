@@ -3,7 +3,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    public TMP_Text descriptionText;
+    public GameObject dialogueBox;
+    public TMP_Text dialogue;
     public GameObject battleMenu;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,5 +22,7 @@ public class UIManager : MonoBehaviour
     public void DisplayBattleMenu()
     {
         battleMenu.SetActive(true);
+        dialogueBox.SetActive(false);
+        dialogue.text = "";
     }
 }

@@ -149,7 +149,10 @@ public class StationaryScript : MonoBehaviour
 
     void OnDisable()
     {
-        tilemap.ClearAllTiles();
+        if(tilemap != null)
+        {
+            tilemap.ClearAllTiles();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
