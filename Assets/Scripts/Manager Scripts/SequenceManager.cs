@@ -34,6 +34,9 @@ public class SequenceManager : MonoBehaviour
 
     public ButtonDetailHighlighting buttonController; 
 
+    private Actions lastAction;
+    private int[] actionAmount = new int[4] {0,0,0,0};
+
     private void Awake()
     {
         ActionChosen.AddListener(SetupAction);
@@ -53,22 +56,41 @@ public class SequenceManager : MonoBehaviour
         switch(actionType)
         {
             case Actions.Attack:
+                print("Attack Action");
+
+                action = GameplayManager.Instance.Attack(30);
+                //GameplayManager.Instance.logicAmount++;
+                lastAction = actionType;
+                actionAmount[(int)lastAction]++;
+
                 break;
             case Actions.Passive:
                 print("Passive Action");
 
                 action = textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, 30);
+                //GameplayManager.Instance.passiveAmount++;
+                lastAction = actionType;
+                actionAmount[(int)lastAction]++;
 
                 break;
             case Actions.Affirm:
                 print("Affirm Action");
 
                 action = textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f);
+                //GameplayManager.Instance.emotionAmount++;
+                lastAction = actionType;
+                actionAmount[(int)lastAction]++;
 
                 break;
             case Actions.Confront:
+
+                GameplayManager.Instance.confrontAmount++;
                 break;
             case Actions.BossAction:
+
+                action = GameplayManager.Instance.Dodge(30, actionAmount[(int)lastAction]);
+
+                lastAction = actionType;
                 break;
         }
 
@@ -82,13 +104,13 @@ public class SequenceManager : MonoBehaviour
         switch (action)
         {
             case Actions.Attack:
-                resultText = "Dealt Damge: " + "";
+                resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + "\nPress any key to Continue";
                 break;
             case Actions.Passive:
-                resultText = "Endured Damage: " + "";
+                resultText = "Recieved: " + " Aggression" + "\nPress any key to Continue";
                 break;
             case Actions.Affirm:
-                resultText = "Healed: " + textControls.lastHealedHP + "HP" + "\nPress any key to Continue";
+                resultText = "Gained: " + textControls.lastHealedHP + " Health" + "\nPress any key to Continue";
                 break;
             case Actions.Confront:
                 break;
@@ -114,7 +136,21 @@ public class SequenceManager : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        buttonController.OnChoosingAction();
+        if(lastAction != Actions.BossAction)
+        {
+            bossUI.SetActive(false);
+
+            foreach(var t in battleUIObjects.GetComponentsInChildren<Transform>())
+            {
+                t.gameObject.SetActive(false);
+            }
+
+            SetupAction((int)Actions.BossAction);
+        }
+        else
+        {
+            buttonController.OnChoosingAction();
+        }
     }
 
     IEnumerator StartAction(IEnumerator actionRoutine, Actions actionTag)

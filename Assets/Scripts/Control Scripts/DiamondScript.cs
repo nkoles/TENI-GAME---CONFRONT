@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class DiamondScript : MonoBehaviour
 {
+    public TMP_Text attackBox;
     public InputActionReference direction;
     public GameObject arrow;
     public string key;
@@ -28,12 +30,14 @@ public class DiamondScript : MonoBehaviour
     {
         if(arrow != null)
         {
-            GameplayManager.Instance.ui.dialogue.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
+            //GameplayManager.Instance.ui.dialogue.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
+            attackBox.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
             gameObject.GetComponent<SpriteRenderer>().color = new Color(0,0,255,255);
             hit = false;
             Destroy(arrow);
             arrow = null;
             GameplayManager.Instance.UpdateEnemyHealth(damage);
+            GameplayManager.Instance.damageDealt++;
 
             if(aggro)
             {
@@ -76,6 +80,11 @@ public class DiamondScript : MonoBehaviour
         direction.action.canceled += ChangeColour;
     }
 
+    void Enable()
+    {
+        attackBox.text = "";
+    }
+
     void OnDisable()
     {
         direction.action.started -= Direction;
@@ -106,7 +115,8 @@ public class DiamondScript : MonoBehaviour
     {
         if(hit)
         {
-            GameplayManager.Instance.ui.dialogue.text += " <i>" + arrow.GetComponent<ArrowScript>().word.text + "</i>";
+            //GameplayManager.Instance.ui.dialogue.text += " <i>" + arrow.GetComponent<ArrowScript>().word.text + "</i>";
+            attackBox.text += " <i>" + arrow.GetComponent<ArrowScript>().word.text + "</i>";
             StartCoroutine(ColourBlack(1));
             hit = false;
             //update player health

@@ -29,6 +29,8 @@ public class EnemyManager : MonoBehaviour
 
     public IEnumerator Blocking(float time)
     {
+        Transform diamond = GameplayManager.Instance.player.diamond.transform;
+
         while(time > 4)
         {
             int randPhrase = Random.Range(0, SchoolAttackingWords.Length);
@@ -45,7 +47,9 @@ public class EnemyManager : MonoBehaviour
                     lastChar++;
                 }
 
-                GameObject temp = Instantiate(arrow, lateralSpawnPoints[randPoint], Quaternion.Euler(0, 0, 45 - (90 * randPoint)));
+                GameObject temp = Instantiate(arrow, diamond.position + new Vector3(lateralSpawnPoints[randPoint].x * diamond.localScale.x, lateralSpawnPoints[randPoint].y * diamond.localScale.y, 0), Quaternion.Euler(0, 0, 45 - (90 * randPoint)));
+
+                temp.transform.localScale = diamond.localScale;
 
                 temp.GetComponent<ArrowScript>().word.text = phrase;
                 lastChar++;

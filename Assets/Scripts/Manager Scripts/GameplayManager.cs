@@ -11,6 +11,7 @@ public class GameplayManager : MonoBehaviour
     public EnemyManager enemy;
     public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
+    public int damageDealt = 0;
 
     void Awake()
     {
@@ -40,14 +41,22 @@ public class GameplayManager : MonoBehaviour
         /*int rand = Random.Range(0, enemy.dialogueText.Length);
         ui.descriptionText.text = enemy.dialogueText[rand];*/
         
-        ui.DisplayBattleMenu();
+        //ui.DisplayBattleMenu();
     }
 
     public void Passive(int time)
     {
-        passiveAmount++;
+        //passiveAmount++;
 
-        StartCoroutine(Block(time));
+        StartCoroutine(Build(time));
+        StartCoroutine(EndTurn(time*2));
+    }
+
+    public void Logic(int time)
+    {
+        //logicAmount++;
+
+        StartCoroutine(Attack(time));
         StartCoroutine(EndTurn(time*2));
     }
 
@@ -61,6 +70,7 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator Dodge(int time, int difficulty)
     {
         player.diamond.SetActive(true);
+        //GameObject heart = Instantiate(player.heart, new Vector3(0, 0, 0), Quaternion.Euler(0,0,0));
         player.heart.transform.position = new Vector3(0, 0, player.heart.transform.position.z);
         player.heart.SetActive(true);
         StartCoroutine(enemy.Dodging(time, difficulty));
@@ -68,10 +78,11 @@ public class GameplayManager : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         player.heart.SetActive(false);
-        player.diamond.SetActive(true);
+        //Destroy(heart);
+        player.diamond.SetActive(false);
     }
 
-    public IEnumerator Counter(int time)
+    public IEnumerator Comfort(int time)
     {
         player.spade.transform.position = Input.mousePosition;
         player.spade.SetActive(true);
@@ -81,18 +92,20 @@ public class GameplayManager : MonoBehaviour
         player.spade.SetActive(false);
     }
 
-    public IEnumerator Block(int time)
+    public IEnumerator Attack(int time)
     {
+        damageDealt = 0;
         player.diamond.SetActive(true);
         StartCoroutine(enemy.Blocking(time));
 
         yield return new WaitForSeconds(time);
 
-        ui.dialogueBox.SetActive(false);
-        StartCoroutine(Dodge(time, passiveAmount));
+        //ui.dialogueBox.SetActive(false);
+        player.diamond.SetActive(false);
+        //StartCoroutine(Dodge(time, logicAmount));
     }
 
-    public IEnumerator Attack(int time)
+    public IEnumerator Build(int time)
     {
         player.club.SetActive(true);
 
