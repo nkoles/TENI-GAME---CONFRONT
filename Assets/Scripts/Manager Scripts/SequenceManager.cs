@@ -54,19 +54,33 @@ public class SequenceManager : MonoBehaviour
 
         IEnumerator action = null;
 
-        switch(actionType)
+        switch (actionType)
         {
             case Actions.Attack:
                 print("Attack Action");
 
                 action = GameplayManager.Instance.Attack(30);
                 //GameplayManager.Instance.logicAmount++;
-        
+
                 break;
             case Actions.Passive:
                 print("Passive Action");
 
-                action = textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, 30);
+                List<string> randomString = new List<string>();
+
+                for(int i =0; i < 3; ++i)
+                {
+                    int randomIdx = Random.Range(0, dialogueRepo.passiveStrings.Length);
+
+                    while (randomString.Contains(dialogueRepo.passiveStrings[randomIdx]))
+                    {
+                        randomIdx = Random.Range(0, dialogueRepo.passiveStrings.Length);
+                    }
+
+                    randomString.Add(dialogueRepo.passiveStrings[randomIdx]);
+                }
+
+                action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 60);
                 //GameplayManager.Instance.passiveAmount++;
          
                 
@@ -105,7 +119,8 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + "\nPress any key to Continue";
                 break;
             case Actions.Passive:
-                resultText = "Recieved: " + " Aggression" + "\nPress any key to Continue";
+                resultText = "Recieved: " + textControls.aggressionGained + " Aggression" + "\nTook: " + textControls.damageTaken + "Damage" + 
+                             "\nPress any key to Continue";
                 break;
             case Actions.Affirm:
                 resultText = "Gained: " + textControls.lastHealedHP + " Health" + "\nPress any key to Continue";
