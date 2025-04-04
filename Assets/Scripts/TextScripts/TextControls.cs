@@ -24,7 +24,9 @@ public class TextControls : MonoBehaviour
 
     public List<AttackTextInterraction> currentActiveWords = new List<AttackTextInterraction>();
     public int wordsDestroyedCount;
-    public int wordsMissedCount;
+
+    public int damageTaken;
+    public int aggressionGained;
 
     public GameObject defaultTextPrefab;
 
@@ -66,6 +68,13 @@ public class TextControls : MonoBehaviour
 
         print(parsedString.Length - 1);
 
+        _postProcessVignette = ScriptableObject.CreateInstance<Vignette>();
+
+        _postProcessVignette.enabled.Override(true);
+        _postProcessVignette.smoothness.Override(1f);
+        _postProcessVignette.rounded.Override(true);
+        _postProcessVignette.intensity.Override(0f);
+
         while (currentCharIdx <= parsedString.Length || timePassed < time)
         {
             //print(timePassed);
@@ -85,6 +94,8 @@ public class TextControls : MonoBehaviour
             if (currentCharIdx == parsedString.Length)
             {
                 lastHealedHP = (int)(time - timePassed);
+
+                GameplayManager.Instance.UpdatePlayerHealth(-lastHealedHP);
 
                 break;
             }
@@ -162,13 +173,15 @@ public class TextControls : MonoBehaviour
     public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
     {
         wordsDestroyedCount = 0;
-        wordsMissedCount = 0;
+
+        damageTaken = 0;
+        aggressionGained = 0;
 
         List<string> attackStrings = new List<string>();
 
         for(int i = 0;  i < _attackStrings.Length; ++i)
         {
-            attackStrings.Add(InitialiseText(_attackStrings[i], 0, Color.white));
+            attackStrings.Add(InitialiseText(_attackStrings[i], 1, Color.white));
         }
 
         float timePassed = 0;
@@ -239,12 +252,6 @@ public class TextControls : MonoBehaviour
 
     private void Awake()
     {
-        _postProcessVignette = ScriptableObject.CreateInstance<Vignette>();
-
-        _postProcessVignette.enabled.Override(true);
-        _postProcessVignette.smoothness.Override(1f);
-        _postProcessVignette.rounded.Override(true);
-        _postProcessVignette.intensity.Override(0f);
     }
 
     private void Start()

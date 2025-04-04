@@ -19,16 +19,19 @@ public class HealthManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+
+        UpdateUIHealth(true);
+        UpdateUIHealth(false);
     }
 
     public void UpdateUIHealth(bool isPlayer)
     {
         if (!isPlayer)
         {
-            bossHealthImage.fillAmount = Mathf.Lerp(0, 1, enemyManager.hp/enemyManager.maxHP);
+            bossHealthImage.fillAmount = Mathf.Lerp(0, 1, (float)enemyManager.hp/(float)enemyManager.maxHP);
         } else
         {
-            playerHealthImage.fillAmount = Mathf.Lerp(0, 1, playerManager.hp / playerManager.maxHP);
+            playerHealthImage.fillAmount = Mathf.Lerp(0, 1, (float)playerManager.hp / (float)playerManager.maxHP);
         }
     }
 }

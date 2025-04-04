@@ -55,23 +55,22 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         {
             if (!isDestroyed)
             {
-                int randomChar = 0;
-
-                for (int i = 0; i < parsedString.Length; ++i)
+                if(destroyedCharIdx.Count < m_TextAsset.textInfo.wordCount)
                 {
-                    if (!destroyedCharIdx.Contains(i))
+                    int start = m_TextAsset.textInfo.wordInfo[destroyedCharIdx.Count].firstCharacterIndex;
+                    int end = m_TextAsset.textInfo.wordInfo[destroyedCharIdx.Count].lastCharacterIndex;
+
+                    for(int i = start; i <= end; i++)
                     {
-                        randomChar = i;
-
-                        break;
+                        StartCoroutine(TextControls.LerpCharColor(m_TextAsset, i, TextControls.GetCharColor(m_TextAsset, i), Color.clear, .3f));
                     }
-                }
 
+                    destroyedCharIdx.Add(destroyedCharIdx.Count);
+                }
+                
                 //randomChar = TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true);
 
-                destroyedCharIdx.Add(randomChar);
-
-                if (destroyedCharIdx.Count >= parsedString.Length)
+                if (destroyedCharIdx.Count >= m_TextAsset.textInfo.wordCount)
                 {
                     isDestroyed = true;
 
@@ -80,8 +79,6 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
                     return;
                 }
-
-                StartCoroutine(TextControls.LerpCharColor(m_TextAsset, randomChar, TextControls.GetCharColor(m_TextAsset, randomChar), Color.clear, 0.5f));
             }
         }
     }
@@ -139,20 +136,15 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
         if (isInitialised)
         {
-            transform.position += _dir * Time.deltaTime;
+            transform.position += _dir/2 * Time.deltaTime;
 
-            for (int i = 0; i < parsedString.Length; ++i)
-            {
-                TextControls.ChangeCharFontSize(m_TextAsset, i, TextControls.GetCharFontSize(m_TextAsset, i) + 10 * Time.deltaTime);
-            }
+            transform.localScale += Vector3.one*Time.deltaTime*2;
         }
 
         if (CheckOutsideScreen() && !isDestroyed)
         {            
             isDestroyed = true;
             TextControls textController = FindAnyObjectByType<TextControls>();
-
-            textController.wordsMissedCount++;
 
             StartCoroutine(OnDestruction());
         }
@@ -173,15 +165,23 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
     private void Select(bool isOver)
     {
+        print(destroyedCharIdx.Count);
+        print(m_TextAsset.textInfo.wordCount);
+
         Color colorToChangeTo = Color.white;
 
         if (isOver)
             colorToChangeTo = Color.magenta;
 
-        for(int i = 0; i < parsedString.Length; ++i)
+        for(int i = destroyedCharIdx.Count; i < m_TextAsset.textInfo.wordCount; ++i)
         {
-            if(!destroyedCharIdx.Contains(i))
-                TextControls.ChangeCharColor(m_TextAsset, i, colorToChangeTo);
+            int start = m_TextAsset.textInfo.wordInfo[i].firstCharacterIndex;
+            int last = m_TextAsset.textInfo.wordInfo[i].lastCharacterIndex;
+
+            for (int j = start; j <= last; ++j)
+            {
+                TextControls.ChangeCharColor(m_TextAsset, j, colorToChangeTo);
+            }
         }
     }
 
@@ -192,16 +192,25 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         if(textController.currentActiveWords.Contains(this))
         {
             textController.currentActiveWords.Remove(this);
+
+            if(destroyedCharIdx.Count >= m_TextAsset.textInfo.wordCount)
+            {
+                GameplayManager.Instance.UpdateAggression(m_TextAsset.textInfo.wordCount);
+                textController.aggressionGained += m_TextAsset.textInfo.wordCount;
+            } else
+            {
+                GameplayManager.Instance.UpdatePlayerHealth(m_TextAsset.textInfo.wordCount - destroyedCharIdx.Count);
+                textController.damageTaken += m_TextAsset.textInfo.wordCount - destroyedCharIdx.Count;
+            }
+
             textController.wordsDestroyedCount++;
         }
 
-        yield return TextControls.LerpCharColor(m_TextAsset, parsedString.Length - 1, TextControls.GetCharColor(m_TextAsset, parsedString.Length - 1), Color.clear, 0.1f);
+        //yield return TextControls.LerpCharColor(m_TextAsset, parsedString.Length - 1, TextControls.GetCharColor(m_TextAsset, parsedString.Length - 1), Color.clear, 0.1f);
 
         Destroy(gameObject);
 
-        StartCoroutine(PostProcessingManager.TakeDamagePPEffect(.3f, 1f, 1f));
-
-        print("?");
+        //StartCoroutine(PostProcessingManager.TakeDamagePPEffect(.3f, 1f, 1f));
 
         yield return null;
     }

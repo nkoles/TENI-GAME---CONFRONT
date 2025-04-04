@@ -133,6 +133,8 @@ public class GameplayManager : MonoBehaviour
             {
                 player.StartCoroutine(player.Invulnerable());
             }
+
+            HealthManager.instance.UpdateUIHealth(true);
         }
     }
 
@@ -149,6 +151,8 @@ public class GameplayManager : MonoBehaviour
         {
             enemy.hp = enemy.maxHP;
         }
+
+        HealthManager.instance.UpdateUIHealth(false);
     }
 
     public void UpdateAggression(int amount)
@@ -163,11 +167,13 @@ public class GameplayManager : MonoBehaviour
 
     public void Win()
     {
-
+        SetupSequence.isWon = true;
+        SceneLoadingManager.instance.LoadNextScene();
     }
 
     public void Lose()
     {
-        SceneManager.LoadScene(1);
+        SetupSequence.isWon = false;
+        SceneLoadingManager.instance.LoadNextScene();
     }
 }
