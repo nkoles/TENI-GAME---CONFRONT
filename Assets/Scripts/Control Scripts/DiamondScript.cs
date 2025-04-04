@@ -11,7 +11,8 @@ public class DiamondScript : MonoBehaviour
     public GameObject arrow;
     public string key;
     public bool hit, aggro;
-    public int damage = 1;
+    public Color black, violet;
+    //public int damage = 1;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,12 +33,12 @@ public class DiamondScript : MonoBehaviour
         {
             //GameplayManager.Instance.ui.dialogue.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
             attackBox.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0,0,255,255);
+            gameObject.GetComponent<SpriteRenderer>().color = violet;
             hit = false;
             Destroy(arrow);
             arrow = null;
-            GameplayManager.Instance.UpdateEnemyHealth(damage);
-            GameplayManager.Instance.damageDealt++;
+            GameplayManager.Instance.UpdateEnemyHealth(GameplayManager.Instance.player.damage);
+            GameplayManager.Instance.damageDealt += GameplayManager.Instance.player.damage;
 
             if(aggro)
             {
@@ -46,7 +47,7 @@ public class DiamondScript : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<SpriteRenderer>().color = new Color(0,0,0,255);
+            gameObject.GetComponent<SpriteRenderer>().color = black;
             StartCoroutine(Stun(2f));
         }
     }
@@ -58,7 +59,7 @@ public class DiamondScript : MonoBehaviour
 
     public IEnumerator ColourBlack(int time)
     {
-        gameObject.GetComponent<SpriteRenderer>().color = new Color(0,0,0,255);
+        gameObject.GetComponent<SpriteRenderer>().color = black;
 
         yield return new WaitForSeconds(time);
         

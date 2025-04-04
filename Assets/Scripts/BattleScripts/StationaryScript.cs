@@ -55,8 +55,8 @@ public class StationaryScript : MonoBehaviour
             vector = transform.position / secondaryTilemap.gameObject.transform.localScale.z;
             vector = Quaternion.Euler(0, 0, -45) * vector;
 
-            //if(Vector3.Distance(transform.position, previousPos) >= .25f /*secondaryTilemap.GetTile(Vector3Int.FloorToInt(vector)) != currentTile*/)
-            /*{
+            if(Vector3.Distance(transform.position, previousPos) >= .25f /*secondaryTilemap.GetTile(Vector3Int.FloorToInt(vector)) != currentTile*/)
+            {
                 previousPos = transform.position;
                 //currentTile = secondaryTilemap.GetTile<Tile>(Vector3Int.FloorToInt(vector));
                 //Vector3Int.FloorToInt(vector);
@@ -69,7 +69,7 @@ public class StationaryScript : MonoBehaviour
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y-1, vector.z)), null);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y, vector.z)), null);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y+1, vector.z)), null);
-            }*/
+            }
         }
 
         /*if(Mathf.Abs(transform.position.x) + Mathf.Abs(transform.position.y) >= 3.0f)

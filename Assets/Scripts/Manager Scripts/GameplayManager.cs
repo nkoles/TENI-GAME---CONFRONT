@@ -11,7 +11,7 @@ public class GameplayManager : MonoBehaviour
     public EnemyManager enemy;
     public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
-    public int damageDealt = 0;
+    public int damageDealt = 0, aggroRecieved = 0;
 
     void Awake()
     {

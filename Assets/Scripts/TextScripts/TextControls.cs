@@ -32,6 +32,8 @@ public class TextControls : MonoBehaviour
 
     private PostProcessVolume _postProcessVolume;
     private Vignette _postProcessVignette;
+    
+    public int aggressionAmount = 1;
 
     public IEnumerator Affirm(string text, float time)
     {

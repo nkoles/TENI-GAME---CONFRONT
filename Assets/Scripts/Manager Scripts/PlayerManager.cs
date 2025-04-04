@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public float invulnerableTime = 1.0f;
 
-    public int hp, maxHP, aggression, maxAggression;
+    public int hp, maxHP, aggression, maxAggression, damage = 1;
 
     public bool invulnerable;
     

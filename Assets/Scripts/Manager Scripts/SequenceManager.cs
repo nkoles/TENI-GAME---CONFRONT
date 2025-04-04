@@ -66,6 +66,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Passive:
                 print("Passive Action");
 
+                GameplayManager.Instance.aggroRecieved = 0;
                 action = textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, 30);
                 //GameplayManager.Instance.passiveAmount++;
          
@@ -80,8 +81,11 @@ public class SequenceManager : MonoBehaviour
                 
                 break;
             case Actions.Confront:
+                print("Confront Action");
 
-                GameplayManager.Instance.confrontAmount++;
+                action = Confront(30);
+
+                //GameplayManager.Instance.confrontAmount++;
                 break;
             case Actions.BossAction:
 
@@ -94,6 +98,28 @@ public class SequenceManager : MonoBehaviour
 
         StartCoroutine(StartAction(action , actionType));
     }
+
+    public IEnumerator Confront(int time)
+    {
+        GameplayManager.Instance.player.damage *= 2;
+        Debug.Log(GameplayManager.Instance.player.damage);
+        textControls.aggressionAmount *= 2;
+        Debug.Log(textControls.aggressionAmount);
+
+        StartCoroutine(GameplayManager.Instance.Attack(time));
+        StartCoroutine(textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, time));
+        StartCoroutine(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], time));
+
+        yield return new WaitForSeconds(time);
+
+        foreach(GameObject ui in actionUI)
+        {
+            ui.SetActive(false);
+        }
+
+        GameplayManager.Instance.player.damage /= 2;
+        textControls.aggressionAmount /= 2;
+    }
     
     public void ResultOfAction(Actions action)
     {
@@ -105,12 +131,16 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + "\nPress any key to Continue";
                 break;
             case Actions.Passive:
-                resultText = "Recieved: " + " Aggression" + "\nPress any key to Continue";
+                resultText = "Recieved: " + GameplayManager.Instance.aggroRecieved + " Aggression" + "\nPress any key to Continue";
                 break;
             case Actions.Affirm:
                 resultText = "Gained: " + textControls.lastHealedHP + " Health" + "\nPress any key to Continue";
                 break;
             case Actions.Confront:
+                resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
+                "\nRecieved: " + GameplayManager.Instance.aggroRecieved + " Aggression" + 
+                "\nGained: " + textControls.lastHealedHP + " Health" + 
+                "\nPress any key to Continue";
                 break;
             case Actions.BossAction:
                 resultText = "Evaded boss stuff" + "\nPress any key to Continue";
@@ -140,7 +170,7 @@ public class SequenceManager : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        if(lastAction != Actions.BossAction)
+        if(lastAction != Actions.BossAction && lastAction != Actions.Confront)
         {
             bossUI.SetActive(false);
 
@@ -153,10 +183,21 @@ public class SequenceManager : MonoBehaviour
         }
         else
         {
+            int buttonNo = 0;
+
             foreach(Button button in buttonController.gameObject.GetComponentsInChildren<Button>())
-        {
-            button.enabled = true;
-        }
+            {
+                if(buttonNo == 3 && GameplayManager.Instance.player.aggression < GameplayManager.Instance.player.maxAggression)
+                {
+                    button.enabled = false;
+                }
+                else
+                {
+                    button.enabled = true;
+                }
+
+                buttonNo++;
+            }
 
             buttonController.OnChoosingAction();    
         }
