@@ -109,7 +109,7 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
     public bool CheckMouseOverText()
     {
-        if (TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true) != -1)
+        if (TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, Camera.main, true) != -1)
             return true;
 
         return false;
@@ -117,13 +117,13 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
     private bool CheckOutsideScreen()
     {
-        print(Screen.width);
-        print(m_RectTransform.localPosition);
+        //print(Screen.width);
+        //print(m_RectTransform.localPosition);
 
         bool screenX = m_RectTransform.localPosition.x < -Screen.width/2 || m_RectTransform.localPosition.x > Screen.width/2;
         bool screenY = m_RectTransform.localPosition.y < -Screen.height/2 || m_RectTransform.localPosition.y > Screen.height/2;
 
-        print(screenY || screenX);
+        //print(screenY || screenX);
 
         return screenX || screenY;
     }
@@ -137,7 +137,7 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
         if (isInitialised)
         {
-            transform.position += _dir * 20 * Time.deltaTime;
+            transform.position += _dir * Time.deltaTime;
 
             for (int i = 0; i < parsedString.Length; ++i)
             {
@@ -196,6 +196,10 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         yield return TextControls.LerpCharColor(m_TextAsset, parsedString.Length - 1, TextControls.GetCharColor(m_TextAsset, parsedString.Length - 1), Color.clear, 0.1f);
 
         Destroy(gameObject);
+
+        StartCoroutine(PostProcessingManager.TakeDamagePPEffect(.3f, 1f, 1f));
+
+        print("?");
 
         yield return null;
     }
