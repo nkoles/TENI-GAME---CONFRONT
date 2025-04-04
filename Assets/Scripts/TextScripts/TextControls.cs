@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 //using Unity.VisualScripting;
 
 public class TextControls : MonoBehaviour
@@ -22,10 +23,14 @@ public class TextControls : MonoBehaviour
 
     public List<AttackTextInterraction> currentActiveWords = new List<AttackTextInterraction>();
     public int wordsDestroyedCount;
+    public int wordsMissedCount;
 
     public GameObject defaultTextPrefab;
 
     public int lastHealedHP;
+
+    private PostProcessVolume _postProcessVolume;
+    private Vignette _postProcessVignette;
 
     public IEnumerator Affirm(string text, float time)
     {
@@ -70,6 +75,10 @@ public class TextControls : MonoBehaviour
 
             print(currentCharIdx);
             print(parsedString.Length - 1);
+
+            _postProcessVolume = PostProcessManager.instance.QuickVolume(0 & 1 >> 5, 100, _postProcessVignette);
+
+            _postProcessVignette.intensity.Override(Mathf.Lerp(0, 1f, timePassed/time));
 
             if (currentCharIdx == parsedString.Length)
             {
@@ -130,6 +139,16 @@ public class TextControls : MonoBehaviour
             yield return null;
         }
 
+        for(float i = 0; i < 1.1; i+= Time.deltaTime)
+        {
+            _postProcessVignette.intensity.Override(Mathf.Lerp(1f, 0, i));
+
+            yield return null;
+        }
+
+        RuntimeUtilities.DestroyVolume(_postProcessVolume, true, false);
+
+
         yield return new WaitForSeconds(.5f);
 
         associatedTextObj.gameObject.SetActive(false);
@@ -141,6 +160,7 @@ public class TextControls : MonoBehaviour
     public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
     {
         wordsDestroyedCount = 0;
+        wordsMissedCount = 0;
 
         List<string> attackStrings = new List<string>();
 
@@ -205,7 +225,7 @@ public class TextControls : MonoBehaviour
             yield return null;
         }
 
-        print("exit loop");
+        yield return new WaitForSeconds(1f);
 
         for(int i = currentActiveWords.Count-1; i >= 0; i--)
         {
@@ -213,6 +233,16 @@ public class TextControls : MonoBehaviour
         }
 
         print("attack finished");
+    }
+
+    private void Awake()
+    {
+        _postProcessVignette = ScriptableObject.CreateInstance<Vignette>();
+
+        _postProcessVignette.enabled.Override(true);
+        _postProcessVignette.smoothness.Override(1f);
+        _postProcessVignette.rounded.Override(true);
+        _postProcessVignette.intensity.Override(0f);
     }
 
     private void Start()
