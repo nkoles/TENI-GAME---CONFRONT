@@ -23,8 +23,8 @@ public class SetupSequence : MonoBehaviour
 
     private void SetupObjectLists()
     {
-        buttons = FindObjectsOfType<Button>().ToList<Button>();
-        text = FindObjectsOfType<TextMeshProUGUI>().ToList<TextMeshProUGUI>();
+        buttons = FindObjectsOfType<Button>(false).ToList<Button>();
+        text = FindObjectsOfType<TextMeshProUGUI>(false).ToList<TextMeshProUGUI>();
 
         TextMeshProUGUI tempText = null;
 
@@ -105,7 +105,7 @@ public class SetupSequence : MonoBehaviour
     {
         foreach(var b in buttons)
         {
-            StartCoroutine(WaitForCoroutine(LerpScale(b.transform, .3f, 0f, 1f), true));
+            StartCoroutine(WaitForCoroutine(LerpScale(b.transform, .3f, 0f, 1f), false));
             b.gameObject.SetActive(true);
         }
 
@@ -116,6 +116,8 @@ public class SetupSequence : MonoBehaviour
 
             yield return null;
         }
+
+        print("scaling done");
 
         buttonCount = 0;
     }
