@@ -585,8 +585,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a04ad0a5620f54f80061e7b1a3e9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStart: 1
-  endText: []
+  isStart: 0
+  endText:
+  - Lost Test
+  - Win Test
   text: []
   buttons: []
 --- !u!4 &1052706958
