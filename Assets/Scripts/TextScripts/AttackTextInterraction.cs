@@ -10,6 +10,8 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
     private UnityEvent CursorOverText = new UnityEvent();
     private UnityEvent CursorOffText  = new UnityEvent();
 
+    private RectTransform m_RectTransform;
+
     private bool isEntered;
 
     private TextMeshProUGUI m_TextAsset;
@@ -31,6 +33,8 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
     {
         m_TextAsset = GetComponent<TextMeshProUGUI>();
         m_TextAsset.alignment = TextAlignmentOptions.Center & TextAlignmentOptions.Center;
+        
+        m_RectTransform = GetComponent<RectTransform>();
 
         CursorOverText.AddListener(OnCursorOverText);
         CursorOffText.AddListener(OnCursorOffText);
@@ -89,9 +93,11 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         isEntered = false;
     }
 
-    public void Initialise(Vector3 direction)
+    public void Initialise(Vector3 direction, TMP_FontAsset font)
     {
         print(m_TextAsset.text);
+
+        m_TextAsset.font = font;
 
         parsedString = TextControls.ParseRichTags(m_TextAsset);
         _dir = direction;
@@ -105,10 +111,23 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
     public bool CheckMouseOverText()
     {
-        if (TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, null, true) != -1)
+        if (TMP_TextUtilities.FindIntersectingCharacter(m_TextAsset, Input.mousePosition, Camera.main, true) != -1)
             return true;
 
         return false;
+    }
+
+    private bool CheckOutsideScreen()
+    {
+        //print(Screen.width);
+        //print(m_RectTransform.localPosition);
+
+        bool screenX = m_RectTransform.localPosition.x < -Screen.width/2 || m_RectTransform.localPosition.x > Screen.width/2;
+        bool screenY = m_RectTransform.localPosition.y < -Screen.height/2 || m_RectTransform.localPosition.y > Screen.height/2;
+
+        //print(screenY || screenX);
+
+        return screenX || screenY;
     }
 
     private void Update()
@@ -120,12 +139,22 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
         if (isInitialised)
         {
-            transform.position += _dir * 20 * Time.deltaTime;
+            transform.position += _dir * Time.deltaTime;
 
             for (int i = 0; i < parsedString.Length; ++i)
             {
                 TextControls.ChangeCharFontSize(m_TextAsset, i, TextControls.GetCharFontSize(m_TextAsset, i) + 10 * Time.deltaTime);
             }
+        }
+
+        if (CheckOutsideScreen() && !isDestroyed)
+        {            
+            isDestroyed = true;
+            TextControls textController = FindAnyObjectByType<TextControls>();
+
+            textController.wordsMissedCount++;
+
+            StartCoroutine(OnDestruction());
         }
     }
 
@@ -169,5 +198,11 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         yield return TextControls.LerpCharColor(m_TextAsset, parsedString.Length - 1, TextControls.GetCharColor(m_TextAsset, parsedString.Length - 1), Color.clear, 0.1f);
 
         Destroy(gameObject);
+
+        StartCoroutine(PostProcessingManager.TakeDamagePPEffect(.3f, 1f, 1f));
+
+        print("?");
+
+        yield return null;
     }
 }
