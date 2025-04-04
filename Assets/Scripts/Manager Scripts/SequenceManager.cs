@@ -35,7 +35,7 @@ public class SequenceManager : MonoBehaviour
     public ButtonDetailHighlighting buttonController; 
 
     private Actions lastAction;
-    private int[] actionAmount = new int[4] {0,0,0,0};
+    private int[] actionAmount = new int[5] {0,0,0,0,0};
 
     private void Awake()
     {
@@ -60,27 +60,23 @@ public class SequenceManager : MonoBehaviour
 
                 action = GameplayManager.Instance.Attack(30);
                 //GameplayManager.Instance.logicAmount++;
-                lastAction = actionType;
-                actionAmount[(int)lastAction]++;
-
+        
                 break;
             case Actions.Passive:
                 print("Passive Action");
 
                 action = textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, 30);
                 //GameplayManager.Instance.passiveAmount++;
-                lastAction = actionType;
-                actionAmount[(int)lastAction]++;
-
+         
+                
                 break;
             case Actions.Affirm:
                 print("Affirm Action");
 
                 action = textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f);
                 //GameplayManager.Instance.emotionAmount++;
-                lastAction = actionType;
-                actionAmount[(int)lastAction]++;
-
+         
+                
                 break;
             case Actions.Confront:
 
@@ -89,10 +85,11 @@ public class SequenceManager : MonoBehaviour
             case Actions.BossAction:
 
                 action = GameplayManager.Instance.Dodge(30, actionAmount[(int)lastAction]);
-
-                lastAction = actionType;
                 break;
         }
+
+        lastAction = actionType;
+        actionAmount[(int)lastAction]++;
 
         StartCoroutine(StartAction(action , actionType));
     }
@@ -115,6 +112,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Confront:
                 break;
             case Actions.BossAction:
+                resultText = "Evaded boss stuff" + "\nPress any key to Continue";
                 break;
         }
 
@@ -126,7 +124,7 @@ public class SequenceManager : MonoBehaviour
         actionUI[(int)action].SetActive(false);
         bossUI.SetActive(true);
 
-        foreach(var t in battleUIObjects.GetComponentsInChildren<Transform>())
+        foreach(var t in battleUIObjects.GetComponentsInChildren<Transform>(true))
         {
             t.gameObject.SetActive(true);
         }
@@ -135,6 +133,8 @@ public class SequenceManager : MonoBehaviour
         yield return WaitForInput();
 
         yield return new WaitForSeconds(.5f);
+        
+
 
         if(lastAction != Actions.BossAction)
         {
@@ -149,7 +149,7 @@ public class SequenceManager : MonoBehaviour
         }
         else
         {
-            buttonController.OnChoosingAction();
+            buttonController.OnChoosingAction();    
         }
     }
 
