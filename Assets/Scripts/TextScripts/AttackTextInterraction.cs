@@ -136,7 +136,7 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
         if (isInitialised)
         {
-            transform.position += _dir * Time.deltaTime;
+            transform.position += _dir/2 * Time.deltaTime;
 
             transform.localScale += Vector3.one*Time.deltaTime*2;
         }
