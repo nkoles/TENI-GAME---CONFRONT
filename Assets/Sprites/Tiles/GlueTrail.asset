@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: WhiteSquare
+  m_Name: GlueTrail
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 85b38f01300281e4ca37690acb14d734, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8dd6f412ac8926e4e81b7fa30e29fc8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

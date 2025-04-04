@@ -31,10 +31,10 @@ public class PlayerManager : MonoBehaviour
     {
         if(hp <=0)
         {
-            GameplayManager.Instance.logicAmount = 0;
-            GameplayManager.Instance.emotionAmount = 0;
-            GameplayManager.Instance.passiveAmount = 0;
-            GameplayManager.Instance.confrontAmount = 0;
+            //GameplayManager.Instance.logicAmount = 0;
+            //GameplayManager.Instance.emotionAmount = 0;
+            //GameplayManager.Instance.passiveAmount = 0;
+            //GameplayManager.Instance.confrontAmount = 0;
         }
     }
 }
