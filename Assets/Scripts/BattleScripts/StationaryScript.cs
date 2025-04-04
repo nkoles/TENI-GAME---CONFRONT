@@ -10,8 +10,9 @@ public class StationaryScript : MonoBehaviour
     public string type;
     public Tile tile;
     private Tile currentTile;
+    private Vector3 previousPos;
     public Tilemap tilemap;
-    private Tilemap secondaryTilemap;
+    public Tilemap secondaryTilemap;
     public Rigidbody2D rb;
     public Vector2 direction;
     public Vector3 target;
@@ -54,9 +55,10 @@ public class StationaryScript : MonoBehaviour
             vector = transform.position / secondaryTilemap.gameObject.transform.localScale.z;
             vector = Quaternion.Euler(0, 0, -45) * vector;
 
-            if(secondaryTilemap.GetTile(Vector3Int.FloorToInt(vector)) != currentTile)
-            {
-                currentTile = secondaryTilemap.GetTile<Tile>(Vector3Int.FloorToInt(vector));
+            //if(Vector3.Distance(transform.position, previousPos) >= .25f /*secondaryTilemap.GetTile(Vector3Int.FloorToInt(vector)) != currentTile*/)
+            /*{
+                previousPos = transform.position;
+                //currentTile = secondaryTilemap.GetTile<Tile>(Vector3Int.FloorToInt(vector));
                 //Vector3Int.FloorToInt(vector);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(vector), null);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x, vector.y+1, vector.z)), null);
@@ -67,7 +69,7 @@ public class StationaryScript : MonoBehaviour
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y-1, vector.z)), null);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y, vector.z)), null);
                 secondaryTilemap.SetTile(Vector3Int.FloorToInt(new Vector3(vector.x-1, vector.y+1, vector.z)), null);
-            }
+            }*/
         }
 
         /*if(Mathf.Abs(transform.position.x) + Mathf.Abs(transform.position.y) >= 3.0f)

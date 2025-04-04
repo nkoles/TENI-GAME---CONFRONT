@@ -30,7 +30,7 @@ public class StaplerScript : MonoBehaviour
     {
         if(moving)
         {
-            Vector3 direction = heart.transform.position - staple.transform.position;
+            Vector3 direction = heart.transform.position - (transform.position + new Vector3(0, 0.5f, 0));
             rb.velocity = new Vector2(direction.x * speed, direction.y * speed);
         }
         else

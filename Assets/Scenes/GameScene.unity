@@ -730,7 +730,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1159,6 +1159,18 @@ PrefabInstance:
       propertyPath: attackBox
       value: 
       objectReference: {fileID: 729377033}
+    - target: {fileID: 3805142680859176288, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
+      propertyPath: m_Color.b
+      value: 0.13333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805142680859176288, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
+      propertyPath: m_Color.g
+      value: 0.09019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805142680859176288, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
+      propertyPath: m_Color.r
+      value: 0.08627451
+      objectReference: {fileID: 0}
     - target: {fileID: 5619472081072120372, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2040,7 +2052,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.08627451, g: 0.09019608, b: 0.13333334, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2606,7 +2618,7 @@ MonoBehaviour:
   - {fileID: 433084378}
   - {fileID: 1819790128}
   - {fileID: 0}
-  - {fileID: 528964725}
+  - {fileID: 49053243}
   helperText: {fileID: 1839031824}
   buttonController: {fileID: 1391012235}
 --- !u!4 &1177756813
@@ -3061,8 +3073,8 @@ GameObject:
   - component: {fileID: 1441420796}
   - component: {fileID: 1441420798}
   - component: {fileID: 1441420797}
-  - component: {fileID: 1441420799}
   - component: {fileID: 1441420800}
+  - component: {fileID: 1441420799}
   m_Layer: 0
   m_Name: Page
   m_TagString: Page Tilemap
@@ -3184,8 +3196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af5f86d8823739418639adc5e950849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slip: {fileID: 11400000, guid: 349144e0e81b0944bab0ccc00f584f02, type: 2}
-  stick: {fileID: 11400000, guid: ab778879d1492914bb47c769415b1309, type: 2}
+  slip: {fileID: 11400000, guid: 92e88fca97e2fc641bd41e8e8b2474ba, type: 2}
+  stick: {fileID: 11400000, guid: 4ab40f55755e8434a9860576a4f72465, type: 2}
 --- !u!19719996 &1441420800
 TilemapCollider2D:
   m_ObjectHideFlags: 0

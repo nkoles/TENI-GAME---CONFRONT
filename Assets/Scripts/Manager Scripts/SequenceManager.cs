@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
@@ -124,6 +125,11 @@ public class SequenceManager : MonoBehaviour
         actionUI[(int)action].SetActive(false);
         bossUI.SetActive(true);
 
+        foreach(Button button in buttonController.gameObject.GetComponentsInChildren<Button>())
+        {
+            button.enabled = false;
+        }
+
         foreach(var t in battleUIObjects.GetComponentsInChildren<Transform>(true))
         {
             t.gameObject.SetActive(true);
@@ -133,8 +139,6 @@ public class SequenceManager : MonoBehaviour
         yield return WaitForInput();
 
         yield return new WaitForSeconds(.5f);
-        
-
 
         if(lastAction != Actions.BossAction)
         {
@@ -149,6 +153,11 @@ public class SequenceManager : MonoBehaviour
         }
         else
         {
+            foreach(Button button in buttonController.gameObject.GetComponentsInChildren<Button>())
+        {
+            button.enabled = true;
+        }
+
             buttonController.OnChoosingAction();    
         }
     }
