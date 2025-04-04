@@ -93,9 +93,11 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         isEntered = false;
     }
 
-    public void Initialise(Vector3 direction)
+    public void Initialise(Vector3 direction, TMP_FontAsset font)
     {
         print(m_TextAsset.text);
+
+        m_TextAsset.font = font;
 
         parsedString = TextControls.ParseRichTags(m_TextAsset);
         _dir = direction;

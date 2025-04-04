@@ -9,6 +9,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class TextControls : MonoBehaviour
 {
+    public TMP_FontAsset playerFont, bossFont;
     public TextMeshProUGUI associatedTextObj;
     public int testFontSize;
     public Color testColor;
@@ -35,7 +36,6 @@ public class TextControls : MonoBehaviour
     public IEnumerator Affirm(string text, float time)
     {
         print("entered");
-
         associatedTextObj.gameObject.SetActive(true);
 
         associatedTextObj.text = InitialiseText(text, associatedTextObj.fontSize, Color.clear);
@@ -209,7 +209,7 @@ public class TextControls : MonoBehaviour
 
                 attackStrings.RemoveAt(randomStringIdx);
 
-                textHandler.Initialise(dir);
+                textHandler.Initialise(dir, bossFont);
 
                 currentActiveWords.Add(textHandler);
 
