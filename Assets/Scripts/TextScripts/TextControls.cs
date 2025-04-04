@@ -27,6 +27,8 @@ public class TextControls : MonoBehaviour
 
     public int lastHealedHP;
 
+    public int aggressionAmount = 1;
+
     public IEnumerator Affirm(string text, float time)
     {
         print("entered");
