@@ -1211,166 +1211,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diamond
       objectReference: {fileID: 0}
-    - target: {fileID: 202318999068350677, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.b
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.g
-      value: 0.09019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.r
-      value: 0.08627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.b
-      value: 0.54901963
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.g
-      value: 0.4862745
-      objectReference: {fileID: 0}
-    - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.r
-      value: 0.8745098
-      objectReference: {fileID: 0}
     - target: {fileID: 1711179827601268478, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
       propertyPath: attackBox
       value: 
       objectReference: {fileID: 729377033}
     - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.b
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.g
-      value: 0.09019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.r
-      value: 0.08627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.b
-      value: 0.54901963
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.g
-      value: 0.4862745
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.r
-      value: 0.8745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998130211260589038, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
       propertyPath: attackBox
       value: 
       objectReference: {fileID: 729377033}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.b
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.g
-      value: 0.09019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.r
-      value: 0.08627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.b
-      value: 0.54901963
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.g
-      value: 0.4862745
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.r
-      value: 0.8745098
-      objectReference: {fileID: 0}
     - target: {fileID: 2936730016576537946, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
       propertyPath: attackBox
       value: 
       objectReference: {fileID: 729377033}
     - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.b
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.g
-      value: 0.09019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: black.r
-      value: 0.08627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.b
-      value: 0.54901963
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.g
-      value: 0.4862745
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: violet.r
-      value: 0.8745098
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587440420477885646, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
       propertyPath: attackBox
       value: 
       objectReference: {fileID: 729377033}
-    - target: {fileID: 3805142680859176288, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: m_Color.b
-      value: 0.13333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 3805142680859176288, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: m_Color.g
-      value: 0.09019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 3805142680859176288, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
-      propertyPath: m_Color.r
-      value: 0.08627451
-      objectReference: {fileID: 0}
     - target: {fileID: 5619472081072120372, guid: d33e2b3d036bfa94e99c93d00a240616, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3721,6 +3577,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ec13d9b3156724d83603112af2a15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFont: {fileID: 0}
+  bossFont: {fileID: 0}
   associatedTextObj: {fileID: 1569380544}
   testFontSize: 0
   testColor: {r: 1, g: 1, b: 1, a: 1}
@@ -3731,6 +3589,8 @@ MonoBehaviour:
   spawnBox: {fileID: 467403964}
   currentActiveWords: []
   wordsDestroyedCount: 0
+  damageTaken: 0
+  aggressionGained: 0
   defaultTextPrefab: {fileID: 1394782037390834848, guid: 744ce5667ad85d647bee242bf2c395bf, type: 3}
   lastHealedHP: 0
   aggressionAmount: 1

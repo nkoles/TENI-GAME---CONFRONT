@@ -587,8 +587,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isStart: 0
   endText:
-  - Lost Test
-  - Win Test
+  - You Lose
+  - You Win
   text: []
   buttons: []
 --- !u!4 &1052706958

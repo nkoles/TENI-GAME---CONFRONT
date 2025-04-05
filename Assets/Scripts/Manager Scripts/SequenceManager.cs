@@ -66,7 +66,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Passive:
                 print("Passive Action");
 
-                GameplayManager.Instance.aggroRecieved = 0;
+                GameplayManager.Instance.aggro = 0;
 
                 List<string> randomString = new List<string>();
 
@@ -141,11 +141,13 @@ public class SequenceManager : MonoBehaviour
         switch (action)
         {
             case Actions.Attack:
-                resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + "\nPress any key to Continue";
+                resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
+                "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" + 
+                "\nPress any key to Continue";
                 break;
             case Actions.Passive:
                 resultText = "Recieved: " + textControls.aggressionGained + " Aggression" +
-                "\nTook: " + textControls.damageTaken + "Damage" + 
+                "\nTook: " + textControls.damageTaken + " Damage" + 
                 "\nPress any key to Continue";
                 break;
             case Actions.Affirm:
@@ -153,8 +155,8 @@ public class SequenceManager : MonoBehaviour
                 break;
             case Actions.Confront:
                 resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
-                "\nRecieved: " + GameplayManager.Instance.aggroRecieved + " Aggression" + 
-                "\nGained: " + (textControls.lastHealedHP - textControls.damageTaken) + " Health" + 
+                "\nRecieved: " + textControls.aggressionGained + " Aggression" + 
+                "\nGained: " + (textControls.lastHealedHP - (textControls.damageTaken + GameplayManager.Instance.damageTaken)) + " Health" + 
                 "\nPress any key to Continue";
                 break;
             case Actions.BossAction:
