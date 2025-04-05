@@ -32,7 +32,7 @@ public class DiamondScript : MonoBehaviour
         if(arrow != null)
         {
             //GameplayManager.Instance.ui.dialogue.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
-            attackBox.text += " <b>" + arrow.GetComponent<ArrowScript>().word.text + "</b>";
+            attackBox.text += " <b><color=#C0CDEC>" + arrow.GetComponent<ArrowScript>().word.text + "</color></b>";
             gameObject.GetComponent<SpriteRenderer>().color = violet;
             hit = false;
             Destroy(arrow);
@@ -81,13 +81,16 @@ public class DiamondScript : MonoBehaviour
         direction.action.canceled += ChangeColour;
     }
 
-    void Enable()
+    void OnEnable()
     {
-        attackBox.text = "";
+        attackBox.text = null;
+        direction.action.started += Direction;
+        direction.action.canceled += ChangeColour;
     }
 
     void OnDisable()
     {
+        attackBox.text = "";
         direction.action.started -= Direction;
         direction.action.canceled -= ChangeColour;
     }
@@ -117,13 +120,16 @@ public class DiamondScript : MonoBehaviour
         if(hit)
         {
             //GameplayManager.Instance.ui.dialogue.text += " <i>" + arrow.GetComponent<ArrowScript>().word.text + "</i>";
-            attackBox.text += " <i>" + arrow.GetComponent<ArrowScript>().word.text + "</i>";
+            attackBox.text += " <i><color=#DDBBC5>" + arrow.GetComponent<ArrowScript>().word.text + "</color></i>";
             StartCoroutine(ColourBlack(1));
             hit = false;
             //update player health
             Destroy(arrow);
             arrow = null;
             //Debug.Log("Damage");
+
+            GameplayManager.Instance.UpdatePlayerHealth(1);
+            GameplayManager.Instance.damageTaken++;
         }
     }
 }

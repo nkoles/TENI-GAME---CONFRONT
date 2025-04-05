@@ -9,9 +9,9 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager Instance;
     public PlayerManager player;
     public EnemyManager enemy;
-    public UIManager ui;
+    //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
-    public int damageDealt = 0, aggroRecieved = 0;
+    public int damageDealt = 0, damageTaken, aggro = 0;
 
     void Awake()
     {
@@ -84,6 +84,8 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator Comfort(int time)
     {
+        damageTaken = 0;
+        aggro = 0;
         player.spade.transform.position = Input.mousePosition;
         player.spade.SetActive(true);
 
@@ -95,6 +97,7 @@ public class GameplayManager : MonoBehaviour
     public IEnumerator Attack(int time)
     {
         damageDealt = 0;
+        damageTaken = 0;
         player.diamond.SetActive(true);
         StartCoroutine(enemy.Blocking(time));
 

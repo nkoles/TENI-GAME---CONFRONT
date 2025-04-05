@@ -282,10 +282,9 @@ MonoBehaviour:
   damage: 1
   timer: 1
   speed: 0.5
-  type: Walls
+  type: Page
   tile: {fileID: 11400000, guid: e7d49890d0902d647ac4df90d545d6f4, type: 2}
   tilemap: {fileID: 0}
-  secondaryTilemap: {fileID: 0}
   rb: {fileID: 0}
   direction: {x: 1, y: 1}
   target: {x: 0, y: 0, z: 0}
