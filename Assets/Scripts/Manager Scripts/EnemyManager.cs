@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
 
     public string[] dialogueText;
     public GameObject[] schoolObstacles;
+    public GameObject[] homeObstacles;
     public string[] SchoolAttackingWords;
     public Vector3[] lateralSpawnPoints;
     public string[] enemyWords;
@@ -80,7 +81,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     int randObject = Random.Range(0, objects.Count);
 
-                    if(objects[randObject] == schoolObstacles[0])
+                    if(objects[randObject] == schoolObstacles[0]) // Pencil
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
@@ -88,7 +89,7 @@ public class EnemyManager : MonoBehaviour
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[1])
+                    else if(objects[randObject] == schoolObstacles[1]) // Eraser
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
@@ -96,7 +97,7 @@ public class EnemyManager : MonoBehaviour
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[2])
+                    else if(objects[randObject] == schoolObstacles[2]) // Gluestick
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
@@ -104,18 +105,74 @@ public class EnemyManager : MonoBehaviour
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[3])
+                    else if(objects[randObject] == schoolObstacles[3]) // Stapler
                     {
                         GameObject temp = Instantiate(objects[randObject], GameplayManager.Instance.player.heart.transform.position, Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[4])
+                    else if(objects[randObject] == schoolObstacles[4]) // BookSpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == schoolObstacles[5]) // RulerSpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                }
+
+                break;
+            }
+
+            case 2:
+            {
+                List<GameObject> objects = new List<GameObject>();
+
+                foreach(GameObject thing in homeObstacles)
+                {
+                    objects.Add(thing);
+                }
+
+                for(int i = 0; i < difficulty; i++)
+                {
+                    int randObject = Random.Range(0, objects.Count);
+
+                    if(objects[randObject] == homeObstacles[0]) // DishSpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[1]) // CutlerySpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[2])
+                    {
+                        float randX = Random.Range(-3.0f, 3.0f);
+                        float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[3])
+                    {
+                        GameObject temp = Instantiate(objects[randObject], GameplayManager.Instance.player.heart.transform.position, Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[4])
                     {
                         Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[5])
+                    else if(objects[randObject] == homeObstacles[5])
                     {
                         Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
                         objects.Remove(objects[randObject]);

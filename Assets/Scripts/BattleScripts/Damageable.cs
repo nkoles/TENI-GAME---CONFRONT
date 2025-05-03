@@ -18,9 +18,6 @@ public class Damageable : MonoBehaviour
         if(collider.gameObject.GetComponent<HeartScript>())
         {
             GameplayManager.Instance.UpdatePlayerHealth(damage);
-            {
-
-            }
         }
     }
 }

@@ -842,6 +842,8 @@ MonoBehaviour:
   - {fileID: 6049846730393365869, guid: e1b0262af251ce44186d47922eb057c1, type: 3}
   - {fileID: 5277770043043717123, guid: 7fb24e20cc6f4614a96c2fdf09daf46d, type: 3}
   - {fileID: 8538111276461708972, guid: 38e0794f930c20a46a16e63dc6671763, type: 3}
+  homeObstacles:
+  - {fileID: 1196173361137475623, guid: 01f25e631ad0d18488c6a6c8a20e05f1, type: 3}
   SchoolAttackingWords:
   - 'It''s not hard. '
   - 'Can you help me? '
@@ -855,7 +857,7 @@ MonoBehaviour:
   - {x: 0, y: -10, z: 0}
   - {x: -10, y: 0, z: 0}
   enemyWords: []
-  phase: 1
+  phase: 2
   arrow: {fileID: 1108795952560434591, guid: a60dcb50627811d47877fcc841573877, type: 3}
 --- !u!4 &195812179
 Transform:
@@ -2293,7 +2295,8 @@ MonoBehaviour:
   passiveAmount: 0
   confrontAmount: 0
   damageDealt: 0
-  aggroRecieved: 0
+  damageTaken: 0
+  aggro: 0
 --- !u!4 &1032452449
 Transform:
   m_ObjectHideFlags: 0
