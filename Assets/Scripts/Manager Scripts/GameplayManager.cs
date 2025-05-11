@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameplayManager : MonoBehaviour
     //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
+
+    public Image confrontButton;
 
     void Awake()
     {
@@ -27,7 +30,7 @@ public class GameplayManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        confrontButton.material.SetFloat("_Strength", player.aggression / player.maxAggression);
     }
 
     // Update is called once per frame
@@ -166,6 +169,8 @@ public class GameplayManager : MonoBehaviour
         {
             player.aggression = player.maxAggression;
         }
+
+        confrontButton.material.SetFloat("_Strength", player.aggression / player.maxAggression);
     }
 
     public void Win()

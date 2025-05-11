@@ -78,20 +78,20 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DecomposingFactor: -0.86
+    - _DecomposingFactor: -0.92
     - _DetailNormalMapScale: 1
     - _DitherSize: 1
     - _DstBlend: 0
-    - _EdgeWidth: 11
+    - _EdgeWidth: 3.1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _MaskStep: 0.47
+    - _MaskStep: 0.614
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseAmount: 34.9
-    - _NoiseScale: 18.8
-    - _NoiseStrength: -0.5
+    - _NoiseAmount: 25.5
+    - _NoiseScale: 28.6
+    - _NoiseStrength: -0.7
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
