@@ -2189,7 +2189,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1f0cfd7f21044644ca9757ed4df96837, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2407,6 +2407,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250540098}
   m_CullTransparentMesh: 1
+--- !u!1 &1362902505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362902509}
+  - component: {fileID: 1362902508}
+  - component: {fileID: 1362902507}
+  - component: {fileID: 1362902506}
+  m_Layer: 0
+  m_Name: ShaderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1362902506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362902505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5633cb15f2f723141822bf1a3941ea78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossShader: {fileID: 2100000, guid: 79b617f82cfa0d045834c6e2948c3466, type: 2}
+  outlineColor: {r: 1, g: 0, b: 0.7019608, a: 1}
+  passiveOndulatingColor: {r: 0.935071, g: 0.023584902, b: 1, a: 1}
+  defaultOutlineWidth: 3.5
+  passiveOutlineBand: 30
+  isOndulatingEdge: 0
+  isOndulatingColor: 0
+  isOndulatingDamage: 0
+--- !u!114 &1362902507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362902505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133db459ee73b2641a1386226c43c07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundShader: {fileID: 2100000, guid: cdc0a98a1b4eda54086dafa4388b4e78, type: 2}
+  defaultBGColor: {r: 0.21960784, g: 0.63529414, b: 0.8784314, a: 1}
+  defaultNoiseColor: {r: 0.03773585, g: 0.07640924, b: 0.1509434, a: 1}
+  passiveBGColorChange: {r: 0.06666667, g: 0.18039216, b: 0.24705882, a: 1}
+  noiseBGColorChange: {r: 0.49715206, g: 0.5729552, b: 0.7169812, a: 1}
+--- !u!114 &1362902508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362902505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4bea6017db04d64ca8ecfb43facb666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  affirmationTransition: {fileID: 2100000, guid: 495da497f5e94db489e3d34653121bc8, type: 2}
+  _transitionShader: {fileID: 2100000, guid: 1276c57d76ad457489e4010fd22d697c, type: 2}
+--- !u!4 &1362902509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362902505}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.092488, y: 0.6794446, z: 90.02487}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1375152488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4334,3 +4419,4 @@ SceneRoots:
   - {fileID: 591097191}
   - {fileID: 4354008836361362997}
   - {fileID: 1244542952}
+  - {fileID: 1362902509}
