@@ -20,6 +20,12 @@ public class ButtonCheckHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
         _routine = StartCoroutine(ScaleButton(Vector3.one * 1.2f));
 
         ButtonDetailHighlighting.ButtonSelected.Invoke(id);
+        AudioManager.instance.PlaySFX("ButtonHover");
+    }
+
+    public void OnClick()
+    {
+        AudioManager.instance.PlaySFX("ButtonPress");
     }
 
     public void OnPointerExit(PointerEventData eventData)
