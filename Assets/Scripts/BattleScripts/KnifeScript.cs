@@ -74,6 +74,6 @@ public class KnifeScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.MoveRotation(rb.rotation + (rotation * Time.fixedDeltaTime));
+        rb.MoveRotation(rb.rotation + ((rotation * Time.fixedDeltaTime) * speed));
     }
 }

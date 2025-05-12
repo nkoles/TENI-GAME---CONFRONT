@@ -58,8 +58,8 @@ MonoBehaviour:
   - {x: -2, y: -2, z: 0}
   - {x: -2, y: 2, z: 0}
   spoonSpawnPoints:
-  - {x: 0, y: 3, z: 0}
-  - {x: 3, y: 0, z: 0}
-  - {x: 0, y: -3, z: 0}
-  - {x: -3, y: 0, z: 0}
+  - {x: 0, y: 5, z: 0}
+  - {x: 5, y: 0, z: 0}
+  - {x: 0, y: -5, z: 0}
+  - {x: -5, y: 0, z: 0}
   time: 30

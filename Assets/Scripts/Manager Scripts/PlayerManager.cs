@@ -19,10 +19,11 @@ public class PlayerManager : MonoBehaviour
         aggression = 0;
     }
 
-    public IEnumerator Invulnerable()
+    public IEnumerator Invulnerable(int amount)
     {
         invulnerable = true;
-        yield return new WaitForSeconds(invulnerableTime);
+        heart.GetComponent<HeartScript>().Damage(amount);
+        yield return new WaitForSeconds(/*invulnerableTime*/amount);
         invulnerable = false;
     }
 

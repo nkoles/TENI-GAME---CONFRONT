@@ -132,9 +132,9 @@ public class GameplayManager : MonoBehaviour
             {
                 player.hp = player.maxHP;
             }
-            else
+            else if(amount > 0)
             {
-                player.StartCoroutine(player.Invulnerable());
+                player.StartCoroutine(player.Invulnerable(amount));
             }
 
             HealthManager.instance.UpdateUIHealth(true);

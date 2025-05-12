@@ -20,4 +20,12 @@ public class Damageable : MonoBehaviour
             GameplayManager.Instance.UpdatePlayerHealth(damage);
         }
     }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if(collider.gameObject.GetComponent<HeartScript>())
+        {
+            GameplayManager.Instance.UpdatePlayerHealth(damage);
+        }
+    }
 }
