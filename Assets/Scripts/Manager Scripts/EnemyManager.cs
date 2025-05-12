@@ -8,6 +8,8 @@ public class EnemyManager : MonoBehaviour
 
     public string[] dialogueText;
     public GameObject[] schoolObstacles;
+    public GameObject[] homeObstacles;
+    public GameObject[] clinicObstacles;
     public string[] SchoolAttackingWords;
     public Vector3[] lateralSpawnPoints;
     public string[] enemyWords;
@@ -80,7 +82,7 @@ public class EnemyManager : MonoBehaviour
                 {
                     int randObject = Random.Range(0, objects.Count);
 
-                    if(objects[randObject] == schoolObstacles[0])
+                    if(objects[randObject] == schoolObstacles[0]) // Pencil
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
@@ -88,7 +90,7 @@ public class EnemyManager : MonoBehaviour
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[1])
+                    else if(objects[randObject] == schoolObstacles[1]) // Eraser
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
@@ -96,7 +98,7 @@ public class EnemyManager : MonoBehaviour
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[2])
+                    else if(objects[randObject] == schoolObstacles[2]) // Gluestick
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
@@ -104,20 +106,144 @@ public class EnemyManager : MonoBehaviour
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[3])
+                    else if(objects[randObject] == schoolObstacles[3]) // Stapler
                     {
                         GameObject temp = Instantiate(objects[randObject], GameplayManager.Instance.player.heart.transform.position, Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[4])
+                    else if(objects[randObject] == schoolObstacles[4]) // BookSpawner
                     {
-                        Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
-                    else if(objects[randObject] == schoolObstacles[5])
+                    else if(objects[randObject] == schoolObstacles[5]) // RulerSpawner
                     {
-                        Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                }
+
+                break;
+            }
+
+            case 2:
+            {
+                List<GameObject> objects = new List<GameObject>();
+
+                foreach(GameObject thing in homeObstacles)
+                {
+                    objects.Add(thing);
+                }
+
+                for(int i = 0; i < difficulty; i++)
+                {
+                    int randObject = Random.Range(0, objects.Count);
+
+                    if(objects[randObject] == homeObstacles[0]) // DishSpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[1]) // CutlerySpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[2]) // BubbleSpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0, -5, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[3]) // IceSpawner
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0, 5, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[4]) // WaterSpawner
+                    {
+                        float position;
+                        float rotation;
+                        bool upsideDown = Random.value >= 0.5f;
+                        if(upsideDown)
+                        {
+                            position = 3;
+                            rotation = 180;
+                        }
+                        else
+                        {
+                            position = -3;
+                            rotation = 0;
+                        }
+
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(position, 0, 0), Quaternion.Euler(0, 0, rotation));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == homeObstacles[5]) // Hob
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                }
+
+                break;
+            }
+
+            case 3:
+            {
+                List<GameObject> objects = new List<GameObject>();
+
+                foreach(GameObject thing in clinicObstacles)
+                {
+                    objects.Add(thing);
+                }
+
+                for(int i = 0; i < difficulty; i++)
+                {
+                    int randObject = Random.Range(0, objects.Count);
+
+                    if(objects[randObject] == clinicObstacles[0]) // Denied Stamp
+                    {
+                        GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle * 1.5f, Quaternion.Euler(0, 0, Random.Range(-90, 90)));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == clinicObstacles[1]) // Scissors
+                    {
+                        GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 5.0f, Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == clinicObstacles[2]) // Syringe
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == clinicObstacles[3]) // Tablet
+                    {
+                        GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 1.5f, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == clinicObstacles[4]) // Tape
+                    {
+                        GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 3f, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+                        Destroy(temp, time);
+                        objects.Remove(objects[randObject]);
+                    }
+                    else if(objects[randObject] == clinicObstacles[5]) // Gender Symbols
+                    {
+                        GameObject temp = Instantiate(objects[randObject], new Vector3(0,0,0), Quaternion.Euler(0,0,0));
+                        Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
                 }
