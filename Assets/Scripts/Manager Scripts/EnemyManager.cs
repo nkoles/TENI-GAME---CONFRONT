@@ -19,6 +19,8 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject arrow;
 
+    //public DialogueManager dialogue;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -81,6 +83,7 @@ public class EnemyManager : MonoBehaviour
         {
             case 1:
             {
+                    //dialogue.principalStart = true;
                 List<GameObject> objects = new List<GameObject>();
 
                 foreach(GameObject thing in schoolObstacles)
