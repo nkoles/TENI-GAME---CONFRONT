@@ -53,7 +53,7 @@ public class SequenceManager : MonoBehaviour
         print("action invoked");
 
         IEnumerator action = null;
-
+        
         switch (actionType)
         {
             case Actions.Attack:
@@ -70,7 +70,17 @@ public class SequenceManager : MonoBehaviour
 
                 List<string> randomString = new List<string>();
 
-                for(int i =0; i < 3; ++i)
+                int passiveButtonClick = GameplayManager.Instance.passiveAmount;
+                int phase_ = EnemyManager.instance.phase;
+
+                int textAmount = 1 + passiveButtonClick;
+                int spawnTime = 5 - passiveButtonClick;
+                float speed = 1 + phase_ / 2;
+
+                if (passiveButtonClick >= dialogueRepo.passiveStrings.Length)
+                    textAmount = dialogueRepo.passiveStrings.Length;
+
+                for(int i =0; i < textAmount; ++i)
                 {
                     int randomIdx = Random.Range(0, dialogueRepo.passiveStrings.Length);
 
@@ -82,7 +92,7 @@ public class SequenceManager : MonoBehaviour
                     randomString.Add(dialogueRepo.passiveStrings[randomIdx]);
                 }
 
-                action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 60);
+                action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 20, speed);
 
                 //GameplayManager.Instance.passiveAmount++;
                 break;
@@ -91,7 +101,20 @@ public class SequenceManager : MonoBehaviour
 
                 //EnemyManager.instance.phase;
 
-                action = textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f);
+                int phase = EnemyManager.instance.phase;
+                int buttonClicked = GameplayManager.Instance.emotionAmount;
+
+                float typingTime = typingTime = 20;
+                int dialogueID = buttonClicked;
+
+
+                if (phase != 0)
+                    typingTime /= phase;
+
+                if (buttonClicked >= dialogueRepo.healingStrings.Length)
+                    dialogueID = dialogueRepo.healingStrings.Length-1;
+
+                action = textControls.Affirm(dialogueRepo.healingStrings[dialogueID], typingTime);
 
                 //GameplayManager.Instance.emotionAmount++;
                 break;
@@ -121,9 +144,9 @@ public class SequenceManager : MonoBehaviour
         textControls.aggressionAmount *= 2;
         Debug.Log(textControls.aggressionAmount);
 
-        StartCoroutine(GameplayManager.Instance.Attack(time));
-        StartCoroutine(textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, time));
-        StartCoroutine(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], time));
+        //StartCoroutine(GameplayManager.Instance.Attack(time));
+        //StartCoroutine(textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, time));
+        //StartCoroutine(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], time));
 
         yield return new WaitForSeconds(time);
 
