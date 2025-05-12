@@ -1119,7 +1119,7 @@ MonoBehaviour:
   - name: Principal (Pre-battle)
     clip: {fileID: 8300000, guid: 2860fc51fc86a9240a232cd58ed026e2, type: 3}
   - name: Principal (During-battle)
-    clip: {fileID: 8300000, guid: 199c60d2395be9546a34bd316cc7425a, type: 3}
+    clip: {fileID: 8300000, guid: 8405c3db98a1864479bccab1c20a2217, type: 3}
   - name: Principal (Post-battle)
     clip: {fileID: 8300000, guid: 0275726cfbb65214a86724ecdc9bfc2f, type: 3}
   - name: Aunt (Pre-battle)
@@ -1155,6 +1155,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 04b9ef491c45c464582f2b1325ff5f87, type: 3}
   - name: TherapistSfx
     clip: {fileID: 8300000, guid: 82e9bb5a8e95d8d488adfcb418514bf8, type: 3}
+  - name: Transition
+    clip: {fileID: 8300000, guid: d3a215e751c19d5438f81744a8036e20, type: 3}
   musicSource: {fileID: 885182106}
   sfxSource: {fileID: 1761714179}
 --- !u!4 &256580000

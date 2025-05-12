@@ -174,6 +174,67 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void PlayMusic()
+    {
+        if ((friendStart == true) || (friendEnd == true))
+        {
+            AudioManager.instance.PlayMusic("Friend (Pre-battle)");
+        }
+        else if ((friendStart != true) && (friendEnd != true))
+        {
+            AudioManager.instance.PlayMusic("Friend (Pre-battle)");
+        }
+
+        if (principalStart == true)
+        {
+            AudioManager.instance.PlayMusic("Principal (Pre-battle)");
+        }
+        else if (principalGoodEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Principal (Post-battle)");
+        }
+        else if((principalStart != true) && (principalGoodEnd != true) && enemy.phase == 1)
+        {
+            AudioManager.instance.PlayMusic("Principal (During-battle)");
+        }
+
+        if (auntStart == true)
+        {
+            AudioManager.instance.PlayMusic("Aunt (Pre-battle)");
+        }
+        else if (auntGoodEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Aunt (Post-battle)");
+        }
+        else if ((auntStart != true) && (auntGoodEnd != true) && enemy.phase == 2)
+        {
+            AudioManager.instance.PlayMusic("Aunt (During-battle)");
+        }
+
+        if (doctorStart == true)
+        {
+            AudioManager.instance.PlayMusic("Doctor (Pre-battle)");
+        }
+        else if (doctorGoodEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Doctor (Post-battle)");
+        }
+        else if ((doctorStart != true) && (doctorGoodEnd != true) && enemy.phase == 3)
+        {
+            AudioManager.instance.PlayMusic("Doctor (During-battle)");
+        }
+
+        else if ((principalBadEnd == true) || (auntBadEnd == true) || (doctorBadEnd == true))
+        {
+            AudioManager.instance.PlayMusic("Lose");
+        }
+
+        if (therapistEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Therapy");
+        }
+    }
+
     IEnumerator TypeLine()
     {
         foreach (char c in lines[index].ToCharArray())
