@@ -53,7 +53,7 @@ public class SequenceManager : MonoBehaviour
         print("action invoked");
 
         IEnumerator action = null;
-
+        
         switch (actionType)
         {
             case Actions.Attack:
@@ -70,7 +70,17 @@ public class SequenceManager : MonoBehaviour
 
                 List<string> randomString = new List<string>();
 
-                for(int i =0; i < 3; ++i)
+                int passiveButtonClick = GameplayManager.Instance.passiveAmount;
+                int phase_ = EnemyManager.instance.phase;
+
+                int textAmount = 1 + passiveButtonClick;
+                int spawnTime = 5 - passiveButtonClick;
+                float speed = 1 + phase_ / 2;
+
+                if (passiveButtonClick >= dialogueRepo.passiveStrings.Length)
+                    textAmount = dialogueRepo.passiveStrings.Length;
+
+                for(int i =0; i < textAmount; ++i)
                 {
                     int randomIdx = Random.Range(0, dialogueRepo.passiveStrings.Length);
 
@@ -82,14 +92,29 @@ public class SequenceManager : MonoBehaviour
                     randomString.Add(dialogueRepo.passiveStrings[randomIdx]);
                 }
 
-                action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 60);
+                action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 20, speed);
 
                 //GameplayManager.Instance.passiveAmount++;
                 break;
             case Actions.Affirm:
                 print("Affirm Action");
 
-                action = textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f);
+                //EnemyManager.instance.phase;
+
+                int phase = EnemyManager.instance.phase;
+                int buttonClicked = GameplayManager.Instance.emotionAmount;
+
+                float typingTime = typingTime = 20;
+                int dialogueID = buttonClicked;
+
+
+                if (phase != 0)
+                    typingTime /= phase;
+
+                if (buttonClicked >= dialogueRepo.healingStrings.Length)
+                    dialogueID = dialogueRepo.healingStrings.Length-1;
+
+                action = textControls.Affirm(dialogueRepo.healingStrings[dialogueID], typingTime);
 
                 //GameplayManager.Instance.emotionAmount++;
                 break;
@@ -137,9 +162,16 @@ public class SequenceManager : MonoBehaviour
         //GameplayManager.Instance.player.damage /= 2;
         //textControls.aggressionAmount /= 2;
     }
-    
+
+    float Remap(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
+
     public void ResultOfAction(Actions action)
     {
+        StartCoroutine(buttonController.MoveButtonOutOfView(true, 1f));
+
         string resultText = "";
 
         switch (action)
@@ -148,6 +180,9 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
                 "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" + 
                 "\nPress any key to Continue";
+
+                BossShader.instance.StartCoroutine(BossShader.instance.LerpDissolve(Remap(EnemyManager.instance.hp / EnemyManager.instance.maxHP, 0, 1, -1, 1), 2f));
+
                 break;
             case Actions.Passive:
                 resultText = "Recieved: " + textControls.aggressionGained + " Aggression" +

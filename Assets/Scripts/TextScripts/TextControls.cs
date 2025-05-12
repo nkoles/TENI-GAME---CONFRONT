@@ -39,6 +39,8 @@ public class TextControls : MonoBehaviour
 
     public IEnumerator Affirm(string text, float time)
     {
+        yield return TransitionShader.instance.Fade(false, 3f, TransitionShader.instance.affirmationTransition);
+
         print("entered");
         associatedTextObj.gameObject.SetActive(true);
 
@@ -69,6 +71,8 @@ public class TextControls : MonoBehaviour
         print(parsedString.Length - 1);
 
         _postProcessVignette = ScriptableObject.CreateInstance<Vignette>();
+
+        _postProcessVignette.color.Override(Color.black);
 
         _postProcessVignette.enabled.Override(true);
         _postProcessVignette.smoothness.Override(1f);
@@ -120,6 +124,8 @@ public class TextControls : MonoBehaviour
 
             if (parsedString[currentCharIdx] == ' ' || checkChar)
             {
+                AudioManager.instance.PlaySFX("PlayerSfx");
+
                 StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx, GetCharColor(associatedTextObj, currentCharIdx), completedAffirmationCharColor, .5f));
                 StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx, GetCharFontSize(associatedTextObj, currentCharIdx), GetCharFontSize(associatedTextObj, currentCharIdx) / 1.2f, .5f));
 
@@ -166,12 +172,18 @@ public class TextControls : MonoBehaviour
 
         associatedTextObj.gameObject.SetActive(false);
 
+        yield return TransitionShader.instance.Fade(true, 3f, TransitionShader.instance.affirmationTransition);
+
         print("finished");
     }
 
     //PASSIVE
-    public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
+    public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration, float speed)
     {
+        yield return BackgroundShader.instance.PassiveSceneTransition(BackgroundShader.instance.passiveBGColorChange, BackgroundShader.instance.noiseBGColorChange, .5f, true, 1f);
+
+        BossShader.instance.StartCoroutine(BossShader.instance.LerpOutline(BossShader.instance.passiveOutlineBand, 1f));
+
         wordsDestroyedCount = 0;
 
         damageTaken = 0;
@@ -202,6 +214,11 @@ public class TextControls : MonoBehaviour
 
                 spawnedWordIndexes.Add(randomStringIdx);
 
+                //foreach(char c in attackStrings[randomStringIdx])
+                //{
+                //    AudioManager.instance.PlaySFX("PrincipalSfx");
+                //}
+
                 Vector3 dir = (Vector3)Random.insideUnitCircle;
 
                 if (spawnedWordIndexes.Count % 2 == 0)
@@ -224,7 +241,7 @@ public class TextControls : MonoBehaviour
 
                 attackStrings.RemoveAt(randomStringIdx);
 
-                textHandler.Initialise(dir, bossFont);
+                textHandler.Initialise(dir, bossFont, speed);
 
                 currentActiveWords.Add(textHandler);
 
@@ -240,6 +257,8 @@ public class TextControls : MonoBehaviour
             yield return null;
         }
 
+        BossShader.instance.StartCoroutine(BossShader.instance.LerpOutline(BossShader.instance.defaultOutlineWidth, 1f));
+
         yield return new WaitForSeconds(1f);
 
         for(int i = currentActiveWords.Count-1; i >= 0; i--)
@@ -248,6 +267,8 @@ public class TextControls : MonoBehaviour
         }
 
         print("attack finished");
+
+        yield return BackgroundShader.instance.PassiveSceneTransition(BackgroundShader.instance.defaultBGColor, BackgroundShader.instance.defaultNoiseColor, 1f, true, 1f);
     }
 
     private void Awake()

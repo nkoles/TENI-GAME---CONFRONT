@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameplayManager : MonoBehaviour
     //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
+
+    public Material confrontButton;
 
     void Awake()
     {
@@ -23,11 +26,10 @@ public class GameplayManager : MonoBehaviour
         Instance = this;
         //DontDestroyOnLoad(gameObject);
     }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
-        
+        UpdateAggression(0);
     }
 
     // Update is called once per frame
@@ -137,6 +139,11 @@ public class GameplayManager : MonoBehaviour
                 player.StartCoroutine(player.Invulnerable(amount));
             }
 
+            if(amount > 0)
+            {
+                StartCoroutine(PostProcessingManager.instance.TakeDamagePPEffect(.25f, 3f, 0f));
+            }
+
             HealthManager.instance.UpdateUIHealth(true);
         }
     }
@@ -166,6 +173,8 @@ public class GameplayManager : MonoBehaviour
         {
             player.aggression = player.maxAggression;
         }
+
+        confrontButton.SetFloat("_Strength", player.aggression / player.maxAggression);
     }
 
     public void Win()

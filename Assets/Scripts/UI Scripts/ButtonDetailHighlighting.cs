@@ -19,9 +19,38 @@ public class ButtonDetailHighlighting : MonoBehaviour
     [Header("0 = Attack, 1 = Passive, 2 = Affirm, 3 = Confront")]
     public string[] buttonDescription;
 
+    public Vector3 initPos;
+
     public void Awake()
     {
+        initPos = transform.position;
         OnChoosingAction();
+    }
+
+    public IEnumerator MoveButtonOutOfView(bool isView, float speed = 1f)
+    {
+        Vector3 target = initPos + Vector3.down * 1;
+
+        if (isView)
+            target = initPos;
+
+        for(float i = 0; i < 1; i += Time.fixedDeltaTime/speed)
+        {
+            if(i + Time.fixedDeltaTime/speed > 1)
+            {
+                transform.position = target;
+                break;
+            }
+
+            transform.position = Vector3.Lerp(transform.position, target, i);
+
+            yield return null;
+        }
+    }
+
+    public void MoveButtonOutOfView(bool isView)
+    {
+        StartCoroutine(MoveButtonOutOfView(isView, 1f));
     }
 
     public void OnChoosingAction()
