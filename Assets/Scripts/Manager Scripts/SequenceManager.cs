@@ -89,6 +89,8 @@ public class SequenceManager : MonoBehaviour
             case Actions.Affirm:
                 print("Affirm Action");
 
+                //EnemyManager.instance.phase;
+
                 action = textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f);
 
                 //GameplayManager.Instance.emotionAmount++;
@@ -141,6 +143,8 @@ public class SequenceManager : MonoBehaviour
 
     public void ResultOfAction(Actions action)
     {
+        StartCoroutine(buttonController.MoveButtonOutOfView(true, 1f));
+
         string resultText = "";
 
         switch (action)
