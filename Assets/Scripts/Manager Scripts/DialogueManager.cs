@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.InputSystem;
 using System.Linq;
+using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     private int index;
     public Animator anim;
     public GameObject choices;
+    public EnemyManager enemy;
+    public ButtonDetailHighlighting button;
 
     public bool friendStart;
     public bool friendEnd;
@@ -33,9 +36,20 @@ public class DialogueManager : MonoBehaviour
 
     public bool therapistEnd;
 
+    public bool battleEnd;
+
     // Start is called before the first frame update
     void Start()
     {
+        ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
+        if (enemy.phase == 1)
+        {
+            principalStart = true;
+        }
+        else if (enemy.phase == 2)
+        {
+            auntStart = true;
+        }
         textComponent.text = string.Empty;
         StartDialogue();
     }
@@ -58,7 +72,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void StartDialogue()
+    public void StartDialogue()
     {
         index = 0;
         StartCoroutine(TypeLine());
@@ -160,6 +174,67 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void PlayMusic()
+    {
+        if ((friendStart == true) || (friendEnd == true))
+        {
+            AudioManager.instance.PlayMusic("Friend (Pre-battle)");
+        }
+        else if ((friendStart != true) && (friendEnd != true))
+        {
+            AudioManager.instance.PlayMusic("Friend (Pre-battle)");
+        }
+
+        if (principalStart == true)
+        {
+            AudioManager.instance.PlayMusic("Principal (Pre-battle)");
+        }
+        else if (principalGoodEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Principal (Post-battle)");
+        }
+        else if((principalStart != true) && (principalGoodEnd != true) && enemy.phase == 1)
+        {
+            AudioManager.instance.PlayMusic("Principal (During-battle)");
+        }
+
+        if (auntStart == true)
+        {
+            AudioManager.instance.PlayMusic("Aunt (Pre-battle)");
+        }
+        else if (auntGoodEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Aunt (Post-battle)");
+        }
+        else if ((auntStart != true) && (auntGoodEnd != true) && enemy.phase == 2)
+        {
+            AudioManager.instance.PlayMusic("Aunt (During-battle)");
+        }
+
+        if (doctorStart == true)
+        {
+            AudioManager.instance.PlayMusic("Doctor (Pre-battle)");
+        }
+        else if (doctorGoodEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Doctor (Post-battle)");
+        }
+        else if ((doctorStart != true) && (doctorGoodEnd != true) && enemy.phase == 3)
+        {
+            AudioManager.instance.PlayMusic("Doctor (During-battle)");
+        }
+
+        else if ((principalBadEnd == true) || (auntBadEnd == true) || (doctorBadEnd == true))
+        {
+            AudioManager.instance.PlayMusic("Lose");
+        }
+
+        if (therapistEnd == true)
+        {
+            AudioManager.instance.PlayMusic("Therapy");
+        }
+    }
+
     IEnumerator TypeLine()
     {
         foreach (char c in lines[index].ToCharArray())
@@ -209,7 +284,23 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            if(battleEnd == true)
+            {
+                ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
+                SceneLoadingManager.instance.LoadNextScene();
+            }
+            else
+            {
+                ButtonDetailHighlighting.instance.MoveButtonOutOfView(true);
+                //gameObject.SetActive
+                textComponent.text = string.Empty;
+                index = 0;
+                lines[0] = "";
+                lines[1] = "";
+                lines[2] = "";
+                lines[3] = "";
+                lines[4] = "";
+            }
         }
     }
 
