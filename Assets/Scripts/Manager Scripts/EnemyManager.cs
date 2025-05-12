@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
+    static public EnemyManager instance;
+
     public int hp, maxHP;
 
     public string[] dialogueText;
@@ -20,6 +22,14 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         //StartCoroutine(Blocking(40f));
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
     }
 
     // Update is called once per frame

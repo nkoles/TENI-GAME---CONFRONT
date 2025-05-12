@@ -133,7 +133,12 @@ public class SequenceManager : MonoBehaviour
         GameplayManager.Instance.player.damage /= 2;
         textControls.aggressionAmount /= 2;
     }
-    
+
+    float Remap(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
+
     public void ResultOfAction(Actions action)
     {
         string resultText = "";
@@ -144,6 +149,9 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
                 "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" + 
                 "\nPress any key to Continue";
+
+                BossShader.instance.StartCoroutine(BossShader.instance.LerpDissolve(Remap(EnemyManager.instance.hp / EnemyManager.instance.maxHP, 0, 1, -1, 1), 2f));
+
                 break;
             case Actions.Passive:
                 resultText = "Recieved: " + textControls.aggressionGained + " Aggression" +
