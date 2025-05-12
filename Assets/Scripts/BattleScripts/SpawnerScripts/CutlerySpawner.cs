@@ -11,9 +11,7 @@ public class CutlerySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnFork());
-        StartCoroutine(SpawnKnife());
-        StartCoroutine(SpawnSpoon());
+        RandomNumber();
     }
 
     // Update is called once per frame
@@ -22,10 +20,47 @@ public class CutlerySpawner : MonoBehaviour
         
     }
 
+    public void RandomNumber()
+    {
+        int randNo = Random.Range(0, 3);
+
+        switch(randNo)
+        {
+            case 0:
+            {
+                StartCoroutine(SpawnFork());
+
+                break;
+            }
+
+            case 1:
+            {
+                StartCoroutine(SpawnKnife());
+
+                break;
+            }
+
+            case 2:
+            {
+                StartCoroutine(SpawnSpoon());
+
+                break;
+            }
+
+            default:
+            {
+                RandomNumber();
+
+                break;
+            }
+        }
+    }
+
     public IEnumerator SpawnFork()
     {
         float tempTime = time;
-        while(tempTime > 4)
+
+        if(tempTime > 4)
         {
             int randNo = Random.Range(-1, 2);
             if(randNo >= 0)
@@ -41,18 +76,20 @@ public class CutlerySpawner : MonoBehaviour
                 }
             }
 
-            int randTime = Random.Range(3, 6);
+            int randTime = Random.Range(0, 5);
 
             yield return new WaitForSeconds(randTime);
 
-            tempTime -= randTime;
+            time -= randTime;
+
+            RandomNumber();
         }
     }
 
     public IEnumerator SpawnKnife()
     {
         float tempTime = time;
-        while(tempTime > 8)
+        if(tempTime > 8)
         {
             int randNo = Random.Range(-1, 2);
             if(randNo >= 0)
@@ -68,26 +105,42 @@ public class CutlerySpawner : MonoBehaviour
                 }
             }
 
-            int randTime = Random.Range(3, 6);
+            int randTime = Random.Range(0, 5);
 
             yield return new WaitForSeconds(randTime);
 
-            tempTime -= randTime;
+            time -= randTime;
+
+            RandomNumber();
         }
     }
 
     public IEnumerator SpawnSpoon()
     {
-        List<int> sides = new List<int>{0,1,2,3};
-
-        for(int i = 0; i <= 1; i++)
+        float tempTime = time;
+        if(tempTime > 8)
         {
-            int randPoint = Random.Range(0, sides.Count);
+            List<int> sides = new List<int>{0,1,2,3};
 
-            Instantiate(spoon, spoonSpawnPoints[sides[randPoint]], Quaternion.Euler(0, 0, 90 + (-90 * sides[randPoint])));
-            sides.RemoveAt(randPoint);
+            int randNo = Random.Range(-1, 2);
+            if(randNo >= 0)
+            {
+                for(int i = randNo; i <= 1; i++)
+                {
+                    int randPoint = Random.Range(0, sides.Count);
+
+                    Instantiate(spoon, spoonSpawnPoints[sides[randPoint]], Quaternion.Euler(0, 0, 90 + (-90 * sides[randPoint])));
+                    sides.RemoveAt(randPoint);
+                }
+            }
+
+            int randTime = Random.Range(0, 5);
+
+            yield return new WaitForSeconds(randTime);
+
+            time -= randTime;
+
+            RandomNumber();
         }
-
-        yield return new WaitForSeconds(30.0f);
     }
 }

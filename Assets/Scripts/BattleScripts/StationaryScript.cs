@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class StationaryScript : MonoBehaviour
 {
     public int damage, timer;
-    public float speed = .5f;
+    public float speed = .5f, rotation;
     public string type;
     public Tile tile;
     //private Tile currentTile;
@@ -41,6 +41,8 @@ public class StationaryScript : MonoBehaviour
 
         previousPos = transform.position;
 
+        rotation = tilemap.gameObject.transform.rotation.z;
+
         //StartCoroutine(ChangeDirection());
     }
 
@@ -48,7 +50,7 @@ public class StationaryScript : MonoBehaviour
     void Update()
     {
         vector = transform.position / tilemap.gameObject.transform.localScale.z;
-        vector = Quaternion.Euler(0, 0, -45) * vector;
+        vector = Quaternion.Euler(0, 0, 45) * vector;
 
         if((previousPos - transform.position).sqrMagnitude >= .5625f /*tilemap.GetTile(Vector3Int.FloorToInt(vector)) != tile*/)
         {

@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 3707218815603109694}
   - component: {fileID: 7382381792980571702}
   - component: {fileID: 2936730016576537946}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightArrow
   m_TagString: Walls
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 9199212219587590479}
   - component: {fileID: 2624070971168401590}
   - component: {fileID: 1998130211260589038}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftArrow
   m_TagString: Walls
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 7490659423051368880}
   - component: {fileID: 7283819740620119983}
   - component: {fileID: 3587440420477885646}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UpArrow
   m_TagString: Walls
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 4954051742632930947}
   - component: {fileID: 4735363455671282476}
   - component: {fileID: 1711179827601268478}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DownArrow
   m_TagString: Walls
   m_Icon: {fileID: 0}
@@ -846,7 +846,7 @@ PolygonCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

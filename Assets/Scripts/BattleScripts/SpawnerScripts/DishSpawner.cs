@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DishSpawner : MonoBehaviour
 {
-    public GameObject dish;
+    public GameObject[] dishes;
     public float time;
+    public int minDelay, maxDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -22,17 +23,21 @@ public class DishSpawner : MonoBehaviour
     public IEnumerator SpawnDish()
     {
         float tempTime = time;
-        while(tempTime > 8)
+        int randNo = Random.Range(0, dishes.Length);
+
+        if(tempTime > 8)
         {
             transform.position = Random.insideUnitCircle.normalized * 5;
             transform.rotation = Quaternion.FromToRotation(transform.right, (new Vector3(0,0,0) - transform.position));
-            Instantiate(dish, transform.position, transform.rotation);
+            Instantiate(dishes[randNo], transform.position, transform.rotation);
 
-            int randTime = Random.Range(3, 6);
+            int randTime = Random.Range(minDelay, maxDelay);
 
             yield return new WaitForSeconds(randTime);
 
-            tempTime -= randTime;
+            time -= randTime;
+
+            StartCoroutine(SpawnDish());
         }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4960886424200733532}
   - component: {fileID: 6887888417444134900}
   - component: {fileID: 2760476867276679299}
+  - component: {fileID: 7980169965848434607}
   m_Layer: 0
   m_Name: knife
   m_TagString: Untagged
@@ -173,5 +174,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   sr: {fileID: 0}
-  speed: 1
+  speed: 2
   rotation: 0
+--- !u!114 &7980169965848434607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360043605339719717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb8751b070ca1c458cf3262d0a0d10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2

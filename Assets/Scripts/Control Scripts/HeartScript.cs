@@ -1,19 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HeartScript : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float speed, tempSpeed;
+    public SpriteRenderer sr;
+    public float speed, tempSpeed, speedModifier, stunTime, frequency = 5.0f, variation = .25f;
     private Vector2 direction;
     public InputActionReference movement;
-    public bool slip = false, stick = false;
+    public bool slip = false, stick = false, stun = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         tempSpeed = speed;
+        speedModifier = 1;
+        stunTime = 0;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -24,6 +30,10 @@ public class HeartScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(stun)
+        {
+            /*transform.position +=*/ rb.velocity = new Vector3(Mathf.Cos(Time.time * frequency) * variation, Mathf.Sin(Time.time * frequency) * variation, 0);
+        }
         if(slip && !stick)
         {
             tempSpeed = speed*5;
@@ -36,7 +46,54 @@ public class HeartScript : MonoBehaviour
         {
             tempSpeed = speed;
         }
-        
-        rb.velocity = new Vector2(direction.x * tempSpeed, direction.y * tempSpeed);
+
+        if(!stun)
+        {
+            rb.velocity = new Vector2(direction.x * tempSpeed * speedModifier, direction.y * tempSpeed * speedModifier);
+        }
+    }
+
+    public IEnumerator Damage(int amount)
+    {
+        //for(int i = 0; i < amount; i++)
+        //{
+            for(int j = 0; j < 2; j++)
+            {
+                sr.enabled = false;
+                
+                yield return new WaitForSeconds(.25f);
+
+                sr.enabled = true;
+                
+                yield return new WaitForSeconds(.25f);
+            }
+
+            sr.enabled = true;
+        //}
+    }
+
+    public IEnumerator Stun(float time)
+    {
+        if(stun)
+        {
+            stunTime += time;
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            stun = true;
+            stunTime = time;
+
+            while(stunTime > 0)
+            {
+                float currentStunTime = stunTime;
+
+                yield return new WaitForSeconds(stunTime);
+
+                stunTime -= currentStunTime;
+            }
+
+            stun = false;
+        }
     }
 }
