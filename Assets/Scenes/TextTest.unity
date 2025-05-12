@@ -2038,12 +2038,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSounds:
-  - name: Dialogue
+  - name: Friend (Pre-battle)
+    clip: {fileID: 8300000, guid: 6fa7ad95931f3e1419866ea331f14a70, type: 3}
+  - name: Friend (During-battle)
     clip: {fileID: 0}
-  - name: Battle
+  - name: Friend (Post-battle)
+    clip: {fileID: 8300000, guid: 6fa7ad95931f3e1419866ea331f14a70, type: 3}
+  - name: Principal (Pre-battle)
+    clip: {fileID: 8300000, guid: 2860fc51fc86a9240a232cd58ed026e2, type: 3}
+  - name: Principal (During-battle)
+    clip: {fileID: 8300000, guid: 199c60d2395be9546a34bd316cc7425a, type: 3}
+  - name: Principal (Post-battle)
+    clip: {fileID: 0}
+  - name: Aunt (Pre-battle)
+    clip: {fileID: 8300000, guid: c148f385fd1522b40a7e3aebcd22ea3b, type: 3}
+  - name: Aunt (During-battle)
+    clip: {fileID: 8300000, guid: 1f0cfd7f21044644ca9757ed4df96837, type: 3}
+  - name: Aunt (Post-battle)
+    clip: {fileID: 0}
+  - name: Doctor (Pre-battle)
+    clip: {fileID: 8300000, guid: 68adb9bfbbfd30f4099a0d128b07caaf, type: 3}
+  - name: Doctor (During-battle)
+    clip: {fileID: 8300000, guid: b780d676a62134048948b7aa67c5de2c, type: 3}
+  - name: Doctor (Post-battle)
     clip: {fileID: 0}
   - name: Therapy
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 5663a9b88f989c941acf63cf51695304, type: 3}
   sfxSounds:
   - name: ButtonHover
     clip: {fileID: 8300000, guid: b51647682640f774d9f101df4bb7fcfd, type: 3}
