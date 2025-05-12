@@ -21,6 +21,8 @@ public class PostProcessingManager : MonoBehaviour
 
     public IEnumerator TakeDamagePPEffect(float startSpeed, float endSpeed, float holdTime)
     {
+        AudioManager.instance.PlaySFX("Damage");
+
         print("entered");
 
         ppCA = ScriptableObject.CreateInstance<ChromaticAberration>();

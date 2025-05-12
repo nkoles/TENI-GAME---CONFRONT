@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        PlayMusic("Principal (During-battle)"); 
     }
 
     public void PlayMusic(string name)
