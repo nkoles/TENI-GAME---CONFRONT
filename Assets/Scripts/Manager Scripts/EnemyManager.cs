@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -75,6 +76,39 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void RemoveWeapon(int weapon)
+    {
+        switch(phase)
+        {
+            case 1:
+            {
+                schoolObstacles[weapon] = null;
+
+                break;
+            }
+
+            case 2:
+            {
+                homeObstacles[weapon] = null;
+
+                break;
+            }
+
+            case 3:
+            {
+                clinicObstacles[weapon] = null;
+
+                break;
+            }
+
+            default:
+            {
+
+                break;
+            }
+        }
+    }
+
     public IEnumerator Dodging(float time, int difficulty)
     {
         switch(phase)
@@ -85,11 +119,19 @@ public class EnemyManager : MonoBehaviour
 
                 foreach(GameObject thing in schoolObstacles)
                 {
-                    objects.Add(thing);
+                    if(thing != null)
+                    {
+                        objects.Add(thing);
+                    }
                 }
 
                 for(int i = 0; i < difficulty; i++)
                 {
+                    if(objects.Count <= 0)
+                    {
+                        break;
+                    }
+
                     int randObject = Random.Range(0, objects.Count);
 
                     if(objects[randObject] == schoolObstacles[0]) // Pencil
@@ -145,11 +187,19 @@ public class EnemyManager : MonoBehaviour
 
                 foreach(GameObject thing in homeObstacles)
                 {
-                    objects.Add(thing);
+                    if(thing != null)
+                    {
+                        objects.Add(thing);
+                    }
                 }
 
                 for(int i = 0; i < difficulty; i++)
                 {
+                    if(objects.Count == 0)
+                    {
+                        break;
+                    }
+
                     int randObject = Random.Range(0, objects.Count);
 
                     if(objects[randObject] == homeObstacles[0]) // DishSpawner
@@ -213,11 +263,19 @@ public class EnemyManager : MonoBehaviour
 
                 foreach(GameObject thing in clinicObstacles)
                 {
-                    objects.Add(thing);
+                    if(thing != null)
+                    {
+                        objects.Add(thing);
+                    }
                 }
 
                 for(int i = 0; i < difficulty; i++)
                 {
+                    if(objects.Count == 0)
+                    {
+                        break;
+                    }
+                    
                     int randObject = Random.Range(0, objects.Count);
 
                     if(objects[randObject] == clinicObstacles[0]) // Denied Stamp
