@@ -16,6 +16,9 @@ public class DialogueManager : MonoBehaviour
     public Animator anim;
     public GameObject choices;
 
+    public bool friendStart;
+    public bool friendEnd;
+
     public bool principalStart;
     public bool principalGoodEnd;
     public bool principalBadEnd;
@@ -28,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     public bool doctorGoodEnd;
     public bool doctorBadEnd;
 
+    public bool therapistEnd;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +62,23 @@ public class DialogueManager : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TypeLine());
-        if (principalStart == true)
+        if (friendStart == true)
+        {
+            lines[0] = "Hey, how’s it going! You said you had something you wanted to talk to me about?";
+            lines[1] = "You’re trans? Wait- for real? \tSo that means you’re…";
+            lines[2] = "Choices";
+            lines[3] = "Huh. Cool? Sorry, I don’t really know anything about trans stuff… Is it okay if I ask you some things?";
+            lines[4] = "Nice! Just stop me if I say anything dumb, alright?";
+        }
+        else if (friendEnd == true)
+        {
+            lines[0] = "Okay, that’s pretty much everything I wanted to know! Thanks for putting up with all that, haha.";
+            lines[1] = "And thanks for trusting me enough to come out to me; I know these kinds of conversations are never easy, at best.";
+            lines[2] = "I guess when it comes down to it, you have to remember to stick to your guns; never back down, and don’t be afraid to really push your point if it just isn’t sticking. Some people can be real stubborn, you know? In those cases, confrontation tends to be unavoidable.";
+            lines[3] = "…Ah. Sorry, started rambling… in my defence, you should’ve expected that when you came out to someone on a debate team. Don’t blame me!";
+            lines[4] = "Whatever – my point is, you got this, and I got your back! Now; wanna go get some food? My treat!";
+        }
+        else if (principalStart == true)
         {
             lines[0] = "Come in.";
             lines[1] = "Ah, hello, name. You wanted to talk to me about something?";
@@ -130,6 +150,14 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "If that’s all, then we can leave it there.";
             lines[4] = "We’ll get back to you about therapy arrangements as soon as possible.";
         }
+        else if(therapistEnd == true)
+        {
+            lines[0] = "…And so that’s what led to your referral to me; you’ve needed to have a lot of tough discussions to get to this point, haven’t you?";
+            lines[1] = "Conversations like that can really feel like an uphill battle; you’re fighting not just to be heard, but to defend yourself as well, and it can turn into a one-sided affair all too easily.";
+            lines[2] = "It’s completely normal to feel frustration, anxiety, sadness, and other negative emotions because of this. It can be a lot to deal with, especially since trans people typically experience these situations often.";
+            lines[3] = "I’d be happy to talk about that today, if you’d like to.";
+            lines[4] = "I’m here to listen.";
+        }
     }
 
     IEnumerator TypeLine()
@@ -139,6 +167,26 @@ public class DialogueManager : MonoBehaviour
             textComponent.text += c;
             yield return new WaitForSeconds(textspeed);
             anim.SetBool("Talking", true);
+            if((friendStart == true) || (friendEnd == true))
+            {
+                AudioManager.instance.PlaySFX("FriendSfx");
+            }
+            else if((principalStart == true) || (principalGoodEnd == true) || (principalBadEnd == true))
+            {
+                AudioManager.instance.PlaySFX("PrincipalSfx");
+            }
+            else if ((auntStart == true) || (auntGoodEnd == true) || (auntBadEnd == true))
+            {
+                AudioManager.instance.PlaySFX("AuntSfx");
+            }
+            else if ((doctorStart == true) || (doctorGoodEnd == true) || (doctorBadEnd == true))
+            {
+                AudioManager.instance.PlaySFX("DoctorSfx");
+            }
+            else if (therapistEnd == true)
+            {
+                AudioManager.instance.PlaySFX("TherapistSfx");
+            }
         }
         anim.SetBool("Talking", false);
     }
