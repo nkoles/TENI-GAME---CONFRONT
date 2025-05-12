@@ -17,39 +17,67 @@ public class PostProcessingManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
-
-        ppCA = ScriptableObject.CreateInstance<ChromaticAberration>();
     }
 
-    static public IEnumerator TakeDamagePPEffect(float startSpeed, float endSpeed, float holdTime)
+    public IEnumerator TakeDamagePPEffect(float startSpeed, float endSpeed, float holdTime)
     {
         print("entered");
 
-        instance.ppCA.intensity.Override(1f);
-        instance.ppCA.enabled.Override(true);
+        ppCA = ScriptableObject.CreateInstance<ChromaticAberration>();
 
-        instance.ppVolume = PostProcessManager.instance.QuickVolume(0 & 1 >> 5, 100, instance.ppCA);
+        Vignette ppVG = ScriptableObject.CreateInstance<Vignette>();
 
-        for(float i = 0; i < 1.1; i += startSpeed/Time.deltaTime)
+        ppVG.intensity.Override(0f);
+        ppVG.smoothness.Override(1f);
+        ppVG.color.Override(Color.red);
+        ppVG.rounded.Override(true);
+        ppVG.enabled.Override(true);   
+
+        ppCA.intensity.Override(0f);
+        ppCA.enabled.Override(true);
+
+        ppVolume = PostProcessManager.instance.QuickVolume(0 & 1 >> 5, 100, ppCA, ppVG);
+
+        for(float i = 0; i < 1; i += Time.fixedDeltaTime/startSpeed)
         {
-            instance.ppCA.intensity.Override(Mathf.Lerp(0, 1, i));
+
+            if(i + Time.fixedDeltaTime / startSpeed > 1)
+            {
+                ppCA.intensity.Override(1f);
+                ppVG.intensity.Override(0.5f);
+                break;
+            }
+
+            ppCA.intensity.Override((float)Mathf.Lerp(0, 1, i));
+            ppVG.intensity.Override((float)Mathf.Lerp(0, .5f, i));
 
             yield return null;
         }
 
-        instance.ppCA.intensity.Override(1f);
+        yield return null;
+        //yield return new WaitForSeconds(holdTime);
 
-        yield return new WaitForSeconds(holdTime);
-
-        for (float i = 0; i < 1.1; i += endSpeed/Time.deltaTime)
+        for (float j = 0; j < 1; j += Time.fixedDeltaTime/endSpeed)
         {
-            instance.ppCA.intensity.Override(Mathf.InverseLerp(1, 0, i));
+
+            if (j + Time.fixedDeltaTime / endSpeed> 1)
+            {
+                ppCA.intensity.Override(0f);
+                ppVG.intensity.Override(0f);
+                break;
+            }
+
+            ppCA.intensity.Override((float)Mathf.Lerp(1, 0, j));
+            ppVG.intensity.Override((float)Mathf.Lerp(0.5f, 0, j));
 
             yield return null;
         }
 
-        instance.ppCA.intensity.Override(0f);
+        RuntimeUtilities.DestroyVolume(ppVolume, false, false);
+    }
 
-        RuntimeUtilities.DestroyVolume(instance.ppVolume, true, false);
+    public void Test()
+    {
+        StartCoroutine(TakeDamagePPEffect(.25f, 3f, 0f));
     }
 }

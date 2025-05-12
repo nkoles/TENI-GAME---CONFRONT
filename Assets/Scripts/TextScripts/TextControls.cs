@@ -176,9 +176,9 @@ public class TextControls : MonoBehaviour
     //PASSIVE
     public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
     {
-        yield return BackgroundShader.instance.PassiveSceneTransition(BackgroundShader.instance.passiveBGColorChange, BackgroundShader.instance.noiseBGColorChange, .5f, true, 3f);
+        yield return BackgroundShader.instance.PassiveSceneTransition(BackgroundShader.instance.passiveBGColorChange, BackgroundShader.instance.noiseBGColorChange, .5f, true, 1f);
 
-        BossShader.instance.runningRoutine = StartCoroutine(BossShader.instance.OndulateEdge(BossShader.instance.defaultOutlineWidth, BossShader.instance.passiveOutlineBand, spawnTime, attackDuration));
+        BossShader.instance.StartCoroutine(BossShader.instance.LerpOutline(BossShader.instance.passiveOutlineBand, 1f));
 
         wordsDestroyedCount = 0;
 
@@ -248,8 +248,6 @@ public class TextControls : MonoBehaviour
             yield return null;
         }
 
-        BossShader.instance.StopAllCoroutines();
-
         BossShader.instance.StartCoroutine(BossShader.instance.LerpOutline(BossShader.instance.defaultOutlineWidth, 1f));
 
         yield return new WaitForSeconds(1f);
@@ -261,7 +259,7 @@ public class TextControls : MonoBehaviour
 
         print("attack finished");
 
-        yield return BackgroundShader.instance.PassiveSceneTransition(BackgroundShader.instance.defaultBGColor, BackgroundShader.instance.defaultNoiseColor, 1f, true, 3f);
+        yield return BackgroundShader.instance.PassiveSceneTransition(BackgroundShader.instance.defaultBGColor, BackgroundShader.instance.defaultNoiseColor, 1f, true, 1f);
     }
 
     private void Awake()

@@ -107,7 +107,7 @@ Material:
     - _NoiseFactor: 6.04
     - _NoiseMultiplier: 0.6
     - _NoiseSpeed: 0.01
-    - _NoiseStrength: 0.709
+    - _NoiseStrength: 0.691
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0

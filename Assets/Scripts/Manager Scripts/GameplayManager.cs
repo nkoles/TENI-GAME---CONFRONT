@@ -139,6 +139,11 @@ public class GameplayManager : MonoBehaviour
                 player.StartCoroutine(player.Invulnerable());
             }
 
+            if(amount > 0)
+            {
+                StartCoroutine(PostProcessingManager.instance.TakeDamagePPEffect(.25f, 3f, 0f));
+            }
+
             HealthManager.instance.UpdateUIHealth(true);
         }
     }
