@@ -9,6 +9,7 @@ public class ButtonDetailHighlighting : MonoBehaviour
 {
     static public UnityEvent<int> ButtonSelected = new UnityEvent<int>();
     static public UnityEvent ButtonDeselected = new UnityEvent();
+    static public ButtonDetailHighlighting instance;
 
     public TextMeshProUGUI buttonDescriptionTMProTarget;
     public float textSpeed;
@@ -23,6 +24,11 @@ public class ButtonDetailHighlighting : MonoBehaviour
 
     public void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         initPos = transform.position;
         OnChoosingAction();
     }

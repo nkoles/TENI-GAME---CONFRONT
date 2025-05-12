@@ -10,6 +10,7 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager Instance;
     public PlayerManager player;
     public EnemyManager enemy;
+    public DialogueManager dialogue;
     //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
@@ -180,12 +181,24 @@ public class GameplayManager : MonoBehaviour
     public void Win()
     {
         SetupSequence.isWon = true;
-        SceneLoadingManager.instance.LoadNextScene();
+        if(enemy.phase == 1)
+        {
+            dialogue.principalStart = false;
+            dialogue.principalGoodEnd = true;
+            dialogue.battleEnd = true;
+            dialogue.StartDialogue();
+        }
     }
 
     public void Lose()
     {
         SetupSequence.isWon = false;
-        SceneLoadingManager.instance.LoadNextScene();
+        if (enemy.phase == 1)
+        {
+            dialogue.principalStart = false;
+            dialogue.principalBadEnd = true;
+            dialogue.battleEnd = true;
+            dialogue.StartDialogue();
+        }
     }
 }
