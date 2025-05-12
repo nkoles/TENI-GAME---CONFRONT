@@ -122,6 +122,8 @@ public class TextControls : MonoBehaviour
 
             if (parsedString[currentCharIdx] == ' ' || checkChar)
             {
+                //
+
                 StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx, GetCharColor(associatedTextObj, currentCharIdx), completedAffirmationCharColor, .5f));
                 StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx, GetCharFontSize(associatedTextObj, currentCharIdx), GetCharFontSize(associatedTextObj, currentCharIdx) / 1.2f, .5f));
 

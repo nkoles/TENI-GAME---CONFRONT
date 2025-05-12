@@ -2007,6 +2007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1779f14d0ee26c4db0836af437ddd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matRef: {fileID: 0}
   id: 0
 --- !u!1 &994151262
 GameObject:
