@@ -7,7 +7,9 @@ public class TransitionShader : MonoBehaviour
 {
     static public TransitionShader instance;
 
-    private Material _transitionShader;
+    public Material affirmationTransition;
+
+    public Material _transitionShader;
 
     public void Awake()
     {
@@ -19,11 +21,11 @@ public class TransitionShader : MonoBehaviour
             Destroy(instance);
         }
 
-        _transitionShader = GetComponent<Image>().material;
+        //_transitionShader = GetComponent<Image>().material;
 
         _transitionShader.SetFloat("_DisolveFactor", 1);
 
-        StartCoroutine(Fade(true, 3f));
+        StartCoroutine(Fade(true, 3f, _transitionShader));
     }
 
     public void SetColor(Color color)
@@ -31,7 +33,7 @@ public class TransitionShader : MonoBehaviour
         _transitionShader.SetColor("_DisolveColor", color);
     }
 
-    public IEnumerator Fade(bool isFadingOut, float fadeTime)
+    public IEnumerator Fade(bool isFadingOut, float fadeTime, Material transitionMaterial)
     {
         float targetFade = 1;
 
@@ -44,11 +46,12 @@ public class TransitionShader : MonoBehaviour
         {
             for (float i = 0; i < 1; i += Time.deltaTime / fadeTime)
             {
-                _transitionShader.SetFloat("_DisolveFactor", i);
+                transitionMaterial.SetFloat("_DisolveFactor", i);
 
                 if (i + Time.deltaTime / fadeTime > 1)
                 {
-                    _transitionShader.SetFloat("_DisolveFactor", 1);
+                    transitionMaterial.SetFloat("_DisolveFactor", 1);
+                    break;
                 }
 
                 yield return null;
@@ -57,11 +60,12 @@ public class TransitionShader : MonoBehaviour
         {
             for (float i = 1; i > -0.01; i -= Time.deltaTime / fadeTime)
             {
-                _transitionShader.SetFloat("_DisolveFactor", i);
+                transitionMaterial.SetFloat("_DisolveFactor", i);
 
                 if (i - Time.deltaTime / fadeTime < -0.01)
                 {
-                    _transitionShader.SetFloat("_DisolveFactor", -0.01f);
+                    transitionMaterial.SetFloat("_DisolveFactor", -0.01f);
+                    break;
                 }
 
                 yield return null;
@@ -71,14 +75,14 @@ public class TransitionShader : MonoBehaviour
             print("TransitionFade Complete");
     }
 
-    private IEnumerator TestTransitions()
-    {
-        yield return Fade(false, 5f);
+    //private IEnumerator TestTransitions()
+    //{
+    //    yield return Fade(false, 5f);
 
-        yield return new WaitForSeconds(2f);
+    //    yield return new WaitForSeconds(2f);
 
-        yield return Fade(true, 5f);
-    }
+    //    yield return Fade(true, 5f);
+    //}
 
     //private void Start()
     //{

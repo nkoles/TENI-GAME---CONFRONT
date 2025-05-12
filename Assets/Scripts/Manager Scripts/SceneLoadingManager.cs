@@ -29,7 +29,7 @@ public class SceneLoadingManager : MonoBehaviour
 
     private IEnumerator SwitchScene(int buildIndex)
     {
-        yield return TransitionShader.instance.Fade(false, 5);
+        yield return TransitionShader.instance.Fade(false, 5, TransitionShader.instance._transitionShader);
 
         SceneManager.LoadScene(buildIndex);
     }

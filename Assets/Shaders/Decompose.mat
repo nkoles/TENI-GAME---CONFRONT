@@ -78,11 +78,11 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DecomposingFactor: -0.92
+    - _DecomposingFactor: -0.955
     - _DetailNormalMapScale: 1
     - _DitherSize: 1
     - _DstBlend: 0
-    - _EdgeWidth: 3.1
+    - _EdgeWidth: 3.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -102,6 +102,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EdgeColor: {r: 0.8301887, g: 0, b: 0.661076, a: 1}
+    - _EdgeColor: {r: 1, g: 0, b: 0.9262295, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

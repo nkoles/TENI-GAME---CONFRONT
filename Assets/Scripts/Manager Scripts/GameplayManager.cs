@@ -14,7 +14,7 @@ public class GameplayManager : MonoBehaviour
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
 
-    public Image confrontButton;
+    public Material confrontButton;
 
     void Awake()
     {
@@ -26,11 +26,10 @@ public class GameplayManager : MonoBehaviour
         Instance = this;
         //DontDestroyOnLoad(gameObject);
     }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
-        confrontButton.material.SetFloat("_Strength", player.aggression / player.maxAggression);
+        UpdateAggression(0);
     }
 
     // Update is called once per frame
@@ -170,7 +169,7 @@ public class GameplayManager : MonoBehaviour
             player.aggression = player.maxAggression;
         }
 
-        confrontButton.material.SetFloat("_Strength", player.aggression / player.maxAggression);
+        confrontButton.SetFloat("_Strength", player.aggression / player.maxAggression);
     }
 
     public void Win()
