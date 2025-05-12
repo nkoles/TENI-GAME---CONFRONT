@@ -114,14 +114,18 @@ public class SequenceManager : MonoBehaviour
 
     public IEnumerator Confront(int time)
     {
-        GameplayManager.Instance.player.damage *= 2;
+        // OLD CONFRONT ACTION
+
+        /*GameplayManager.Instance.player.damage *= 2;
         Debug.Log(GameplayManager.Instance.player.damage);
         textControls.aggressionAmount *= 2;
         Debug.Log(textControls.aggressionAmount);
 
         StartCoroutine(GameplayManager.Instance.Attack(time));
         StartCoroutine(textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, time));
-        StartCoroutine(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], time));
+        StartCoroutine(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], time));*/
+
+        // NEW CONFRONT ACTION
 
         yield return new WaitForSeconds(time);
 
@@ -130,8 +134,8 @@ public class SequenceManager : MonoBehaviour
             ui.SetActive(false);
         }
 
-        GameplayManager.Instance.player.damage /= 2;
-        textControls.aggressionAmount /= 2;
+        //GameplayManager.Instance.player.damage /= 2;
+        //textControls.aggressionAmount /= 2;
     }
     
     public void ResultOfAction(Actions action)
