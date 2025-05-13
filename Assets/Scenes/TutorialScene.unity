@@ -2278,6 +2278,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &304571332
@@ -4925,9 +4926,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a4b09cf8a6e95804e885e40cd51d971e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0

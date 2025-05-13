@@ -99,6 +99,8 @@ public class AudioManager : MonoBehaviour
 
         StartCoroutine(FadeOut());
 
+        yield return new WaitForSeconds(fadeOutDelay*(musicVolume - musicMinVolume));
+
         musicSource.clip = clip;
         musicSource.Play();
 
