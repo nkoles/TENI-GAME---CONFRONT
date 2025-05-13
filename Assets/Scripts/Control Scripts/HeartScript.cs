@@ -11,6 +11,7 @@ public class HeartScript : MonoBehaviour
     private Vector2 direction;
     public InputActionReference movement;
     public bool slip = false, stick = false, stun = false;
+    public Color color;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,23 +54,26 @@ public class HeartScript : MonoBehaviour
         }
     }
 
+    public void OnDisable()
+    {
+        sr.color = color;
+    }
+
     public IEnumerator Damage(int amount)
     {
-        //for(int i = 0; i < amount; i++)
-        //{
+        for(int i = 0; i < amount; i++)
+        {
             for(int j = 0; j < 2; j++)
             {
-                sr.enabled = false;
+                sr.color = new Color(255, 255, 255, 0);
                 
-                yield return new WaitForSeconds(.25f);
+                yield return new WaitForSeconds(.125f);
 
-                sr.enabled = true;
+                sr.color = color;
                 
-                yield return new WaitForSeconds(.25f);
+                yield return new WaitForSeconds(.125f);
             }
-
-            sr.enabled = true;
-        //}
+        }
     }
 
     public IEnumerator Stun(float time)

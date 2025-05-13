@@ -9,12 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 7cdd83f901326c5459445567ef480429
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Scenes/TutorialScene.unity
+    guid: f25fd9f85edaae74d9cd8f99b436b965
+  - enabled: 1
+    path: Assets/Scenes/PrincipalScene.unity
     guid: eb0613c8e74017a478278c8ff447c9c4
   - enabled: 1
-    path: Assets/Scenes/TransitionScriptTets.unity
-    guid: 587e531d1d2b572499ddf8b0be6c1ae3
+    path: Assets/Scenes/AuntScene.unity
+    guid: 578cfba752f19bf459b95e962ac776bf
+  - enabled: 1
+    path: Assets/Scenes/DoctorScene.unity
+    guid: 85585040f3f5d004da08d3db6ad5b6a0
   - enabled: 1
     path: Assets/Scenes/EndSceneWin.unity
     guid: f0c02bd038ee50740898627cb8badbd4
+  - enabled: 1
+    path: Assets/Scenes/EndSceneLose.unity
+    guid: e98bd0ec2462aa8408b4b82f063bdfeb
   m_configObjects: {}

@@ -17,8 +17,8 @@ public class DiamondScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        direction.action.started += Direction;
-        direction.action.canceled += ChangeColour;
+        //direction.action.started += Direction;
+        //direction.action.canceled += ChangeColour;
     }
 
     // Update is called once per frame
@@ -39,11 +39,6 @@ public class DiamondScript : MonoBehaviour
             arrow = null;
             GameplayManager.Instance.UpdateEnemyHealth(GameplayManager.Instance.player.damage);
             GameplayManager.Instance.damageDealt += GameplayManager.Instance.player.damage;
-
-            if(aggro)
-            {
-                //update aggression;
-            }
         }
         else
         {
@@ -93,6 +88,7 @@ public class DiamondScript : MonoBehaviour
         attackBox.text = "";
         direction.action.started -= Direction;
         direction.action.canceled -= ChangeColour;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(255,255,255,255);
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -129,7 +125,6 @@ public class DiamondScript : MonoBehaviour
             //Debug.Log("Damage");
 
             GameplayManager.Instance.UpdatePlayerHealth(1);
-            GameplayManager.Instance.damageTaken++;
         }
     }
 }

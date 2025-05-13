@@ -9,15 +9,16 @@ public class ArrowScript : MonoBehaviour
     public TMP_Text word;
     public GameObject canvas;
     public Rigidbody2D rb;
+    public Vector3 startPos;
     public float xDir = 0, yDir = 1;
     public float speed = 2.5f;
     public string key;
     public int phase;
     public bool opposite, adjacent;
-
+    public Vector3 modifier;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    void Start()
     {
         canvas.GetComponent<RectTransform>().rotation = Quaternion.Euler(0,0,0);
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -31,28 +32,35 @@ public class ArrowScript : MonoBehaviour
         if(target == 0)
         {
             vector = new Vector3(0, -1, 0);
+            startPos = -vector * modifier.magnitude;
             key = "Up";
         }
         else if(target == 1)
         {
             vector = new Vector3(-1, 0, 0);
+            startPos = -vector * modifier.magnitude;
             key = "Right";
         }
         else if(target == 2)
         {
             vector = new Vector3(0, 1, 0);
+            startPos = -vector * modifier.magnitude;
             key = "Down";
         }
         else if(target == 3)
         {
             vector = new Vector3(1, 0, 0);
+            startPos = -vector * modifier.magnitude;
             key = "Left";
         }
 
         float rotation = 0;
 
+        speed = speed = 1.25f;
+
         if(phase == 1)
         {
+            speed = 2.5f;
             bool opposite = Random.value >= 0.5f;
             if(opposite)
             {
@@ -62,6 +70,7 @@ public class ArrowScript : MonoBehaviour
         }
         if(phase == 2)
         {
+            speed = 3.75f;
             bool adjacent = Random.value >= 0.5f;
             if(adjacent)
             {
@@ -80,6 +89,7 @@ public class ArrowScript : MonoBehaviour
         }
         if(phase == 3)
         {
+            speed = 5f;
             bool adjacent = Random.value >= 0.5f;
             bool opposite = Random.value >= 0.5f;
             if(!adjacent)
@@ -108,17 +118,21 @@ public class ArrowScript : MonoBehaviour
         xDir = vector.x;
         yDir = vector.y;
 
-        transform.rotation = Quaternion.Euler(0, 0, 45 - (90 * target) + rotation);
+        transform.position = (new Vector3(-xDir, -yDir, 0) * (4*speed)) + (startPos * Mathf.Sqrt((modifier.x) * (modifier.x) + (modifier.y) * (modifier.y)));
+
+        transform.rotation = Quaternion.Euler(0, 0, 45 - (90 * target));
 
         if(xDir > 0.5f)
         {
             Vector3 wordPos = new Vector3(1 + ((float)word.text.Length/20), 1 + ((float)word.text.Length/20), 0);
             canvas.GetComponent<RectTransform>().localPosition = wordPos;
+            canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, -45 + (90 * target));
         }
         else if(xDir < 0.5f)
         {
             Vector3 wordPos = new Vector3(1 + ((float)word.text.Length/20), 1 + ((float)word.text.Length/20), 0);
             canvas.GetComponent<RectTransform>().localPosition = wordPos;
+            canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(0, 0, -45 + (90 * target));
         }
 
         /*if(gameObject.transform.position.y > 0 && gameObject.transform.position.x == 0)

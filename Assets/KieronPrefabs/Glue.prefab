@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3006710815856532611}
   - component: {fileID: 334618204338984904}
   - component: {fileID: 3982408077650274800}
+  - component: {fileID: 2931497991842291802}
   m_Layer: 0
   m_Name: Glue
   m_TagString: Untagged
@@ -201,13 +202,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b91d716376a164f874b84ed0bdcff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
   timer: 1
   speed: 0.5
+  rotation: 0
   type: Page
-  tile: {fileID: 11400000, guid: 4ab40f55755e8434a9860576a4f72465, type: 2}
+  tile: {fileID: 11400000, guid: 65cf1041d3e9c464e831d2b723636507, type: 2}
   tilemap: {fileID: 0}
-  secondaryTilemap: {fileID: 0}
   rb: {fileID: 0}
   direction: {x: -1, y: -1}
   target: {x: 0, y: 0, z: 0}
@@ -256,6 +257,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2931497991842291802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5240617354253243970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6221348283537506894
 GameObject:
   m_ObjectHideFlags: 0

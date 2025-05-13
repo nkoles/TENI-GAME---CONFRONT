@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4151220771717531102}
   - component: {fileID: 4445489446930703214}
   - component: {fileID: 4742135571459153091}
+  - component: {fileID: 6231254705795029003}
   m_Layer: 0
   m_Name: Ruler
   m_TagString: Untagged
@@ -173,9 +174,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moving: 0
   delay: 1
-  timer: 4
-  damage: 2
+  timer: 5
+  damage: 1
   speed: 3
   xDir: 0
   yDir: 0
   rb: {fileID: 0}
+--- !u!114 &6231254705795029003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2391363596162385678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

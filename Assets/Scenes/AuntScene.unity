@@ -793,6 +793,7 @@ MonoBehaviour:
   hp: 50
   maxHP: 50
   dialogueText: []
+  parkObstacles: []
   schoolObstacles:
   - {fileID: 5570629096200125083, guid: ff36b68660d64da42bb9679e485118d8, type: 3}
   - {fileID: 6103278566705476294, guid: 91c721c195b7a784f8a2ccc91a273a16, type: 3}
@@ -814,7 +815,17 @@ MonoBehaviour:
   - {fileID: 6175128226606027744, guid: b1abed9f5882d54459cd6f500dd79636, type: 3}
   - {fileID: 6432817693181164028, guid: 69d5d57343d59d7438cab1b045649461, type: 3}
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
-  AttackingWords: []
+  AttackingWords:
+  - "I\u2019m still the same person. "
+  - "There were signs, they just weren\u2019t obvious. "
+  - 'I use this name with my friends. '
+  - "People change as they grow up, and you have to accept that, even if it\u2019s
+    hard. "
+  - "I\u2019ve thought this through more than you think. "
+  - "My identity shouldn\u2019t embarrass you. "
+  - "Just because you don\u2019t get it, that doesn\u2019t mean it\u2019s not important. "
+  - "Trans people have existed all throughout history, this isn\u2019t just \u201Cmy
+    generation\u201D. "
   lateralSpawnPoints:
   - {x: 0, y: 10, z: 0}
   - {x: 10, y: 0, z: 0}
@@ -822,7 +833,7 @@ MonoBehaviour:
   - {x: -10, y: 0, z: 0}
   enemyWords: []
   phase: 2
-  timeMod: 0
+  timeMod: 0.5
   arrow: {fileID: 1108795952560434591, guid: a60dcb50627811d47877fcc841573877, type: 3}
 --- !u!4 &195812179
 Transform:
@@ -3152,6 +3163,7 @@ MonoBehaviour:
   - {fileID: 2084315889}
   - {fileID: 1738023403}
   - {fileID: 1351301462}
+  parkSprites: []
   schoolSprites:
   - {fileID: 21300000, guid: 7e3b83c3b3e4af1489cdac5e6e40bbfd, type: 3}
   - {fileID: 21300000, guid: 282f10ce004305a488f55bad660b05a7, type: 3}
@@ -3173,6 +3185,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4ee9719155a0671479d71b5c6c93bfb0, type: 3}
   - {fileID: 21300000, guid: db64d737ef700cf40b177d75bcc0bdb7, type: 3}
   - {fileID: 21300000, guid: 29760b9af15dc284dac727c47d5b8fc3, type: 3}
+  parkText: []
   schoolText:
   - Pencil
   - Eraser
@@ -3215,6 +3228,7 @@ MonoBehaviour:
     behind it. The trail deals no damage, but the tape roller deals medium damage.
   - Labels target the player, moving towards them with different movement patterns.
     Deals low damage.
+  parkDescription: []
   weapons: 000000000000000000000000
   description: {fileID: 273629255}
   selectedWeapon: 0

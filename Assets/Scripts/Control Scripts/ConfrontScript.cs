@@ -12,8 +12,11 @@ public class ConfrontScript : MonoBehaviour
     public Button[] buttons;
     public Image[] images;
     public TMP_Text[] text;
+    public Sprite[] parkSprites;
     public Sprite[] schoolSprites, homeSprites, clinicSprites;
+    public string[] parkText;
     public string[] schoolText, homeText, clinicText, schoolDescription, homeDescription, clinicDescription;
+    public string[] parkDescription;
     public int[] weapons;
     public TMP_Text description;
     public int selectedWeapon, hoveredButton;

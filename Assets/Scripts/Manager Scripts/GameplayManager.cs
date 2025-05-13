@@ -13,6 +13,7 @@ public class GameplayManager : MonoBehaviour
     public SequenceManager sequence;
     public DialogueManager dialogue;
     public AudioManager audioManager;
+    //public DiamondScript[] diamonds;
     //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
@@ -62,7 +63,7 @@ public class GameplayManager : MonoBehaviour
     {
         //logicAmount++;
 
-        StartCoroutine(Attack());
+        //StartCoroutine(Attack());
         StartCoroutine(EndTurn(time*2));
     }
 
@@ -75,6 +76,7 @@ public class GameplayManager : MonoBehaviour
 
     public IEnumerator Dodge(int time, int difficulty)
     {
+        damageTaken = 0;
         player.diamond.SetActive(true);
         //GameObject heart = Instantiate(player.heart, new Vector3(0, 0, 0), Quaternion.Euler(0,0,0));
         player.heart.transform.position = new Vector3(0, 0, player.heart.transform.position.z);
@@ -100,13 +102,19 @@ public class GameplayManager : MonoBehaviour
         player.spade.SetActive(false);
     }
 
-    public IEnumerator Attack()
+    public IEnumerator Attack(int amount)
     {
         damageDealt = 0;
         damageTaken = 0;
+
+        /*foreach(DiamondScript diamond in diamonds)
+        {
+            diamond.gameObject.GetComponent<PlayerInput>().enabled = false;
+        }*/
+
         player.diamond.SetActive(true);
 
-        yield return enemy.Blocking();
+        yield return enemy.Blocking(amount);
 
         /*StartCoroutine(enemy.Blocking(time));
 
@@ -115,6 +123,11 @@ public class GameplayManager : MonoBehaviour
         //ui.dialogueBox.SetActive(false);
         player.diamond.SetActive(false);
         //StartCoroutine(Dodge(time, logicAmount));
+
+        /*foreach(DiamondScript diamond in diamonds)
+        {
+            diamond.gameObject.GetComponent<PlayerInput>().enabled = true;
+        }*/
     }
 
     public IEnumerator Build(int time)

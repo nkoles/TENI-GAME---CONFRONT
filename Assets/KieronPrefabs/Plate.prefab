@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4513098018229415587}
   - component: {fileID: 5490684347580553218}
   - component: {fileID: 878488944206873177}
+  - component: {fileID: 1454826658362125929}
+  - component: {fileID: 4170480297876891246}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Untagged
@@ -162,9 +164,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  sr: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   speed: 1
-  damage: 1
+  modifier: 0
+  damage: 0
   dish: Plate
   time: 0
   timer: 1
+--- !u!114 &1454826658362125929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233197534443544242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb8751b070ca1c458cf3262d0a0d10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!114 &4170480297876891246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233197534443544242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

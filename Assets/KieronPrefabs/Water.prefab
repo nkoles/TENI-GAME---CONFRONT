@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6054496813498443781}
   - component: {fileID: 3873865629281528700}
   - component: {fileID: 2284240852468587520}
+  - component: {fileID: 9041244494809402819}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: edf5540a53b1695468cb89af6a412ef1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -168,3 +169,15 @@ MonoBehaviour:
   speed: 0
   maxSpeed: 5
   turnSpeed: 45
+--- !u!114 &9041244494809402819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450056626349161616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

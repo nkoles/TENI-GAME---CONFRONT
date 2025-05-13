@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 262495982632045422}
   - component: {fileID: 8889927040707755490}
   - component: {fileID: 5408933055787993731}
+  - component: {fileID: 4491696120157633564}
   m_Layer: 0
   m_Name: Stapler
   m_TagString: Untagged
@@ -183,6 +184,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.25}
   m_EdgeRadius: 0
+--- !u!114 &4491696120157633564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6049846730393365869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6714356353514086573
 GameObject:
   m_ObjectHideFlags: 0

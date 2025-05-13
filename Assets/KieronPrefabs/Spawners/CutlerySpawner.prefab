@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7784611329736143733}
   - component: {fileID: 2515734065190113775}
+  - component: {fileID: 2764853664546699746}
   m_Layer: 0
   m_Name: CutlerySpawner
   m_TagString: Untagged
@@ -63,3 +64,15 @@ MonoBehaviour:
   - {x: 0, y: -5, z: 0}
   - {x: -5, y: 0, z: 0}
   time: 30
+--- !u!114 &2764853664546699746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196173361137475623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

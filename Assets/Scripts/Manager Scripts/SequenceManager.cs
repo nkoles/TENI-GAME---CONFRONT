@@ -64,7 +64,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Attack:
                 print("Attack Action");
 
-                action = GameplayManager.Instance.Attack();
+                action = GameplayManager.Instance.Attack(actionAmount[0] + 1);
 
                 //GameplayManager.Instance.logicAmount++;
                 break;
@@ -209,7 +209,8 @@ public class SequenceManager : MonoBehaviour
                 break;
             case Actions.BossAction:
                 bossAttacking = false;
-                resultText = "Evaded boss stuff" + "\nPress any key to Continue";
+                resultText = "Took " + GameplayManager.Instance.damageTaken + " damage." + 
+                "\nPress any key to Continue";
                 break;
         }
 

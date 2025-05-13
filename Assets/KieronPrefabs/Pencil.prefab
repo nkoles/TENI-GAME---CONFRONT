@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2481111567709161661}
   - component: {fileID: 1631227419235374336}
   - component: {fileID: 1097631688773247144}
+  - component: {fileID: 1888998897243227778}
   m_Layer: 0
   m_Name: Pencil
   m_TagString: Untagged
@@ -282,8 +283,9 @@ MonoBehaviour:
   damage: 1
   timer: 1
   speed: 0.5
+  rotation: 0
   type: Page
-  tile: {fileID: 11400000, guid: e7d49890d0902d647ac4df90d545d6f4, type: 2}
+  tile: {fileID: 11400000, guid: 5592011dae734154e87b301d582a9714, type: 2}
   tilemap: {fileID: 0}
   rb: {fileID: 0}
   direction: {x: 1, y: 1}
@@ -333,3 +335,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1888998897243227778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5570629096200125083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

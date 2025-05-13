@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7767735108118489309}
   - component: {fileID: 6462099269532662277}
   - component: {fileID: 5206821947301096556}
+  - component: {fileID: 8628475992911776896}
+  - component: {fileID: 7929845577771225317}
   m_Layer: 0
   m_Name: Bowl
   m_TagString: Untagged
@@ -172,9 +174,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  sr: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
   speed: 1
-  damage: 1
+  modifier: 0
+  damage: 0
   dish: Bowl
   time: 0
   timer: 1
+--- !u!114 &8628475992911776896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113889182915535518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb8751b070ca1c458cf3262d0a0d10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!114 &7929845577771225317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113889182915535518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

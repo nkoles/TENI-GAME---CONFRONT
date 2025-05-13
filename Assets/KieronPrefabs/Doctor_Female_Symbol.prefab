@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1328811301807454971}
   - component: {fileID: 2837255917654374743}
   - component: {fileID: 1286583937081211812}
+  - component: {fileID: 8280670061823601073}
   m_Layer: 0
   m_Name: Doctor_Female_Symbol
   m_TagString: Untagged
@@ -253,3 +254,15 @@ MonoBehaviour:
   symbol: Female
   time: 0
   timer: 0.5
+--- !u!114 &8280670061823601073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5398872234154721513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

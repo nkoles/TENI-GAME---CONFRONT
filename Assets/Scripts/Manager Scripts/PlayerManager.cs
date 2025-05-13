@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public float invulnerableTime = 1.0f;
 
-    public int hp, maxHP, aggression, maxAggression, damage = 1;
+    public int hp, maxHP, aggression, maxAggression, damage;
 
     public bool invulnerable;
     
@@ -21,9 +21,10 @@ public class PlayerManager : MonoBehaviour
 
     public IEnumerator Invulnerable(int amount)
     {
+        GameplayManager.Instance.damageTaken += amount;
         invulnerable = true;
-        heart.GetComponent<HeartScript>().Damage(amount);
-        yield return new WaitForSeconds(/*invulnerableTime*/amount);
+        StartCoroutine(heart.GetComponent<HeartScript>().Damage(amount));
+        yield return new WaitForSeconds(/*invulnerableTime*/amount/2);
         invulnerable = false;
     }
 

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5782041683011549933}
   - component: {fileID: 6121695663029324642}
   - component: {fileID: 6964753870968412041}
+  - component: {fileID: 7214470728909066089}
   m_Layer: 0
   m_Name: spoon
   m_TagString: Untagged
@@ -312,9 +313,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   sr: {fileID: 0}
+  hitboxes: []
   speed: 1
   time: 0
   offset: 0
+  started: 0
 --- !u!114 &6964753870968412041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,4 +330,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb8751b070ca1c458cf3262d0a0d10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
+--- !u!114 &7214470728909066089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634081464592428993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

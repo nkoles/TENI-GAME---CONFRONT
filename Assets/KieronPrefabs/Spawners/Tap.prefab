@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3487056823586075801}
   - component: {fileID: 491691901750534224}
   - component: {fileID: 7073928094021878591}
+  - component: {fileID: 238131842076090118}
   m_Layer: 4
   m_Name: Tap
   m_TagString: Untagged
@@ -173,6 +174,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
+--- !u!114 &238131842076090118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5231192672177529952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6498517202724643202
 GameObject:
   m_ObjectHideFlags: 0

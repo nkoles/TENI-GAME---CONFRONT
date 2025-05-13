@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 796165491218679516}
   - component: {fileID: 3804747152513687405}
   - component: {fileID: 5709654683886850451}
+  - component: {fileID: 8233419705117096050}
   m_Layer: 0
   m_Name: Denied Stamp
   m_TagString: Untagged
@@ -163,3 +164,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
+--- !u!114 &8233419705117096050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8926339897042880831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
