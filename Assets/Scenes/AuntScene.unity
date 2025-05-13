@@ -814,16 +814,7 @@ MonoBehaviour:
   - {fileID: 6175128226606027744, guid: b1abed9f5882d54459cd6f500dd79636, type: 3}
   - {fileID: 6432817693181164028, guid: 69d5d57343d59d7438cab1b045649461, type: 3}
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
-  ParkAttackingWords: []
-  SchoolAttackingWords:
-  - 'It''s not hard. '
-  - 'Can you help me? '
-  - 'It''s just a uniform. '
-  - 'My friends support me. '
-  - 'It''s just a name. '
-  - 'I''m serious. '
-  HomeAttackingWords: []
-  ClinicAttackingWords: []
+  AttackingWords: []
   lateralSpawnPoints:
   - {x: 0, y: 10, z: 0}
   - {x: 10, y: 0, z: 0}
@@ -831,6 +822,7 @@ MonoBehaviour:
   - {x: -10, y: 0, z: 0}
   enemyWords: []
   phase: 2
+  timeMod: 0
   arrow: {fileID: 1108795952560434591, guid: a60dcb50627811d47877fcc841573877, type: 3}
 --- !u!4 &195812179
 Transform:
@@ -4620,10 +4612,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackStrings:
-  - 
-  - 
-  - 
-  - 
+  - "I\u2019m still the same person. "
+  - "There were signs, they just weren\u2019t obvious. "
+  - 'I use this name with my friends. '
+  - "People change as they grow up, and you have to accept that, even if it\u2019s
+    hard. "
+  - "I\u2019ve thought this through more than you think. "
+  - "My identity shouldn\u2019t embarrass you. "
+  - "Just because you don\u2019t get it, that doesn\u2019t mean it\u2019s not important. "
+  - "Trans people have existed all throughout history, this isn\u2019t just \u201Cmy
+    generation\u201D. "
   healingStrings:
   - I am worthy of more respect than this
   - I am worthy of love just for being who I am
