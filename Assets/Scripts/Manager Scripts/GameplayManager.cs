@@ -12,9 +12,6 @@ public class GameplayManager : MonoBehaviour
     public EnemyManager enemy;
     public SequenceManager sequence;
     public DialogueManager dialogue;
-    public AudioManager audioManager;
-    public SequenceManager sequence;
-    public GameObject bossUI;
     //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
@@ -159,7 +156,7 @@ public class GameplayManager : MonoBehaviour
         enemy.hp -= amount;
         Debug.Log("Enemy HP: " + enemy.hp);
 
-        if((enemy.hp == 0) && (sequence.bossAttacking == false))
+        if(enemy.hp <= 0)
         {
             Win();
         }
@@ -188,10 +185,9 @@ public class GameplayManager : MonoBehaviour
         SetupSequence.isWon = true;
         if(enemy.phase == 1)
         {
-            audioManager.principalStart = false;
-            audioManager.principalGoodEnd = true;
-            audioManager.battleEnd = true;
-            dialogue.SceneMusic();
+            dialogue.principalStart = false;
+            dialogue.principalGoodEnd = true;
+            dialogue.battleEnd = true;
             dialogue.StartDialogue();
         }
     }
@@ -201,10 +197,9 @@ public class GameplayManager : MonoBehaviour
         SetupSequence.isWon = false;
         if (enemy.phase == 1)
         {
-            audioManager.principalStart = false;
-            audioManager.principalBadEnd = true;
-            audioManager.battleEnd = true;
-            dialogue.SceneMusic();
+            dialogue.principalStart = false;
+            dialogue.principalBadEnd = true;
+            dialogue.battleEnd = true;
             dialogue.StartDialogue();
         }
     }

@@ -30,7 +30,6 @@ public class SequenceManager : MonoBehaviour
     public GameObject battleUIObjects;
     public GameObject bossUI;
     public GameObject[] actionUI;
-    public bool bossAttacking = false;
 
     public TextMeshProUGUI helperText;
 
@@ -204,7 +203,6 @@ public class SequenceManager : MonoBehaviour
                 "\nPress any key to Continue";
                 break;
             case Actions.BossAction:
-                bossAttacking = false;
                 resultText = "Evaded boss stuff" + "\nPress any key to Continue";
                 break;
         }
@@ -232,26 +230,16 @@ public class SequenceManager : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        if(lastAction != Actions.BossAction && lastAction != Actions.Confront)
+        if(lastAction != Actions.BossAction && lastAction != Actions.Confront && enemy.hp <= 0)
         {
-            if (enemy.hp > 0)
-            {
-                bossUI.SetActive(false);
+            bossUI.SetActive(false);
 
-                foreach (var t in battleUIObjects.GetComponentsInChildren<Transform>())
-                {
-                    t.gameObject.SetActive(false);
-                }
-
-                SetupAction((int)Actions.BossAction);
-                bossAttacking = true;
-            }
-            else
+            foreach(var t in battleUIObjects.GetComponentsInChildren<Transform>())
             {
-                bossUI.SetActive(true);
-                bossAttacking = false;
+                t.gameObject.SetActive(false);
             }
-            
+
+            SetupAction((int)Actions.BossAction);
         }
         else
         {
