@@ -814,7 +814,16 @@ MonoBehaviour:
   - {fileID: 6175128226606027744, guid: b1abed9f5882d54459cd6f500dd79636, type: 3}
   - {fileID: 6432817693181164028, guid: 69d5d57343d59d7438cab1b045649461, type: 3}
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
-  ParkAttackingWords: []
+  ParkAttackingWords:
+  - "I don\u2019t have to \u201Cact trans\u201D to be trans."
+  - "Just because I\u2019m trans, that doesn\u2019t mean my sexuality changed as
+    well."
+  - "I\u2019d rather not answer that."
+  - "I\u2019m not gonna become a different person."
+  - "For future reference, that\u2019s invasive."
+  - "If that\u2019s weird to say to cis people, then don\u2019t say it to me either."
+  - "What I do with my body isn\u2019t anyone else\u2019s business."
+  - "I\u2019m still me."
   SchoolAttackingWords:
   - 'It''s not hard. '
   - 'Can you help me? '
@@ -822,15 +831,39 @@ MonoBehaviour:
   - 'My friends support me. '
   - 'It''s just a name. '
   - 'I''m serious. '
-  HomeAttackingWords: []
-  ClinicAttackingWords: []
+  - I would never joke about something like this.
+  - This name is better.
+  - I hate this uniform.
+  - "You just don\u2019t want to try."
+  - Do you hate having a trans student that much?
+  HomeAttackingWords:
+  - "I\u2019m still the same person."
+  - "There were signs, they just weren\u2019t obvious."
+  - I use this name with my friends.
+  - "People change as they grow up, and you have to accept that, even if it\u2019s
+    hard."
+  - "I\u2019ve thought this through more than you think."
+  - "My identity shouldn\u2019t embarrass you."
+  - "Just because you don\u2019t get it, that doesn\u2019t mean it\u2019s not important."
+  - "Trans people have existed all throughout history, this isn\u2019t just \u201Cmy
+    generation\u201D."
+  ClinicAttackingWords:
+  - "The gender of my friends doesn\u2019t matter."
+  - Are some of these questions really necessary?
+  - "I\u2019ve talked about this many times by now, I know who I am."
+  - "I wear what I\u2019m comfortable with, that doesn\u2019t affect my identity."
+  - "Why should I have to prove to you that I\u2019m trans?"
+  - These questions are just invasive and insulting.
+  - "Gender dysphoria is a feeling, not a condition, you can\u2019t diagnose that."
+  - "Other countries use the informed consent system, why doesn\u2019t Ireland?"
+  - "You shouldn\u2019t get to judge whether I\u2019m trans enough to go on hrt."
   lateralSpawnPoints:
   - {x: 0, y: 10, z: 0}
   - {x: 10, y: 0, z: 0}
   - {x: 0, y: -10, z: 0}
   - {x: -10, y: 0, z: 0}
   enemyWords: []
-  phase: 2
+  phase: 3
   arrow: {fileID: 1108795952560434591, guid: a60dcb50627811d47877fcc841573877, type: 3}
 --- !u!4 &195812179
 Transform:
@@ -2385,7 +2418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 26}
+  m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &648594055
@@ -2398,7 +2431,7 @@ Animator:
   m_GameObject: {fileID: 648594053}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f8abe75c3f114524c88375c22de6efba, type: 2}
+  m_Controller: {fileID: 9100000, guid: d7746dcd0c15f5f47b1b8ce6a72dac4a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2429,7 +2462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 50445eec28202cf4ea98fcc9b2d4bb64, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1baba52d846ace941aa9357e19cfa8d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4625,34 +4658,36 @@ MonoBehaviour:
   - 
   - 
   healingStrings:
-  - I am worthy of more respect than this
-  - I am worthy of love just for being who I am
-  - I deserve fulfilling relationships
-  - I belong, and I am good enough
-  - "This isn\u2019t too much to ask for"
-  - I will stand up for myself
-  - I can do this
-  - I can overcome this
-  - My wellbeing is a priority
-  - Setting these boundaries is good for me
-  - "Not everyone will understand my situation and that\u2019s okay"
+  - "I\u2019ve made it this far and I won\u2019t stop now"
+  - "My value doesn\u2019t depend on how I look"
+  - My worth is not determined by my identity
+  - "I\u2019m proud of how far I\u2019ve come"
+  - I can make it through this
+  - I am the one in charge of my life
+  - I am strong
+  - Remember to breathe
+  - I have confidence in myself
+  - I am resilient in the face of any challenge
+  - "I am focusing on what\u2019s most important for me"
+  - I view my body without judgement
   passiveStrings:
-  - What am I supposed to tell people?
-  - "We don\u2019t have transsexuals in our family, it just doesn\u2019t happen."
-  - "You\u2019ve always been a ||||||, what happened?"
-  - "You can\u2019t just change your name."
-  - "You won\u2019t start dressing weird in public, will you?"
-  - "You\u2019ll get looks, ///////. Probably worse."
-  - Your generation loves coming up with new terms, huh.
-  - "What, you\u2019re just gonna become a completely different person? No!"
-  - There were never any signs of this when you were younger!
-  - "Isn\u2019t everyone unhappy with their body?"
-  - Your parents are okay with this?
-  - "I don\u2019t want to say goodbye to ///////."
-  - "You sure this isn\u2019t just you wanting a relationship?"
-  - "This can\u2019t be what you want."
-  - "I\u2019m just worried, not everyone accepts this type of thing."
-  - "What\u2019s wrong with how you used to be?"
+  - Growing up, what was the gender ratio of friends you had?
+  - What toys did you play with growing up?
+  - What is your sexuality?
+  - What is your relationship status?
+  - What role do you take in intimate relationships?
+  - How do you feel about your voice?
+  - Are you close with your parents?
+  - Have you considered getting surgery?
+  - How does your body make you feel?
+  - "The outfit you\u2019re wearing \u2013 do you wear clothes like that often?"
+  - Is that your usual hairstyle?
+  - Is this how you always hold yourself?
+  - "You are aware of the side effects, aren\u2019t you?"
+  - "You haven\u2019t come out to more people?"
+  - "Apologies; I just wasn\u2019t expecting that, is all."
+  - Are you sure about that?
+  - Have you explored other possibilities than being transgender?
   confrontStrings: []
 --- !u!114 &1177756815
 MonoBehaviour:
@@ -4967,7 +5002,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Aunt
+  m_text: Doctor
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e57f9c666100db41be3f1765cba4b7f, type: 2}
   m_sharedMaterial: {fileID: -8376005101353374669, guid: 7e57f9c666100db41be3f1765cba4b7f, type: 2}
@@ -6105,7 +6140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5342788077ee378458731f0f01303f8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9a4a60cb4c906246ae0ac5246768314, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

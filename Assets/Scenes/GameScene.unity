@@ -814,6 +814,16 @@ MonoBehaviour:
   - {fileID: 6175128226606027744, guid: b1abed9f5882d54459cd6f500dd79636, type: 3}
   - {fileID: 6432817693181164028, guid: 69d5d57343d59d7438cab1b045649461, type: 3}
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
+  ParkAttackingWords:
+  - "I don\u2019t have to \u201Cact trans\u201D to be trans."
+  - "Just because I\u2019m trans, that doesn\u2019t mean my sexuality changed as
+    well."
+  - "I\u2019d rather not answer that."
+  - "I\u2019m not gonna become a different person."
+  - "For future reference, that\u2019s invasive."
+  - "If that\u2019s weird to say to cis people, then don\u2019t say it to me either."
+  - "What I do with my body isn\u2019t anyone else\u2019s business."
+  - "I\u2019m still me."
   SchoolAttackingWords:
   - 'It''s not hard. '
   - 'Can you help me? '
@@ -821,6 +831,32 @@ MonoBehaviour:
   - 'My friends support me. '
   - 'It''s just a name. '
   - 'I''m serious. '
+  - I would never joke about something like this.
+  - This name is better.
+  - I hate this uniform.
+  - "You just don\u2019t want to try."
+  - Do you hate having a trans student that much?
+  HomeAttackingWords:
+  - "I\u2019m still the same person."
+  - "There were signs, they just weren\u2019t obvious."
+  - I use this name with my friends.
+  - "People change as they grow up, and you have to accept that, even if it\u2019s
+    hard."
+  - "I\u2019ve thought this through more than you think."
+  - "My identity shouldn\u2019t embarrass you."
+  - "Just because you don\u2019t get it, that doesn\u2019t mean it\u2019s not important."
+  - "Trans people have existed all throughout history, this isn\u2019t just \u201Cmy
+    generation\u201D."
+  ClinicAttackingWords:
+  - "The gender of my friends doesn\u2019t matter."
+  - Are some of these questions really necessary?
+  - "I\u2019ve talked about this many times by now, I know who I am."
+  - "I wear what I\u2019m comfortable with, that doesn\u2019t affect my identity."
+  - "Why should I have to prove to you that I\u2019m trans?"
+  - These questions are just invasive and insulting.
+  - "Gender dysphoria is a feeling, not a condition, you can\u2019t diagnose that."
+  - "Other countries use the informed consent system, why doesn\u2019t Ireland?"
+  - "You shouldn\u2019t get to judge whether I\u2019m trans enough to go on hrt."
   lateralSpawnPoints:
   - {x: 0, y: 10, z: 0}
   - {x: 10, y: 0, z: 0}
@@ -4584,6 +4620,8 @@ MonoBehaviour:
   - {fileID: 49053243}
   - {fileID: 49053243}
   bossAttacking: 0
+  dialogue: {fileID: 0}
+  audioManager: {fileID: 0}
   helperText: {fileID: 1839031824}
   buttonController: {fileID: 1391012235}
   enemy: {fileID: 195812178}
@@ -4620,16 +4658,34 @@ MonoBehaviour:
   - 
   - 
   healingStrings:
-  - I need this
+  - I deserve better than this
   - 'Stay calm '
   - 'Just breathe '
+  - Just keep pushing
+  - "I\u2019ve waited long enough"
+  - "I know what I\u2019m doing"
   - It will work out
+  - This is right
+  - Its okay to take things one step at a time
+  - My challenges help me grow
+  - I am in control
   passiveStrings:
   - 'Have you discussed this with your parents? '
   - 'The uniforms are divided by gender for a reason. '
   - "I\u2019m just worried you might get bullied. "
   - 'Are you doing this as a joke? '
   - "There\u2019s nothing wrong with your name. "
+  - Changing your name across the system would cause problems
+  - "Do you want to switch bathrooms, too? I don\u2019t understand."
+  - "We can\u2019t just change all of this on a whim"
+  - "What if you\u2019re laughed at, or bullied?"
+  - You know you need to use your real name on exams.
+  - "What\u2019s wrong with being seen as a ||||||||?"
+  - Where did you get this idea into your head?
+  - You never used to act out like this before, what happened?
+  - "You\u2019re springing this on me out of nowhere\u2026"
+  - What if you change your mind later?
+  - "I don\u2019t think you\u2019ve thought this through enough."
   confrontStrings: []
 --- !u!114 &1177756815
 MonoBehaviour:

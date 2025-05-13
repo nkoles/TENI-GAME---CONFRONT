@@ -184,10 +184,34 @@ public class GameplayManager : MonoBehaviour
     public void Win()
     {
         SetupSequence.isWon = true;
-        if(enemy.phase == 1)
+        if (enemy.phase == 0)
+        {
+            audioManager.friendStart = false;
+            audioManager.friendEnd = true;
+            audioManager.battleEnd = true;
+            dialogue.SceneMusic();
+            dialogue.StartDialogue();
+        }
+        else if (enemy.phase == 1)
         {
             audioManager.principalStart = false;
             audioManager.principalGoodEnd = true;
+            audioManager.battleEnd = true;
+            dialogue.SceneMusic();
+            dialogue.StartDialogue();
+        }
+        else if (enemy.phase == 2)
+        {
+            audioManager.auntStart = false;
+            audioManager.auntGoodEnd = true;
+            audioManager.battleEnd = true;
+            dialogue.SceneMusic();
+            dialogue.StartDialogue();
+        }
+        else if (enemy.phase == 3)
+        {
+            audioManager.doctorStart = false;
+            audioManager.doctorGoodEnd = true;
             audioManager.battleEnd = true;
             dialogue.SceneMusic();
             dialogue.StartDialogue();
@@ -201,6 +225,22 @@ public class GameplayManager : MonoBehaviour
         {
             audioManager.principalStart = false;
             audioManager.principalBadEnd = true;
+            audioManager.battleEnd = true;
+            dialogue.SceneMusic();
+            dialogue.StartDialogue();
+        }
+        else if (enemy.phase == 2)
+        {
+            audioManager.auntStart = false;
+            audioManager.auntBadEnd = true;
+            audioManager.battleEnd = true;
+            dialogue.SceneMusic();
+            dialogue.StartDialogue();
+        }
+        else if (enemy.phase == 3)
+        {
+            audioManager.doctorStart = false;
+            audioManager.doctorBadEnd = true;
             audioManager.battleEnd = true;
             dialogue.SceneMusic();
             dialogue.StartDialogue();

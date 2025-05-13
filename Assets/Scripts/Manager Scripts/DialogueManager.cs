@@ -25,13 +25,25 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
-        if (enemy.phase == 1)
+        if (enemy.phase == 0)
+        {
+            audioManager.friendStart = true;
+        }
+        else if (enemy.phase == 1)
         {
             audioManager.principalStart = true;
         }
         else if (enemy.phase == 2)
         {
             audioManager.auntStart = true;
+        }
+        else if (enemy.phase == 3)
+        {
+            audioManager.doctorStart = true;
+        }
+        else if (enemy.phase == 4)
+        {
+            audioManager.therapistEnd = true;
         }
         SceneMusic();
         textComponent.text = string.Empty;
@@ -79,7 +91,7 @@ public class DialogueManager : MonoBehaviour
         else if (audioManager.principalStart == true)
         {
             lines[0] = "Come in.";
-            lines[1] = "Ah, hello, name. You wanted to talk to me about something?";
+            lines[1] = "Ah, hello, ///////. You wanted to talk to me about something?";
             lines[2] = "…What? Sorry, I don’t understand. You’re… transgender?";
             lines[3] = "And you want to change your register name and uniform.";
             lines[4] = "...Take a seat; we need to discuss this more.";
@@ -102,8 +114,8 @@ public class DialogueManager : MonoBehaviour
         }
         else if(audioManager.auntStart == true)
         {
-            lines[0] = "Taking care of the dishes, name? Ah, its only fair; you oughta help out around the house more, the work’s good for you.";
-            lines[1] = "Huh? Call you “[name]”? Well, how come?";
+            lines[0] = "Taking care of the dishes, ///////? Ah, its only fair; you oughta help out around the house more, the work’s good for you.";
+            lines[1] = "Huh? Call you “~~~~~”? Well, how come?";
             lines[2] = "Oh god, I forgot you subscribe to all that woke nonsense. I swear, these days it’s all ‘dyed hair’ this and ‘pronouns’ that. I just don’t get any of it, I mean, what’s the point?";
             lines[3] = "No, seriously, explain it to me. What do you even get out of all that stuff? What’s wrong with how you were before, huh?";
             lines[4] = "Go on; I’m all ears.";
@@ -114,7 +126,7 @@ public class DialogueManager : MonoBehaviour
             lines[1] = "…I mean, kind of. I can’t exactly relate, you know? All this is after my time, I’m completely out of my depth!";
             lines[2] = "Your generation’s more educated on this queer stuff than I am, but if you like it, then that’s worth something. I’ll try keep it in mind.";
             lines[3] = "It’s not my thing, but you can do what you want; not my place to judge.";
-            lines[4] = "Have fun with the dishes, na- [name], sorry. That’s gonna take a bit to get used to, my bad.";
+            lines[4] = "Have fun with the dishes, //- ~~~~~, sorry. That’s gonna take a bit to get used to, my bad.";
         }
         else if(audioManager.auntBadEnd == true)
         {
@@ -122,7 +134,7 @@ public class DialogueManager : MonoBehaviour
             lines[1] = "I really don’t get any of this stuff… it’s not exactly my area of expertise, y’know?";
             lines[2] = "All this blue hair, pronoun, queer stuff is your generation’s thing, not mine.";
             lines[3] = "Ah, whatever. Just keep it to yourself I guess, but don’t expect me to get involved.";
-            lines[4] = "Have fun with the dishes, name.";
+            lines[4] = "Have fun with the dishes, ///////.";
         }
         else if(audioManager.doctorStart == true)
         {
@@ -150,7 +162,7 @@ public class DialogueManager : MonoBehaviour
         }
         else if(audioManager.therapistEnd == true)
         {
-            lines[0] = "…And so that’s what led to your referral to me; you’ve needed to have a lot of tough discussions to get to this point, haven’t you?";
+            lines[0] = "…And so that’s what led to your referral to me; you’ve needed to have a lot of tough discussions to get to this point, haven’t you, ~~~~~?";
             lines[1] = "Conversations like that can really feel like an uphill battle; you’re fighting not just to be heard, but to defend yourself as well, and it can turn into a one-sided affair all too easily.";
             lines[2] = "It’s completely normal to feel frustration, anxiety, sadness, and other negative emotions because of this. It can be a lot to deal with, especially since trans people typically experience these situations often.";
             lines[3] = "I’d be happy to talk about that today, if you’d like to.";
@@ -268,7 +280,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if(audioManager.battleEnd == true)
+            if((audioManager.battleEnd == true) || (enemy.phase == 4))
             {
                 ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
                 SceneLoadingManager.instance.LoadNextScene();
@@ -277,9 +289,21 @@ public class DialogueManager : MonoBehaviour
             {
                 ButtonDetailHighlighting.instance.MoveButtonOutOfView(true);
                 //gameObject.SetActive
-                if(enemy.phase == 1)
+                if (enemy.phase == 0)
+                {
+                    audioManager.friendStart = false;
+                }
+                else if (enemy.phase == 1)
                 {
                     audioManager.principalStart = false;
+                }
+                else if (enemy.phase == 2)
+                {
+                    audioManager.auntStart = false;
+                }
+                else if (enemy.phase == 3)
+                {
+                    audioManager.doctorStart = false;
                 }
                 SceneMusic();
 

@@ -13,7 +13,10 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] schoolObstacles;
     public GameObject[] homeObstacles;
     public GameObject[] clinicObstacles;
+    public string[] ParkAttackingWords;
     public string[] SchoolAttackingWords;
+    public string[] HomeAttackingWords;
+    public string[] ClinicAttackingWords;
     public Vector3[] lateralSpawnPoints;
     public string[] enemyWords;
     public int phase;
