@@ -33,7 +33,8 @@ public class SequenceManager : MonoBehaviour
 
     public TextMeshProUGUI helperText;
 
-    public ButtonDetailHighlighting buttonController; 
+    public ButtonDetailHighlighting buttonController;
+    public EnemyManager enemy;
 
     private Actions lastAction;
     private int[] actionAmount = new int[5] {0,0,0,0,0};
@@ -229,7 +230,7 @@ public class SequenceManager : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        if(lastAction != Actions.BossAction && lastAction != Actions.Confront)
+        if(lastAction != Actions.BossAction && lastAction != Actions.Confront && enemy.hp <= 0)
         {
             bossUI.SetActive(false);
 
