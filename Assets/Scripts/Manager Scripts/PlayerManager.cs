@@ -33,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(hp <=0)
         {
+            heart.SetActive(false);
             //GameplayManager.Instance.logicAmount = 0;
             //GameplayManager.Instance.emotionAmount = 0;
             //GameplayManager.Instance.passiveAmount = 0;

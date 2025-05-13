@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class GameplayManager : MonoBehaviour
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
     public string tempObstacle;
+    public UnityAction Defeat;
 
     public Material confrontButton;
 
