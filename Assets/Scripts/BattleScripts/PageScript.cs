@@ -9,6 +9,10 @@ public class PageScript : MonoBehaviour
     private Vector3 playerPos;
     private HeartScript player;
 
+    public bool isDamaged;
+    public float damageInvulTime = 3f;
+    public float tempTimer = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,26 +27,43 @@ public class PageScript : MonoBehaviour
         playerPos = GameplayManager.Instance.player.heart.transform.position / transform.localScale.z;
         playerPos = Quaternion.Euler(0, 0, 45) * playerPos;
 
-        if(gameObject.GetComponent<Tilemap>().GetTile(Vector3Int.FloorToInt(playerPos)) == slip)
+        if (isDamaged)
         {
-            player.slip=true;
-            player.stick=false;
+            if(tempTimer < damageInvulTime)
+            {
+                tempTimer += Time.deltaTime;
+            } else
+            {
+                tempTimer = 0;
+                isDamaged = false;
+            }
         }
-        else if(gameObject.GetComponent<Tilemap>().GetTile(Vector3Int.FloorToInt(playerPos)) == stick)
+
+        if (gameObject.GetComponent<Tilemap>().GetTile(Vector3Int.FloorToInt(playerPos)) == slip)
         {
-            player.stick=true;
-            player.slip=false;
+            player.slip = true;
+            player.stick = false;
         }
-        else if(gameObject.GetComponent<Tilemap>().GetTile(Vector3Int.FloorToInt(playerPos)) == damage)
+        else if (gameObject.GetComponent<Tilemap>().GetTile(Vector3Int.FloorToInt(playerPos)) == stick)
         {
-            player.slip=false;
-            player.stick=false;
-            GameplayManager.Instance.UpdatePlayerHealth(1);
+            player.stick = true;
+            player.slip = false;
+        }
+        else if (gameObject.GetComponent<Tilemap>().GetTile(Vector3Int.FloorToInt(playerPos)) == damage)
+        {
+            player.slip = false;
+            player.stick = false;
+
+            if (!isDamaged)
+            {
+                GameplayManager.Instance.UpdatePlayerHealth(1);
+                isDamaged = true;
+            }
         }
         else
         {
-            player.slip=false;
-            player.stick=false;
+            player.slip = false;
+            player.stick = false;
         }
     }
 

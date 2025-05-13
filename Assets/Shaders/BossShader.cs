@@ -28,6 +28,11 @@ public class BossShader : MonoBehaviour
         bossShader.SetFloat("_EdgeWidth", defaultOutlineWidth);
     }
 
+    public void Update()
+    {
+        //bossShader.SetFloat("_DecomposingFactor", Mathf.Lerp())
+    }
+
     public IEnumerator LerpOutline(float targetValue, float lerpSpeed)
     {
         for (float i = 0; i < 1; i += Time.fixedDeltaTime / lerpSpeed)

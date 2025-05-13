@@ -124,7 +124,7 @@ public class TextControls : MonoBehaviour
 
             if (parsedString[currentCharIdx] == ' ' || checkChar)
             {
-                AudioManager.instance.PlaySFX("PlayerSfx");
+                //AudioManager.instance.PlaySFX("PlayerSfx");
 
                 StartCoroutine(LerpCharColor(associatedTextObj, currentCharIdx, GetCharColor(associatedTextObj, currentCharIdx), completedAffirmationCharColor, .5f));
                 StartCoroutine(LerpFontSize(associatedTextObj, currentCharIdx, GetCharFontSize(associatedTextObj, currentCharIdx), GetCharFontSize(associatedTextObj, currentCharIdx) / 1.2f, .5f));
@@ -160,7 +160,7 @@ public class TextControls : MonoBehaviour
 
         for(float i = 0; i < 1.1; i+= Time.deltaTime)
         {
-            _postProcessVignette.intensity.Override(Mathf.Lerp(1f, 0, i));
+            _postProcessVignette.intensity.Override(Mathf.Lerp(_postProcessVignette.intensity.value, 0, i));
 
             yield return null;
         }

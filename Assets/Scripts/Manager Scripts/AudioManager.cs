@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         if(fadeIn)
         {
             musicSource.volume += (Time.fixedDeltaTime/fadeInDelay);
-            Debug.Log(musicSource.volume);
+            //Debug.Log(musicSource.volume);
 
             if(musicSource.volume >= musicMaxVolume)
             {
@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
         else if(fadeOut)
         {
             musicSource.volume -= (Time.fixedDeltaTime/fadeOutDelay);
-            Debug.Log(musicSource.volume);
+            //Debug.Log(musicSource.volume);
 
             if(musicSource.volume <= musicMinVolume)
             {

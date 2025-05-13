@@ -21,6 +21,13 @@ public class DialogueManager : MonoBehaviour
 
     public AudioManager audioManager;
 
+    static public DialogueManager instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +58,6 @@ public class DialogueManager : MonoBehaviour
         }
         SceneMusic();
         textComponent.text = string.Empty;
-        StartDialogue();
     }
 
     // Update is called once per frame
@@ -75,7 +81,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue()
     {
         index = 0;
-        StartCoroutine(TypeLine());
+
         if (audioManager.friendStart == true)
         {
             lines[0] = "Hey, how's it going! You said you had something you wanted to talk to me about?";
@@ -172,6 +178,8 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "I'd be happy to talk about that today, if you'd like to.";
             lines[4] = "I'm here to listen.";
         }
+
+        StartCoroutine(TypeLine());
     }
 
     public void SceneMusic()
@@ -295,8 +303,14 @@ public class DialogueManager : MonoBehaviour
         {
             if((audioManager.battleEnd == true) || (enemy.phase == 4))
             {
-                ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
-                SceneLoadingManager.instance.LoadNextScene();
+                if(GameplayManager.Instance.isWin == true)
+                {
+                    SceneLoadingManager.instance.LoadNextScene();
+                }
+                else if (GameplayManager.Instance.isLose == true)
+                {
+                    SceneLoadingManager.instance.LoadScene(6);
+                }
             }
             else
             {

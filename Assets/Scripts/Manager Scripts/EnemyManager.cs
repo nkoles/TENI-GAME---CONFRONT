@@ -132,7 +132,7 @@ public class EnemyManager : MonoBehaviour
 
                 if(obstacleAmount < 3)
                 {
-                    GameplayManager.Instance.Win();
+                        GameplayManager.Instance.isWin = true;
                 }
 
                 break;
@@ -152,7 +152,7 @@ public class EnemyManager : MonoBehaviour
 
                 if(obstacleAmount < 3)
                 {
-                    GameplayManager.Instance.Win();
+                    GameplayManager.Instance.isWin = true;
                 }
 
                 break;
@@ -172,7 +172,7 @@ public class EnemyManager : MonoBehaviour
 
                 if(obstacleAmount < 3)
                 {
-                    GameplayManager.Instance.Win();
+                    GameplayManager.Instance.isWin = true;
                 }
 
                 break;
