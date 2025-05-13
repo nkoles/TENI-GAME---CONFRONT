@@ -28,7 +28,7 @@ public class MemoryManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameplay = GameplayManager.Instance;
+        //gameplay = GameplayManager.Instance;
     }
 
     // Update is called once per frame

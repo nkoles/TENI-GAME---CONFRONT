@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2621649097922087538}
   - component: {fileID: 2505632710716285769}
   - component: {fileID: 2004954554391242284}
+  - component: {fileID: 8305885365874472093}
   m_Layer: 0
   m_Name: Eraser
   m_TagString: Untagged
@@ -210,13 +211,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b91d716376a164f874b84ed0bdcff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
   timer: 1
   speed: 0.5
+  rotation: 0
   type: Page
-  tile: {fileID: 11400000, guid: 92e88fca97e2fc641bd41e8e8b2474ba, type: 2}
+  tile: {fileID: 11400000, guid: b01a48a72a64001458c8d70ca81c090a, type: 2}
   tilemap: {fileID: 0}
-  secondaryTilemap: {fileID: 0}
   rb: {fileID: 0}
   direction: {x: -1, y: 1}
   target: {x: 0, y: 0, z: 0}
@@ -265,6 +266,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8305885365874472093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6103278566705476294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8531884087480810620
 GameObject:
   m_ObjectHideFlags: 0

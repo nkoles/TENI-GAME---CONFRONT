@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6689738109213226769}
   - component: {fileID: 4415426910791795397}
   - component: {fileID: 5478447971622865225}
+  - component: {fileID: 344366318985621615}
   m_Layer: 4
   m_Name: Bubble
   m_TagString: Untagged
@@ -165,4 +166,16 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 1
   time: 0
-  power: 10
+  damage: 3
+--- !u!114 &344366318985621615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32585453609306965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

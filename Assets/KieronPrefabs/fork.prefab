@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3443686438041174914}
   - component: {fileID: 2248348566135580645}
   - component: {fileID: 4346073172199690146}
+  - component: {fileID: 2783523098340054508}
   m_Layer: 0
   m_Name: fork
   m_TagString: Untagged
@@ -236,4 +237,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb8751b070ca1c458cf3262d0a0d10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 1
+--- !u!114 &2783523098340054508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8188253062798619570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

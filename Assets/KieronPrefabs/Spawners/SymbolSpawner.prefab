@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5073382568224979622}
   - component: {fileID: 1189693781267350242}
+  - component: {fileID: 3531066169451888575}
   m_Layer: 0
   m_Name: SymbolSpawner
   m_TagString: Untagged
@@ -51,3 +52,15 @@ MonoBehaviour:
   time: 30
   minDelay: 0
   maxDelay: 5
+--- !u!114 &3531066169451888575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912567758673012557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

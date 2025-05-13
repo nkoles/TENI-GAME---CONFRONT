@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     public int hp, maxHP;
 
     public string[] dialogueText;
+    public GameObject[] parkObstacles;
     public GameObject[] schoolObstacles;
     public GameObject[] homeObstacles;
     public GameObject[] clinicObstacles;
@@ -43,11 +44,11 @@ public class EnemyManager : MonoBehaviour
         
     }
 
-    public IEnumerator Blocking()
+    public IEnumerator Blocking(int amount)
     {
         Transform diamond = GameplayManager.Instance.player.diamond.transform;
 
-        for(int i = 0; i < (phase + GameplayManager.Instance.logicAmount); i++)
+        for(int i = 0; i < (amount); i++)
         {
             int randPhrase = Random.Range(0, AttackingWords.Length);
             int lastChar = 0;
@@ -68,6 +69,8 @@ public class EnemyManager : MonoBehaviour
                 temp.transform.localScale = diamond.localScale;
 
                 temp.GetComponent<ArrowScript>().word.text = phrase;
+                temp.GetComponent<ArrowScript>().modifier = diamond.localScale;
+
                 lastChar++;
 
                 int randTime = Random.Range(1, 4);
@@ -108,7 +111,7 @@ public class EnemyManager : MonoBehaviour
             }
         }*/
 
-        yield return new WaitForSeconds((4*timeMod));
+        yield return new WaitForSeconds((8*timeMod));
     }
 
     public void RemoveWeapon(int weapon)
@@ -177,6 +180,7 @@ public class EnemyManager : MonoBehaviour
 
             default:
             {
+                parkObstacles[weapon] = null;
 
                 break;
             }
@@ -396,10 +400,43 @@ public class EnemyManager : MonoBehaviour
 
             default:
             {
+                List<GameObject> objects = new List<GameObject>();
+
+                foreach(GameObject thing in parkObstacles)
+                {
+                    if(thing != null)
+                    {
+                        objects.Add(thing);
+                    }
+                }
+
+                for(int i = 0; i < difficulty; i++)
+                {
+                    if(objects.Count == 0)
+                    {
+                        break;
+                    }
+                    
+                    int randObject = Random.Range(0, objects.Count);
+                    GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 5, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
+                    Destroy(temp, time);
+                    objects.Remove(objects[randObject]);
+                }
+
                 break;
             }
         }
 
-        yield return new WaitForSeconds(time);
+        for(int i = 0; i < time; i++)
+        {
+            if(GameplayManager.player.hp <= 0)
+            {
+                break;
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.0f);
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4825668943325837764}
   - component: {fileID: 1679434529273526152}
   - component: {fileID: -2532480996143282977}
+  - component: {fileID: 4012809318334544598}
   m_Layer: 0
   m_Name: Scissors
   m_TagString: Untagged
@@ -103,6 +104,18 @@ MonoBehaviour:
   speed: 1
   maxSpeed: 1
   turnSpeed: 45
+--- !u!114 &4012809318334544598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5078596897008018270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5531610582576019736
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +365,7 @@ GameObject:
   - component: {fileID: 5104653572524068246}
   - component: {fileID: 1058829381165892912}
   - component: {fileID: 703816323618905108}
+  - component: {fileID: 7054120631128094234}
   m_Layer: 0
   m_Name: Scissors_Left
   m_TagString: Untagged
@@ -561,3 +575,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.025}
   m_EdgeRadius: 0
+--- !u!114 &7054120631128094234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8063141863106363628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb8751b070ca1c458cf3262d0a0d10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 3

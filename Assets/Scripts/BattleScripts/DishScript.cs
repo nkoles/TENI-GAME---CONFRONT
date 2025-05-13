@@ -70,11 +70,11 @@ public class DishScript : MonoBehaviour
         StartCoroutine(DishMovement(/*-diagonal*/-angle));
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    /*void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.GetComponent<HeartScript>())
         {
             GameplayManager.Instance.UpdatePlayerHealth(damage);
         }
-    }
+    }*/
 }

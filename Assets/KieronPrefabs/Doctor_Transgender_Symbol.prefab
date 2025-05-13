@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7899982937991701220}
   - component: {fileID: 7128863263882751191}
   - component: {fileID: 4524396981398213994}
+  - component: {fileID: 7579268696409600263}
   m_Layer: 0
   m_Name: Doctor_Transgender_Symbol
   m_TagString: Untagged
@@ -253,3 +254,15 @@ MonoBehaviour:
   symbol: Trans
   time: 0
   timer: 0.5
+--- !u!114 &7579268696409600263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054573054325976128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

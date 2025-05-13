@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1505495567557095512}
   - component: {fileID: 4563798356868845934}
   - component: {fileID: 8298031789285343954}
+  - component: {fileID: 7508918095310482839}
   m_Layer: 4
   m_Name: Ice
   m_TagString: Untagged
@@ -453,4 +454,16 @@ MonoBehaviour:
   speed: 1
   rotation: 45
   time: 0
-  damage: 2
+  damage: 3
+--- !u!114 &7508918095310482839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369941165726778756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

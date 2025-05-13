@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2581246885811208315}
   - component: {fileID: 5119228825165065605}
+  - component: {fileID: 3537066608994059584}
   m_Layer: 0
   m_Name: RulerSpawner
   m_TagString: Untagged
@@ -59,3 +60,15 @@ MonoBehaviour:
   - {x: -6, y: 4, z: 0}
   - {x: -5, y: 5, z: 0}
   - {x: -4, y: 6, z: 0}
+--- !u!114 &3537066608994059584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538111276461708972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

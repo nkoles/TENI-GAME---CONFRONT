@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb8751b070ca1c458cf3262d0a0d10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 5
 --- !u!1 &4359825524440948838
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 962726054761167761}
   - component: {fileID: 1582496804634511240}
   - component: {fileID: 8470394871260696466}
+  - component: {fileID: 4475041865979456893}
   m_Layer: 0
   m_Name: Syringe
   m_TagString: Untagged
@@ -256,6 +257,18 @@ MonoBehaviour:
   speed: 1
   inject: 0
   extract: 0
+--- !u!114 &4475041865979456893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4359825524440948838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4961249896257796970
 GameObject:
   m_ObjectHideFlags: 0

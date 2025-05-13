@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 9168821003059818337}
   - component: {fileID: 5308168750157849259}
   - component: {fileID: 3953194421636894396}
+  - component: {fileID: 8068632769707497426}
   m_Layer: 0
   m_Name: Hob
   m_TagString: Untagged
@@ -273,5 +274,17 @@ MonoBehaviour:
   inactive: {r: 1, g: 1, b: 1, a: 0}
   active: {r: 1, g: 1, b: 1, a: 1}
   time: 0
-  heatingTime: 6
+  heatingTime: 5
   hovering: 0
+--- !u!114 &8068632769707497426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791833010602368703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe7bb2b4b6461f4e823bda378b0d098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
