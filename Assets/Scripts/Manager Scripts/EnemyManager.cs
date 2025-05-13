@@ -429,7 +429,7 @@ public class EnemyManager : MonoBehaviour
 
         for(int i = 0; i < time; i++)
         {
-            if(GameplayManager.player.hp <= 0)
+            if(GameplayManager.Instance.player.hp <= 0)
             {
                 break;
             }
