@@ -49,12 +49,15 @@ public class ArrowScript : MonoBehaviour
             key = "Left";
         }
 
+        float rotation = 0;
+
         if(phase == 1)
         {
             bool opposite = Random.value >= 0.5f;
             if(opposite)
             {
                 vector = Quaternion.Euler(0, 0, -180) * vector;
+                rotation = -180;
             }
         }
         if(phase == 2)
@@ -66,10 +69,12 @@ public class ArrowScript : MonoBehaviour
                 if(clockwise)
                 {
                     vector = Quaternion.Euler(0, 0, -90) * vector;
+                    rotation = -90;
                 }
                 else
                 {
                     vector = Quaternion.Euler(0, 0, -270) * vector;
+                    rotation = -270;
                 }
             }
         }
@@ -82,6 +87,7 @@ public class ArrowScript : MonoBehaviour
                 if(opposite)
                 {
                     vector = Quaternion.Euler(0, 0, -180) * vector;
+                    rotation = -180;
                 }
             }
             else
@@ -89,16 +95,20 @@ public class ArrowScript : MonoBehaviour
                 if(!opposite)
                 {
                     vector = Quaternion.Euler(0, 0, -90) * vector;
+                    rotation = -90;
                 }
                 else
                 {
                     vector = Quaternion.Euler(0, 0, -270) * vector;
+                    rotation = -270;
                 }
             }
         }
 
         xDir = vector.x;
         yDir = vector.y;
+
+        transform.rotation = Quaternion.Euler(0, 0, 45 - (90 * target) + rotation);
 
         if(xDir > 0.5f)
         {
