@@ -829,6 +829,7 @@ MonoBehaviour:
   hp: 50
   maxHP: 50
   dialogueText: []
+  parkObstacles: []
   schoolObstacles:
   - {fileID: 5570629096200125083, guid: ff36b68660d64da42bb9679e485118d8, type: 3}
   - {fileID: 6103278566705476294, guid: 91c721c195b7a784f8a2ccc91a273a16, type: 3}
@@ -850,13 +851,7 @@ MonoBehaviour:
   - {fileID: 6175128226606027744, guid: b1abed9f5882d54459cd6f500dd79636, type: 3}
   - {fileID: 6432817693181164028, guid: 69d5d57343d59d7438cab1b045649461, type: 3}
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
-  SchoolAttackingWords:
-  - 'It''s not hard. '
-  - 'Can you help me? '
-  - 'It''s just a uniform. '
-  - 'My friends support me. '
-  - 'It''s just a name. '
-  - 'I''m serious. '
+  AttackingWords: []
   lateralSpawnPoints:
   - {x: 0, y: 10, z: 0}
   - {x: 10, y: 0, z: 0}
@@ -864,6 +859,7 @@ MonoBehaviour:
   - {x: -10, y: 0, z: 0}
   enemyWords: []
   phase: 1
+  timeMod: 0
   arrow: {fileID: 1108795952560434591, guid: a60dcb50627811d47877fcc841573877, type: 3}
 --- !u!4 &195812179
 Transform:
@@ -1159,6 +1155,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d3a215e751c19d5438f81744a8036e20, type: 3}
   musicSource: {fileID: 885182106}
   sfxSource: {fileID: 1761714179}
+  musicVolume: 0
+  sfxVolume: 0
+  musicMaxVolume: 0
+  sfxMaxVolume: 0
+  musicMinVolume: 0
+  sfxMinVolume: 0
+  fadeOutDelay: 0
+  fadeInDelay: 0
+  fadeOut: 0
+  fadeIn: 0
   friendStart: 0
   friendEnd: 0
   principalStart: 0
@@ -1170,6 +1176,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &256580000
@@ -3045,7 +3052,9 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
-  confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  confrontButtonShader: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  defaultButton: {fileID: 2100000, guid: 8ad007f6d88f0df418093cab3e284972, type: 2}
+  confrontButton: {fileID: 98410225}
 --- !u!4 &1032452449
 Transform:
   m_ObjectHideFlags: 0
@@ -3438,6 +3447,8 @@ MonoBehaviour:
   - {fileID: 49053243}
   - {fileID: 49053243}
   bossAttacking: 0
+  dialogue: {fileID: 0}
+  audioManager: {fileID: 0}
   helperText: {fileID: 1839031824}
   buttonController: {fileID: 1391012235}
   enemy: {fileID: 0}

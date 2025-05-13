@@ -22,7 +22,9 @@ public class GameplayManager : MonoBehaviour
     public string tempObstacle;
     public UnityAction Defeat;
 
-    public Material confrontButton;
+    public Material confrontButtonShader;
+    public Material defaultButton;
+    public GameObject confrontButton;
 
     void Awake()
     {
@@ -197,7 +199,16 @@ public class GameplayManager : MonoBehaviour
             player.aggression = player.maxAggression;
         }
 
-        confrontButton.SetFloat("_Strength", player.aggression / player.maxAggression);
+        confrontButtonShader.SetFloat("_Strength", player.aggression / player.maxAggression);
+
+        if(player.aggression == player.maxAggression)
+        {
+            confrontButton.GetComponent<Image>().material = confrontButtonShader;
+        }
+        else
+        {
+            confrontButton.GetComponent<Image>().material = defaultButton;
+        }
     }
 
     public void Win()
