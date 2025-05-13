@@ -61,7 +61,7 @@ public class SequenceManager : MonoBehaviour
             case Actions.Attack:
                 print("Attack Action");
 
-                action = GameplayManager.Instance.Attack(30);
+                action = GameplayManager.Instance.Attack();
 
                 //GameplayManager.Instance.logicAmount++;
                 break;

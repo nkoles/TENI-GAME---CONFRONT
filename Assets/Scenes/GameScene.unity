@@ -814,13 +814,7 @@ MonoBehaviour:
   - {fileID: 6175128226606027744, guid: b1abed9f5882d54459cd6f500dd79636, type: 3}
   - {fileID: 6432817693181164028, guid: 69d5d57343d59d7438cab1b045649461, type: 3}
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
-  SchoolAttackingWords:
-  - 'It''s not hard. '
-  - 'Can you help me? '
-  - 'It''s just a uniform. '
-  - 'My friends support me. '
-  - 'It''s just a name. '
-  - 'I''m serious. '
+  AttackingWords: []
   lateralSpawnPoints:
   - {x: 0, y: 10, z: 0}
   - {x: 10, y: 0, z: 0}
@@ -828,6 +822,7 @@ MonoBehaviour:
   - {x: -10, y: 0, z: 0}
   enemyWords: []
   phase: 1
+  timeMod: 0
   arrow: {fileID: 1108795952560434591, guid: a60dcb50627811d47877fcc841573877, type: 3}
 --- !u!4 &195812179
 Transform:
@@ -3849,6 +3844,7 @@ MonoBehaviour:
   player: {fileID: 1914478243}
   enemy: {fileID: 195812178}
   sequence: {fileID: 1177756812}
+  dialogue: {fileID: 0}
   logicAmount: 0
   emotionAmount: 0
   passiveAmount: 0
@@ -4442,6 +4438,7 @@ MonoBehaviour:
   - {fileID: 49053243}
   helperText: {fileID: 1839031824}
   buttonController: {fileID: 1391012235}
+  enemy: {fileID: 0}
 --- !u!4 &1177756813
 Transform:
   m_ObjectHideFlags: 0
@@ -7479,6 +7476,8 @@ MonoBehaviour:
   textspeed: 0
   anim: {fileID: 0}
   choices: {fileID: 0}
+  enemy: {fileID: 0}
+  button: {fileID: 0}
   friendStart: 0
   friendEnd: 0
   principalStart: 0
@@ -7491,6 +7490,7 @@ MonoBehaviour:
   doctorGoodEnd: 0
   doctorBadEnd: 0
   therapistEnd: 0
+  battleEnd: 0
 --- !u!4 &2112871135
 Transform:
   m_ObjectHideFlags: 0
