@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
+    public float musicVolume, sfxVolume, musicMaxVolume, sfxMaxVolume, musicMinVolume, sfxMinVolume, fadeOutDelay, fadeInDelay;
+    public bool fadeOut, fadeIn;
 
     public bool friendStart;
     public bool friendEnd;
@@ -25,8 +27,8 @@ public class AudioManager : MonoBehaviour
     public bool doctorGoodEnd;
     public bool doctorBadEnd;
 
+    public bool mainTheme;
     public bool therapistEnd;
-
     public bool battleEnd;
 
     private void Awake()
@@ -43,14 +45,41 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if(fadeIn)
+        {
+            musicSource.volume += (Time.fixedDeltaTime/fadeInDelay);
+            Debug.Log(musicSource.volume);
+
+            if(musicSource.volume >= musicMaxVolume)
+            {
+                musicSource.volume = musicMaxVolume;
+                fadeIn = false;
+            }
+        }
+        else if(fadeOut)
+        {
+            musicSource.volume -= (Time.fixedDeltaTime/fadeOutDelay);
+            Debug.Log(musicSource.volume);
+
+            if(musicSource.volume <= musicMinVolume)
+            {
+                musicSource.volume = musicMinVolume;
+                fadeOut = false;
+            }
+        }
+    }
+
     public void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSounds, x => x.name == name);
 
         if (s != null)
         {
-            musicSource.clip = s.clip;
-            musicSource.Play();
+            StartCoroutine(FadeIn(s.clip));
+            //musicSource.clip = s.clip;
+            //musicSource.Play();
         }
     }
 
@@ -61,6 +90,33 @@ public class AudioManager : MonoBehaviour
         if (s != null)
         {
             sfxSource.PlayOneShot(s.clip);
+        }
+    }
+
+    public IEnumerator FadeIn(AudioClip clip)
+    {
+        musicVolume = musicSource.volume;
+
+        StartCoroutine(FadeOut());
+
+        musicSource.clip = clip;
+        musicSource.Play();
+
+        fadeIn = true;
+        fadeOut = false;
+
+        yield return new WaitForSeconds(fadeInDelay*(musicMaxVolume - musicVolume));
+    }
+
+    public IEnumerator FadeOut()
+    {
+        if(musicSource.clip != null && musicSource.volume > musicMinVolume)
+        {
+            musicVolume = musicSource.volume;
+
+            fadeOut = true;
+
+            yield return new WaitForSeconds(fadeOutDelay*(musicVolume - musicMinVolume));
         }
     }
 }

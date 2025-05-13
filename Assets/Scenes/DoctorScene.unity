@@ -1459,6 +1459,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d3a215e751c19d5438f81744a8036e20, type: 3}
   musicSource: {fileID: 979977658}
   sfxSource: {fileID: 1437940377}
+  musicVolume: 0
+  sfxVolume: 0
+  musicMaxVolume: 1
+  sfxMaxVolume: 1
+  musicMinVolume: 0
+  sfxMinVolume: 0
+  fadeOutDelay: 3
+  fadeInDelay: 3
+  fadeOut: 0
+  fadeIn: 0
   friendStart: 0
   friendEnd: 0
   principalStart: 0
@@ -3799,7 +3809,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
