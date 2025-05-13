@@ -192,7 +192,8 @@ public class SequenceManager : MonoBehaviour
                 "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" + 
                 "\nPress any key to Continue";
 
-                BossShader.instance.StartCoroutine(BossShader.instance.LerpDissolve(Remap(EnemyManager.instance.hp / EnemyManager.instance.maxHP, 0, 1, -1, 1), 2f));
+                print(Remap((float)EnemyManager.instance.hp / (float)EnemyManager.instance.maxHP, 0, 1, -1, 1));
+                BossShader.instance.StartCoroutine(BossShader.instance.LerpDissolve(Remap(1 - ((float)EnemyManager.instance.hp / (float)EnemyManager.instance.maxHP), 0, 1, -1, 1), 2f));
 
                 break;
             case Actions.Passive:

@@ -587,7 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1482,6 +1482,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &304571332
@@ -1601,7 +1602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &359475188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1666,14 +1667,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 240924181}
-        m_TargetAssemblyTypeName: PostProcessingManager, Assembly-CSharp
-        m_MethodName: Test
-        m_Mode: 1
+      - m_Target: {fileID: 1032452448}
+        m_TargetAssemblyTypeName: GameplayManager, Assembly-CSharp
+        m_MethodName: UpdateAggression
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 20
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4020,7 +4021,9 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
-  confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  confrontButtonShader: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  defaultButton: {fileID: 0}
+  confrontButton: {fileID: 98410225}
 --- !u!4 &1032452449
 Transform:
   m_ObjectHideFlags: 0
@@ -5497,6 +5500,9 @@ MonoBehaviour:
   slip: {fileID: 11400000, guid: b01a48a72a64001458c8d70ca81c090a, type: 2}
   stick: {fileID: 11400000, guid: 65cf1041d3e9c464e831d2b723636507, type: 2}
   damage: {fileID: 11400000, guid: 5592011dae734154e87b301d582a9714, type: 2}
+  isDamaged: 0
+  damageInvulTime: 0
+  tempTimer: 0
 --- !u!19719996 &1441420800
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -6964,7 +6970,7 @@ MonoBehaviour:
   invulnerableTime: 1
   hp: 20
   maxHP: 20
-  aggression: 50
+  aggression: 0
   maxAggression: 50
   damage: 1
   invulnerable: 0

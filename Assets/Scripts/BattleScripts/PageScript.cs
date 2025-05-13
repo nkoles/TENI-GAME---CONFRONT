@@ -11,7 +11,7 @@ public class PageScript : MonoBehaviour
 
     public bool isDamaged;
     public float damageInvulTime = 3f;
-    public float tempTimer;
+    public float tempTimer = 0f;
 
     // Start is called before the first frame update
     void Start()

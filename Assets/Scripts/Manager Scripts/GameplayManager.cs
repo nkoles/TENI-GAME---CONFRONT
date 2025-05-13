@@ -200,16 +200,16 @@ public class GameplayManager : MonoBehaviour
             player.aggression = player.maxAggression;
         }
 
-        confrontButtonShader.SetFloat("_Strength", player.aggression / player.maxAggression);
+        confrontButtonShader.SetFloat("_Strength", (float)player.aggression / (float)player.maxAggression);
 
-        if(player.aggression == player.maxAggression)
-        {
-            confrontButton.GetComponent<Image>().material = confrontButtonShader;
-        }
-        else
-        {
-            confrontButton.GetComponent<Image>().material = defaultButton;
-        }
+        //if (player.aggression == player.maxAggression)
+        //{
+        //    confrontButton.GetComponent<Image>().material = confrontButtonShader;
+        //}
+        //else
+        //{
+        //    confrontButton.GetComponent<Image>().material = defaultButton;
+        //}
     }
 
     public void Win()
