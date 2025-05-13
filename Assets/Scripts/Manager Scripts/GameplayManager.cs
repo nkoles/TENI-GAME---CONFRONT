@@ -10,9 +10,12 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager Instance;
     public PlayerManager player;
     public EnemyManager enemy;
+    public SequenceManager sequence;
+    //public ConfrontScript confront;
     //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
     public int damageDealt = 0, damageTaken, aggro = 0;
+    public string tempObstacle;
 
     public Material confrontButton;
 

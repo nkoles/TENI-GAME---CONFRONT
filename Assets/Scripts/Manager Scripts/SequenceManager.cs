@@ -168,6 +168,11 @@ public class SequenceManager : MonoBehaviour
         return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
 
+    public void SettupConfront()
+    {
+        ResultOfAction(Actions.Confront);
+    }
+
     public void ResultOfAction(Actions action)
     {
         StartCoroutine(buttonController.MoveButtonOutOfView(true, 1f));
@@ -193,9 +198,7 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Gained: " + textControls.lastHealedHP + " Health" + "\nPress any key to Continue";
                 break;
             case Actions.Confront:
-                resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
-                "\nRecieved: " + textControls.aggressionGained + " Aggression" + 
-                "\nGained: " + (textControls.lastHealedHP - (textControls.damageTaken + GameplayManager.Instance.damageTaken)) + " Health" + 
+                resultText = "Disarmed their " + GameplayManager.Instance.tempObstacle + "." +
                 "\nPress any key to Continue";
                 break;
             case Actions.BossAction:

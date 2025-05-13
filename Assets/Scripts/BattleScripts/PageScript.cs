@@ -14,14 +14,14 @@ public class PageScript : MonoBehaviour
     {
         player = GameplayManager.Instance.player.heart.GetComponent<HeartScript>();
         playerPos = player.transform.position / transform.localScale.z;
-        playerPos = Quaternion.Euler(0, 0, -45) * playerPos;
+        playerPos = Quaternion.Euler(0, 0, 45) * playerPos;
     }
 
     // Update is called once per frame
     void Update()
     {
         playerPos = GameplayManager.Instance.player.heart.transform.position / transform.localScale.z;
-        playerPos = Quaternion.Euler(0, 0, -45) * playerPos;
+        playerPos = Quaternion.Euler(0, 0, 45) * playerPos;
 
         if(gameObject.GetComponent<Tilemap>().GetTile(Vector3Int.FloorToInt(playerPos)) == slip)
         {

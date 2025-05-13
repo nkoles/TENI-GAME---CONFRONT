@@ -4,13 +4,21 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class ConfrontButtonHandler : MonoBehaviour, IPointerEnterHandler
+public class ConfrontButtonHandler : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
-    public UnityAction hoverEnter/*, hoverExit*/;
+    public ConfrontScript confront;
+    public int buttonNo;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        hoverEnter.Invoke();
+        confront.hoveredButton = buttonNo;
+        confront.hoverEnter[buttonNo].Invoke();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        confront.selectedWeapon = buttonNo;
+        confront.click[buttonNo].Invoke();
     }
 
     /*private void OnPointerExit(PointerEventData eventData)
