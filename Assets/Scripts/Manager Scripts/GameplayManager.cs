@@ -164,6 +164,7 @@ public class GameplayManager : MonoBehaviour
 
             if(amount > 0)
             {
+                PostProcessingManager.instance.StopAllCoroutines();
                 StartCoroutine(PostProcessingManager.instance.TakeDamagePPEffect(.25f, 3f, 0f));
             }
 

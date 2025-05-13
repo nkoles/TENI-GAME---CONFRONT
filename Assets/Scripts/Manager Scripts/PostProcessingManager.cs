@@ -75,7 +75,7 @@ public class PostProcessingManager : MonoBehaviour
             yield return null;
         }
 
-        RuntimeUtilities.DestroyVolume(ppVolume, false, false);
+        //RuntimeUtilities.DestroyVolume(ppVolume, false, false);
     }
 
     public void Test()

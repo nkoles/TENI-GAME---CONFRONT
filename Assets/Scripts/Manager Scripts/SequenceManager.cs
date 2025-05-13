@@ -121,7 +121,7 @@ public class SequenceManager : MonoBehaviour
 
                 action = textControls.Affirm(dialogueRepo.healingStrings[dialogueID], typingTime);
 
-                //GameplayManager.Instance.emotionAmount++;
+                GameplayManager.Instance.emotionAmount++;
                 break;
             case Actions.Confront:
                 print("Confront Action");

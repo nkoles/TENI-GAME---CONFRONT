@@ -160,7 +160,7 @@ public class TextControls : MonoBehaviour
 
         for(float i = 0; i < 1.1; i+= Time.deltaTime)
         {
-            _postProcessVignette.intensity.Override(Mathf.Lerp(1f, 0, i));
+            _postProcessVignette.intensity.Override(Mathf.Lerp(_postProcessVignette.intensity.value, 0, i));
 
             yield return null;
         }
