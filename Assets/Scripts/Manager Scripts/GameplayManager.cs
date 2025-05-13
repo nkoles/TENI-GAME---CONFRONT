@@ -153,7 +153,7 @@ public class GameplayManager : MonoBehaviour
 
             if(player.hp <= 0)
             {
-                Lose();
+                isLose = true;
             }
             else if(player.hp > player.maxHP)
             {
@@ -181,7 +181,7 @@ public class GameplayManager : MonoBehaviour
 
         if((enemy.hp == 0) && (sequence.bossAttacking == false))
         {
-            Win();
+            isWin = true;
         }
         else if(enemy.hp > enemy.maxHP)
         {
@@ -212,8 +212,13 @@ public class GameplayManager : MonoBehaviour
         //}
     }
 
+    public bool isWin;
+    public bool isLose;
+
     public void Win()
     {
+        ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
+
         SetupSequence.isWon = true;
         if (enemy.phase == 0)
         {
@@ -251,6 +256,8 @@ public class GameplayManager : MonoBehaviour
 
     public void Lose()
     {
+        ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
+
         SetupSequence.isWon = false;
         if (enemy.phase == 1)
         {

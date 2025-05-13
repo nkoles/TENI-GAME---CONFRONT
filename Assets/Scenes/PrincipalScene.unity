@@ -1602,7 +1602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &359475188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4024,6 +4024,8 @@ MonoBehaviour:
   confrontButtonShader: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
   defaultButton: {fileID: 0}
   confrontButton: {fileID: 98410225}
+  isWin: 0
+  isLose: 0
 --- !u!4 &1032452449
 Transform:
   m_ObjectHideFlags: 0
