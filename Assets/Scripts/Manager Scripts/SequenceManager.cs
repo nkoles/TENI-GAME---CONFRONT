@@ -168,11 +168,6 @@ public class SequenceManager : MonoBehaviour
         //textControls.aggressionAmount /= 2;
     }
 
-    float Remap(float s, float a1, float a2, float b1, float b2)
-    {
-        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
-    }
-
     public void SettupConfront()
     {
         lastAction = Actions.Confront;
@@ -191,9 +186,6 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Dealt: " + GameplayManager.Instance.damageDealt + " Damage" +
                 "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" +
                 "\nPress any key to Continue";
-
-                print(Remap((float)EnemyManager.instance.hp / (float)EnemyManager.instance.maxHP, 0, 1, -1, 1));
-                BossShader.instance.StartCoroutine(BossShader.instance.LerpDissolve(Remap(1 - ((float)EnemyManager.instance.hp / (float)EnemyManager.instance.maxHP), 0, 1, -1, 1), 2f));
 
                 break;
             case Actions.Passive:
