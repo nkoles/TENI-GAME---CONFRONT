@@ -12,16 +12,16 @@ public class ConfrontScript : MonoBehaviour
     public Button[] buttons;
     public Image[] images;
     public TMP_Text[] text;
-    public Sprite[] parkSprites;
+    public Sprite[] parkSprites = new Sprite[3];
     public Sprite[] schoolSprites, homeSprites, clinicSprites;
-    public string[] parkText;
+    public string[] parkText = new string[3];
     public string[] schoolText, homeText, clinicText, schoolDescription, homeDescription, clinicDescription;
-    public string[] parkDescription;
-    public int[] weapons;
+    public string[] parkDescription = new string[3];
+    public int[] weapons = new int[3];
     public TMP_Text description;
     public int selectedWeapon, hoveredButton;
-    public UnityAction[] click = new UnityAction[3];
-    public UnityAction[] hoverEnter = new UnityAction[3];
+    public UnityAction click;
+    public UnityAction hoverEnter;
 
     // Start is called before the first frame update
     void Awake()
@@ -51,8 +51,8 @@ public class ConfrontScript : MonoBehaviour
         {
             case 1:
             {
-                enemy.schoolObstacles[selectedWeapon] = null;
-                GameplayManager.Instance.tempObstacle = schoolText[selectedWeapon];
+                enemy.schoolObstacles[weapons[selectedWeapon]] = null;
+                GameplayManager.Instance.tempObstacle = schoolText[weapons[selectedWeapon]];
                 GameplayManager.Instance.sequence.SettupConfront();
 
                 break;
@@ -60,8 +60,8 @@ public class ConfrontScript : MonoBehaviour
 
             case 2:
             {
-                enemy.homeObstacles[selectedWeapon] = null;
-                GameplayManager.Instance.tempObstacle = schoolText[selectedWeapon];
+                enemy.homeObstacles[weapons[selectedWeapon]] = null;
+                GameplayManager.Instance.tempObstacle = schoolText[weapons[selectedWeapon]];
                 GameplayManager.Instance.sequence.SettupConfront();
 
                 break;
@@ -69,15 +69,18 @@ public class ConfrontScript : MonoBehaviour
 
             case 3:
             {
-                enemy.clinicObstacles[selectedWeapon] = null;
-                GameplayManager.Instance.tempObstacle = schoolText[selectedWeapon];
+                enemy.clinicObstacles[weapons[selectedWeapon]] = null;
+                GameplayManager.Instance.tempObstacle = schoolText[weapons[selectedWeapon]];
                 GameplayManager.Instance.sequence.SettupConfront();
 
                 break;
             }
 
-            default:
+            case 0:
             {
+                enemy.parkObstacles[weapons[selectedWeapon]] = null;
+                GameplayManager.Instance.tempObstacle = parkText[weapons[selectedWeapon]];
+                GameplayManager.Instance.sequence.SettupConfront();
 
                 break;
             }
@@ -109,9 +112,9 @@ public class ConfrontScript : MonoBehaviour
                 break;
             }
 
-            default:
+            case 0:
             {
-
+                description.text = parkDescription[weapons[hoveredButton]];
                 break;
             }
         }
@@ -119,10 +122,10 @@ public class ConfrontScript : MonoBehaviour
 
     void OnDisable()
     {
-        for(int i = 0; i < click.Length; i++)
+        for(int i = 0; i < buttons.Length; i++)
         {
-            click[i] -= OnClick;
-            hoverEnter[i] -= OnPointerEnter;
+            click -= OnClick;
+            hoverEnter -= OnPointerEnter;
             //buttons[i].gameObject.GetComponent<ConfrontButtonHandler>().hoverExit -= OnPointerExit();
             description.text = " ";
         }
@@ -130,6 +133,9 @@ public class ConfrontScript : MonoBehaviour
 
     void OnEnable()
     {
+        click += OnClick;
+        hoverEnter += OnPointerEnter;
+
         List<GameObject> objects = new List<GameObject>();
 
         switch(enemy.phase)
@@ -159,11 +165,11 @@ public class ConfrontScript : MonoBehaviour
                             images[i].sprite = schoolSprites[j];
                             text[i].text = schoolText[j];
                             //text[i].description = schoolDescription[j];
-                            click[i] += OnClick;
                             weapons[i] = j;
-
-                            hoverEnter[i] += OnPointerEnter;
                             //buttons[i].gameObject.GetComponent<ConfortButtonHandler>().hoverExit += OnPointerExit();
+
+                            objects.Remove(objects[randObject]);
+                            break;
                         }
                     }
                 }
@@ -196,11 +202,11 @@ public class ConfrontScript : MonoBehaviour
                             images[i].sprite = homeSprites[j];
                             text[i].text = homeText[j];
                             //text[i].description = schoolDescription[j];
-                            click[i] += OnClick;
                             weapons[i] = j;
-
-                            hoverEnter[i] += OnPointerEnter;
                             //buttons[i].gameObject.GetComponent<ConfortButtonHandler>().hoverExit += OnPointerExit();
+                            
+                            objects.Remove(objects[randObject]);
+                            break;
                         }
                     }
                 }
@@ -233,11 +239,11 @@ public class ConfrontScript : MonoBehaviour
                             images[i].sprite = clinicSprites[j];
                             text[i].text = clinicText[j];
                             //text[i].description = schoolDescription[j];
-                            click[i] += OnClick;
                             weapons[i] = j;
-
-                            hoverEnter[i] += OnPointerEnter;
                             //buttons[i].gameObject.GetComponent<ConfortButtonHandler>().hoverExit += OnPointerExit();
+
+                            objects.Remove(objects[randObject]);
+                            break;
                         }
                     }
                 }
@@ -245,8 +251,37 @@ public class ConfrontScript : MonoBehaviour
                 break;
             }
 
-            default:
+            case 0:
             {
+                foreach(GameObject thing in enemy.parkObstacles)
+                {
+                    objects.Add(thing);
+                }
+
+                for(int i = 0; i < buttons.Length; i++)
+                {
+                    if(objects.Count <= 0)
+                    {
+                        break;
+                    }
+
+                    int randObject = Random.Range(0, objects.Count);
+                    for(int j = 0; j < enemy.parkObstacles.Length; j++)
+                    {
+                        if(objects[randObject] == enemy.parkObstacles[j])
+                        {
+                            images[i].sprite = parkSprites[j];
+                            text[i].text = parkText[j];
+                            //text[i].description = schoolDescription[j];
+                            weapons[i] = j;
+                            //buttons[i].gameObject.GetComponent<ConfortButtonHandler>().hoverExit += OnPointerExit();
+
+                            objects.Remove(objects[randObject]);
+                            break;
+                        }
+                    }
+                }
+
                 break;
             }
 

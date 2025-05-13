@@ -12,13 +12,13 @@ public class ConfrontButtonHandler : MonoBehaviour, IPointerEnterHandler, IPoint
     public void OnPointerEnter(PointerEventData eventData)
     {
         confront.hoveredButton = buttonNo;
-        confront.hoverEnter[buttonNo].Invoke();
+        confront.hoverEnter.Invoke();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         confront.selectedWeapon = buttonNo;
-        confront.click[buttonNo].Invoke();
+        confront.click.Invoke();
     }
 
     /*private void OnPointerExit(PointerEventData eventData)

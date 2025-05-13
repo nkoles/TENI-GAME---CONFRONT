@@ -23,7 +23,7 @@ public class Stunnable : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D collider)
+    /*void OnTriggerStay2D(Collider2D collider)
     {
         if(collider.gameObject.GetComponent<HeartScript>())
         {
@@ -32,5 +32,5 @@ public class Stunnable : MonoBehaviour
                 StartCoroutine(collider.gameObject.GetComponent<HeartScript>().Stun(1.0f));
             }
         }
-    }
+    }*/
 }
