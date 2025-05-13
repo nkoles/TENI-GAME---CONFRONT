@@ -22,16 +22,6 @@ public class SceneLoadingManager : MonoBehaviour
         StartCoroutine(SwitchScene(buildIndex));
     }
 
-    public void openLink(string link)
-    {
-        Application.OpenURL(link);
-    }
-
-    public void closeScene()
-    {
-        Application.Quit();
-    }
-
     public void LoadNextScene()
     {
         LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
