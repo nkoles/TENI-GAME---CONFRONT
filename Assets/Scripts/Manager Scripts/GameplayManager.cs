@@ -62,7 +62,7 @@ public class GameplayManager : MonoBehaviour
     {
         //logicAmount++;
 
-        StartCoroutine(Attack(time));
+        StartCoroutine(Attack());
         StartCoroutine(EndTurn(time*2));
     }
 
@@ -100,14 +100,17 @@ public class GameplayManager : MonoBehaviour
         player.spade.SetActive(false);
     }
 
-    public IEnumerator Attack(int time)
+    public IEnumerator Attack()
     {
         damageDealt = 0;
         damageTaken = 0;
         player.diamond.SetActive(true);
-        StartCoroutine(enemy.Blocking(time));
 
-        yield return new WaitForSeconds(time);
+        yield return enemy.Blocking();
+
+        /*StartCoroutine(enemy.Blocking(time));
+
+        yield return new WaitForSeconds(time);*/
 
         //ui.dialogueBox.SetActive(false);
         player.diamond.SetActive(false);

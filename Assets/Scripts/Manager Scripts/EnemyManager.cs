@@ -13,13 +13,11 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] schoolObstacles;
     public GameObject[] homeObstacles;
     public GameObject[] clinicObstacles;
-    public string[] ParkAttackingWords;
-    public string[] SchoolAttackingWords;
-    public string[] HomeAttackingWords;
-    public string[] ClinicAttackingWords;
+    public string[] AttackingWords;
     public Vector3[] lateralSpawnPoints;
     public string[] enemyWords;
     public int phase;
+    public float timeMod;
 
     public GameObject arrow;
 
@@ -45,11 +43,41 @@ public class EnemyManager : MonoBehaviour
         
     }
 
-    public IEnumerator Blocking(float time)
+    public IEnumerator Blocking()
     {
         Transform diamond = GameplayManager.Instance.player.diamond.transform;
 
-        while(time > 4)
+        for(int i = 0; i < (phase + GameplayManager.Instance.logicAmount); i++)
+        {
+            int randPhrase = Random.Range(0, AttackingWords.Length);
+            int lastChar = 0;
+
+            while(lastChar < AttackingWords[randPhrase].Length)
+            {
+                int randPoint = Random.Range(0, lateralSpawnPoints.Length);
+                string phrase = "";
+                
+                while(AttackingWords[randPhrase][lastChar].ToString() != " ")
+                {
+                    phrase += AttackingWords[randPhrase][lastChar];
+                    lastChar++;
+                }
+
+                GameObject temp = Instantiate(arrow, diamond.position /*+ new Vector3(lateralSpawnPoints[randPoint].x * diamond.localScale.x, lateralSpawnPoints[randPoint].y * diamond.localScale.y, 0)*/, Quaternion.Euler(0, 0, 45 /*- (90 * randPoint)*/));
+
+                temp.transform.localScale = diamond.localScale;
+
+                temp.GetComponent<ArrowScript>().word.text = phrase;
+                lastChar++;
+
+                int randTime = Random.Range(1, 4);
+                float time = timeMod*randTime;
+
+                yield return new WaitForSeconds(time);
+            }
+        }
+
+        /*while(time > 4)
         {
             int randPhrase = Random.Range(0, SchoolAttackingWords.Length);
             int lastChar = 0;
@@ -78,7 +106,9 @@ public class EnemyManager : MonoBehaviour
 
                 time -= randTime;
             }
-        }
+        }*/
+
+        yield return new WaitForSeconds((4*timeMod));
     }
 
     public void RemoveWeapon(int weapon)
