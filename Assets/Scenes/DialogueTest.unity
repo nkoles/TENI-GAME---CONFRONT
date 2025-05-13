@@ -1159,6 +1159,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d3a215e751c19d5438f81744a8036e20, type: 3}
   musicSource: {fileID: 885182106}
   sfxSource: {fileID: 1761714179}
+  friendStart: 0
+  friendEnd: 0
+  principalStart: 0
+  principalGoodEnd: 0
+  principalBadEnd: 0
+  auntStart: 0
+  auntGoodEnd: 0
+  auntBadEnd: 0
+  doctorStart: 0
+  doctorGoodEnd: 0
+  doctorBadEnd: 0
+  therapistEnd: 0
+  battleEnd: 0
 --- !u!4 &256580000
 Transform:
   m_ObjectHideFlags: 0
@@ -1238,19 +1251,7 @@ MonoBehaviour:
   choices: {fileID: 0}
   enemy: {fileID: 195812178}
   button: {fileID: 1391012235}
-  friendStart: 0
-  friendEnd: 0
-  principalStart: 0
-  principalGoodEnd: 0
-  principalBadEnd: 0
-  auntStart: 0
-  auntGoodEnd: 0
-  auntBadEnd: 0
-  doctorStart: 0
-  doctorGoodEnd: 0
-  doctorBadEnd: 0
-  therapistEnd: 0
-  battleEnd: 0
+  audioManager: {fileID: 256579999}
 --- !u!1001 &339308148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2700,8 +2701,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3034,6 +3035,9 @@ MonoBehaviour:
   player: {fileID: 1914478243}
   enemy: {fileID: 195812178}
   dialogue: {fileID: 271116215}
+  audioManager: {fileID: 256579999}
+  sequence: {fileID: 1177756812}
+  bossUI: {fileID: 0}
   logicAmount: 0
   emotionAmount: 0
   passiveAmount: 0
@@ -3433,9 +3437,10 @@ MonoBehaviour:
   - {fileID: 1819790128}
   - {fileID: 49053243}
   - {fileID: 49053243}
+  bossAttacking: 0
   helperText: {fileID: 1839031824}
   buttonController: {fileID: 1391012235}
-  enemy: {fileID: 0}
+  enemy: {fileID: 195812178}
 --- !u!4 &1177756813
 Transform:
   m_ObjectHideFlags: 0
@@ -4570,9 +4575,9 @@ AudioSource:
   m_GameObject: {fileID: 1761714178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 32111fb4ac5ddb045901a9086446c657, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
