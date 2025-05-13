@@ -10,25 +10,6 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
-    public bool friendStart;
-    public bool friendEnd;
-
-    public bool principalStart;
-    public bool principalGoodEnd;
-    public bool principalBadEnd;
-
-    public bool auntStart;
-    public bool auntGoodEnd;
-    public bool auntBadEnd;
-
-    public bool doctorStart;
-    public bool doctorGoodEnd;
-    public bool doctorBadEnd;
-
-    public bool therapistEnd;
-
-    public bool battleEnd;
-
     private void Awake()
     {
         if(instance == null)
@@ -41,6 +22,8 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        PlayMusic("Principal (During-battle)"); 
     }
 
     public void PlayMusic(string name)
