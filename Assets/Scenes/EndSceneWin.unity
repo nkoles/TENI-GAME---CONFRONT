@@ -904,6 +904,7 @@ GameObject:
   - component: {fileID: 683919036}
   - component: {fileID: 683919035}
   - component: {fileID: 683919034}
+  - component: {fileID: 683919037}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -1025,6 +1026,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683919032}
   m_CullTransparentMesh: 1
+--- !u!114 &683919037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683919032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1779f14d0ee26c4db0836af437ddd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matRef: {fileID: 0}
+  id: 0
 --- !u!1 &816394687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1052,7 @@ GameObject:
   - component: {fileID: 816394691}
   - component: {fileID: 816394690}
   - component: {fileID: 816394689}
+  - component: {fileID: 816394692}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -1158,6 +1174,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816394687}
   m_CullTransparentMesh: 1
+--- !u!114 &816394692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816394687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1779f14d0ee26c4db0836af437ddd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matRef: {fileID: 0}
+  id: 0
 --- !u!1 &896581710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,6 +1788,7 @@ GameObject:
   - component: {fileID: 2037906632}
   - component: {fileID: 2037906631}
   - component: {fileID: 2037906630}
+  - component: {fileID: 2037906633}
   m_Layer: 5
   m_Name: VisitTeni
   m_TagString: Untagged
@@ -1879,6 +1910,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037906628}
   m_CullTransparentMesh: 1
+--- !u!114 &2037906633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037906628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1779f14d0ee26c4db0836af437ddd7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matRef: {fileID: 0}
+  id: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
