@@ -99,7 +99,7 @@ public class SequenceManager : MonoBehaviour
 
                 action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 20, speed);
 
-                //GameplayManager.Instance.passiveAmount++;
+                GameplayManager.Instance.passiveAmount++;
                 break;
             case Actions.Affirm:
                 print("Affirm Action");
