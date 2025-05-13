@@ -19,24 +19,7 @@ public class DialogueManager : MonoBehaviour
     public EnemyManager enemy;
     public ButtonDetailHighlighting button;
 
-    public bool friendStart;
-    public bool friendEnd;
-
-    public bool principalStart;
-    public bool principalGoodEnd;
-    public bool principalBadEnd;
-
-    public bool auntStart;
-    public bool auntGoodEnd;
-    public bool auntBadEnd;
-
-    public bool doctorStart;
-    public bool doctorGoodEnd;
-    public bool doctorBadEnd;
-
-    public bool therapistEnd;
-
-    public bool battleEnd;
+    public AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -44,12 +27,13 @@ public class DialogueManager : MonoBehaviour
         ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
         if (enemy.phase == 1)
         {
-            principalStart = true;
+            audioManager.principalStart = true;
         }
         else if (enemy.phase == 2)
         {
-            auntStart = true;
+            audioManager.auntStart = true;
         }
+        SceneMusic();
         textComponent.text = string.Empty;
         StartDialogue();
     }
@@ -76,7 +60,7 @@ public class DialogueManager : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TypeLine());
-        if (friendStart == true)
+        if (audioManager.friendStart == true)
         {
             lines[0] = "Hey, how’s it going! You said you had something you wanted to talk to me about?";
             lines[1] = "You’re trans? Wait- for real? \tSo that means you’re…";
@@ -84,7 +68,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "Huh. Cool? Sorry, I don’t really know anything about trans stuff… Is it okay if I ask you some things?";
             lines[4] = "Nice! Just stop me if I say anything dumb, alright?";
         }
-        else if (friendEnd == true)
+        else if (audioManager.friendEnd == true)
         {
             lines[0] = "Okay, that’s pretty much everything I wanted to know! Thanks for putting up with all that, haha.";
             lines[1] = "And thanks for trusting me enough to come out to me; I know these kinds of conversations are never easy, at best.";
@@ -92,7 +76,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "…Ah. Sorry, started rambling… in my defence, you should’ve expected that when you came out to someone on a debate team. Don’t blame me!";
             lines[4] = "Whatever – my point is, you got this, and I got your back! Now; wanna go get some food? My treat!";
         }
-        else if (principalStart == true)
+        else if (audioManager.principalStart == true)
         {
             lines[0] = "Come in.";
             lines[1] = "Ah, hello, name. You wanted to talk to me about something?";
@@ -100,7 +84,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "And you want to change your register name and uniform.";
             lines[4] = "...Take a seat; we need to discuss this more.";
         }
-        else if (principalGoodEnd == true)
+        else if (audioManager.principalGoodEnd == true)
         {
             lines[0] = "Alright, I think I understand now.";
             lines[1] = "You’ll have to forgive me; we haven’t had many transgender students before, so this sort of thing is still new to me.";
@@ -108,7 +92,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "If that’s all, then you should get going. And, please…";
             lines[4] = "If you need help with anything else, just let me know, alright?";
         }
-        else if(principalBadEnd == true)
+        else if(audioManager.principalBadEnd == true)
         {
             lines[0] = "…I see.";
             lines[1] = "Sorry, but I just don’t think that going through with this is a good idea.";
@@ -116,7 +100,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "If that’s all, then you should get going. And, please… ";
             lines[4] = "Think carefully about what we talked about today, alright?";
         }
-        else if(auntStart == true)
+        else if(audioManager.auntStart == true)
         {
             lines[0] = "Taking care of the dishes, name? Ah, its only fair; you oughta help out around the house more, the work’s good for you.";
             lines[1] = "Huh? Call you “[name]”? Well, how come?";
@@ -124,7 +108,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "No, seriously, explain it to me. What do you even get out of all that stuff? What’s wrong with how you were before, huh?";
             lines[4] = "Go on; I’m all ears.";
         }
-        else if(auntGoodEnd == true)
+        else if(audioManager.auntGoodEnd == true)
         {
             lines[0] = "Okay, I get the picture.";
             lines[1] = "…I mean, kind of. I can’t exactly relate, you know? All this is after my time, I’m completely out of my depth!";
@@ -132,7 +116,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "It’s not my thing, but you can do what you want; not my place to judge.";
             lines[4] = "Have fun with the dishes, na- [name], sorry. That’s gonna take a bit to get used to, my bad.";
         }
-        else if(auntBadEnd == true)
+        else if(audioManager.auntBadEnd == true)
         {
             lines[0] = "Okay, you can stop now.";
             lines[1] = "I really don’t get any of this stuff… it’s not exactly my area of expertise, y’know?";
@@ -140,7 +124,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "Ah, whatever. Just keep it to yourself I guess, but don’t expect me to get involved.";
             lines[4] = "Have fun with the dishes, name.";
         }
-        else if(doctorStart == true)
+        else if(audioManager.doctorStart == true)
         {
             lines[0] = "Welcome; please have a seat.";
             lines[1] = "Now. To my understanding, you’re looking to be added to the public list for gender affirming healthcare, and you also want to start seeing a therapist. Is that right?";
@@ -148,7 +132,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "If you don’t mind, I’d like to ask you some questions about your experiences, just to get a sense of what you’ve been dealing with to help decide the best course of action.";
             lines[4] = "Please be honest with your answers.";
         }
-        else if(doctorGoodEnd == true)
+        else if(audioManager.doctorGoodEnd == true)
         {
             lines[0] = "Thank you for your time.";
             lines[1] = "From what I can see, you’ve clearly been experiencing symptoms of gender dysphoria, so we can go through with adding you to the list for gender affirming care.";
@@ -156,7 +140,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "If that’s all, then we can leave it there.";
             lines[4] = "We’ll get back to you about therapy arrangements as soon as possible.";
         }
-        else if(doctorBadEnd == true)
+        else if(audioManager.doctorBadEnd == true)
         {
             lines[0] = "Thank you for your time.";
             lines[1] = "Sorry, but I don’t believe you meet the requirements for gender affirming care.";
@@ -164,7 +148,7 @@ public class DialogueManager : MonoBehaviour
             lines[3] = "If that’s all, then we can leave it there.";
             lines[4] = "We’ll get back to you about therapy arrangements as soon as possible.";
         }
-        else if(therapistEnd == true)
+        else if(audioManager.therapistEnd == true)
         {
             lines[0] = "…And so that’s what led to your referral to me; you’ve needed to have a lot of tough discussions to get to this point, haven’t you?";
             lines[1] = "Conversations like that can really feel like an uphill battle; you’re fighting not just to be heard, but to defend yourself as well, and it can turn into a one-sided affair all too easily.";
@@ -174,62 +158,62 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void PlayMusic()
+    public void SceneMusic()
     {
-        if ((friendStart == true) || (friendEnd == true))
+        if ((audioManager.friendStart == true) || (audioManager.friendEnd == true))
         {
             AudioManager.instance.PlayMusic("Friend (Pre-battle)");
         }
-        else if ((friendStart != true) && (friendEnd != true))
+        else if ((audioManager.friendStart != true) && (audioManager.friendEnd != true))
         {
             AudioManager.instance.PlayMusic("Friend (Pre-battle)");
         }
 
-        if (principalStart == true)
+        if (audioManager.principalStart == true)
         {
             AudioManager.instance.PlayMusic("Principal (Pre-battle)");
         }
-        else if (principalGoodEnd == true)
+        else if ((audioManager.principalGoodEnd == true))
         {
             AudioManager.instance.PlayMusic("Principal (Post-battle)");
         }
-        else if((principalStart != true) && (principalGoodEnd != true) && enemy.phase == 1)
+        else if((audioManager.principalStart != true) && (audioManager.principalGoodEnd != true) && enemy.phase == 1)
         {
             AudioManager.instance.PlayMusic("Principal (During-battle)");
         }
 
-        if (auntStart == true)
+        if (audioManager.auntStart == true)
         {
             AudioManager.instance.PlayMusic("Aunt (Pre-battle)");
         }
-        else if (auntGoodEnd == true)
+        else if (audioManager.auntGoodEnd == true)
         {
             AudioManager.instance.PlayMusic("Aunt (Post-battle)");
         }
-        else if ((auntStart != true) && (auntGoodEnd != true) && enemy.phase == 2)
+        else if ((audioManager.auntStart != true) && (audioManager.auntGoodEnd != true) && enemy.phase == 2)
         {
             AudioManager.instance.PlayMusic("Aunt (During-battle)");
         }
 
-        if (doctorStart == true)
+        if (audioManager.doctorStart == true)
         {
             AudioManager.instance.PlayMusic("Doctor (Pre-battle)");
         }
-        else if (doctorGoodEnd == true)
+        else if (audioManager.doctorGoodEnd == true)
         {
             AudioManager.instance.PlayMusic("Doctor (Post-battle)");
         }
-        else if ((doctorStart != true) && (doctorGoodEnd != true) && enemy.phase == 3)
+        else if ((audioManager.doctorStart != true) && (audioManager.doctorGoodEnd != true) && enemy.phase == 3)
         {
             AudioManager.instance.PlayMusic("Doctor (During-battle)");
         }
 
-        else if ((principalBadEnd == true) || (auntBadEnd == true) || (doctorBadEnd == true))
+        else if ((audioManager.principalBadEnd == true) || (audioManager.auntBadEnd == true) || (audioManager.doctorBadEnd == true))
         {
             AudioManager.instance.PlayMusic("Lose");
         }
 
-        if (therapistEnd == true)
+        if (audioManager.therapistEnd == true)
         {
             AudioManager.instance.PlayMusic("Therapy");
         }
@@ -242,23 +226,23 @@ public class DialogueManager : MonoBehaviour
             textComponent.text += c;
             yield return new WaitForSeconds(textspeed);
             anim.SetBool("Talking", true);
-            if((friendStart == true) || (friendEnd == true))
+            if((audioManager.friendStart == true) || (audioManager.friendEnd == true))
             {
                 AudioManager.instance.PlaySFX("FriendSfx");
             }
-            else if((principalStart == true) || (principalGoodEnd == true) || (principalBadEnd == true))
+            else if((audioManager.principalStart == true) || (audioManager.principalGoodEnd == true) || (audioManager.principalBadEnd == true))
             {
                 AudioManager.instance.PlaySFX("PrincipalSfx");
             }
-            else if ((auntStart == true) || (auntGoodEnd == true) || (auntBadEnd == true))
+            else if ((audioManager.auntStart == true) || (audioManager.auntGoodEnd == true) || (audioManager.auntBadEnd == true))
             {
                 AudioManager.instance.PlaySFX("AuntSfx");
             }
-            else if ((doctorStart == true) || (doctorGoodEnd == true) || (doctorBadEnd == true))
+            else if ((audioManager.doctorStart == true) || (audioManager.doctorGoodEnd == true) || (audioManager.doctorBadEnd == true))
             {
                 AudioManager.instance.PlaySFX("DoctorSfx");
             }
-            else if (therapistEnd == true)
+            else if (audioManager.therapistEnd == true)
             {
                 AudioManager.instance.PlaySFX("TherapistSfx");
             }
@@ -284,7 +268,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if(battleEnd == true)
+            if(audioManager.battleEnd == true)
             {
                 ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
                 SceneLoadingManager.instance.LoadNextScene();
@@ -293,6 +277,12 @@ public class DialogueManager : MonoBehaviour
             {
                 ButtonDetailHighlighting.instance.MoveButtonOutOfView(true);
                 //gameObject.SetActive
+                if(enemy.phase == 1)
+                {
+                    audioManager.principalStart = false;
+                }
+                SceneMusic();
+
                 textComponent.text = string.Empty;
                 index = 0;
                 lines[0] = "";
