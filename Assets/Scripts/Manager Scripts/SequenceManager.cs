@@ -41,6 +41,7 @@ public class SequenceManager : MonoBehaviour
 
     private void Awake()
     {
+        enemy = GameplayManager.Instance.enemy;
         ActionChosen.AddListener(SetupAction);
         ActionCompleted.AddListener(ResultOfAction);
     }
@@ -155,10 +156,10 @@ public class SequenceManager : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        foreach(GameObject ui in actionUI)
+        /*foreach(GameObject ui in actionUI)
         {
             ui.SetActive(false);
-        }
+        }*/
 
         //GameplayManager.Instance.player.damage /= 2;
         //textControls.aggressionAmount /= 2;
@@ -171,6 +172,7 @@ public class SequenceManager : MonoBehaviour
 
     public void SettupConfront()
     {
+        lastAction = Actions.Confront;
         ResultOfAction(Actions.Confront);
     }
 
@@ -230,7 +232,7 @@ public class SequenceManager : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        if(lastAction != Actions.BossAction && lastAction != Actions.Confront && enemy.hp <= 0)
+        if(lastAction != Actions.BossAction && lastAction != Actions.Confront && enemy.hp > 0)
         {
             bossUI.SetActive(false);
 
