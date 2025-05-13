@@ -178,7 +178,7 @@ public class TextControls : MonoBehaviour
     }
 
     //PASSIVE
-    public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration)
+    public IEnumerator Attack(string[] _attackStrings, Transform centerSpawn, float spawnBoxRadius, float spawnTime, float attackDuration, float speed)
     {
         yield return BackgroundShader.instance.PassiveSceneTransition(BackgroundShader.instance.passiveBGColorChange, BackgroundShader.instance.noiseBGColorChange, .5f, true, 1f);
 
@@ -241,7 +241,7 @@ public class TextControls : MonoBehaviour
 
                 attackStrings.RemoveAt(randomStringIdx);
 
-                textHandler.Initialise(dir, bossFont);
+                textHandler.Initialise(dir, bossFont, speed);
 
                 currentActiveWords.Add(textHandler);
 

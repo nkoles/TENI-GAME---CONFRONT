@@ -90,7 +90,7 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         isEntered = false;
     }
 
-    public void Initialise(Vector3 direction, TMP_FontAsset font)
+    public void Initialise(Vector3 direction, TMP_FontAsset font, float _speed)
     {
         print(m_TextAsset.text);
 
@@ -100,6 +100,8 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
         _dir = direction;
 
         //print(_dir);
+
+        speed = _speed;
 
         isInitialised = true;
 
@@ -136,9 +138,9 @@ public class AttackTextInterraction : MonoBehaviour//, IPointerClickHandler, IPo
 
         if (isInitialised)
         {
-            transform.position += _dir/2 * Time.deltaTime;
+            transform.position += _dir/2 * Time.deltaTime * speed;
 
-            transform.localScale += Vector3.one*Time.deltaTime*2;
+            transform.localScale += Vector3.one*Time.deltaTime*speed;
         }
 
         if (CheckOutsideScreen() && !isDestroyed)

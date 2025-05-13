@@ -33,7 +33,8 @@ public class SequenceManager : MonoBehaviour
 
     public TextMeshProUGUI helperText;
 
-    public ButtonDetailHighlighting buttonController; 
+    public ButtonDetailHighlighting buttonController;
+    public EnemyManager enemy;
 
     private Actions lastAction;
     private int[] actionAmount = new int[5] {0,0,0,0,0};
@@ -53,7 +54,7 @@ public class SequenceManager : MonoBehaviour
         print("action invoked");
 
         IEnumerator action = null;
-
+        
         switch (actionType)
         {
             case Actions.Attack:
@@ -70,7 +71,17 @@ public class SequenceManager : MonoBehaviour
 
                 List<string> randomString = new List<string>();
 
-                for(int i =0; i < 3; ++i)
+                int passiveButtonClick = GameplayManager.Instance.passiveAmount;
+                int phase_ = EnemyManager.instance.phase;
+
+                int textAmount = 1 + passiveButtonClick;
+                int spawnTime = 5 - passiveButtonClick;
+                float speed = 1 + phase_ / 2;
+
+                if (passiveButtonClick >= dialogueRepo.passiveStrings.Length)
+                    textAmount = dialogueRepo.passiveStrings.Length;
+
+                for(int i =0; i < textAmount; ++i)
                 {
                     int randomIdx = Random.Range(0, dialogueRepo.passiveStrings.Length);
 
@@ -82,14 +93,29 @@ public class SequenceManager : MonoBehaviour
                     randomString.Add(dialogueRepo.passiveStrings[randomIdx]);
                 }
 
-                action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 60);
+                action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 20, speed);
 
                 //GameplayManager.Instance.passiveAmount++;
                 break;
             case Actions.Affirm:
                 print("Affirm Action");
 
-                action = textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], 15f);
+                //EnemyManager.instance.phase;
+
+                int phase = EnemyManager.instance.phase;
+                int buttonClicked = GameplayManager.Instance.emotionAmount;
+
+                float typingTime = typingTime = 20;
+                int dialogueID = buttonClicked;
+
+
+                if (phase != 0)
+                    typingTime /= phase;
+
+                if (buttonClicked >= dialogueRepo.healingStrings.Length)
+                    dialogueID = dialogueRepo.healingStrings.Length-1;
+
+                action = textControls.Affirm(dialogueRepo.healingStrings[dialogueID], typingTime);
 
                 //GameplayManager.Instance.emotionAmount++;
                 break;
@@ -114,14 +140,18 @@ public class SequenceManager : MonoBehaviour
 
     public IEnumerator Confront(int time)
     {
-        GameplayManager.Instance.player.damage *= 2;
+        // OLD CONFRONT ACTION
+
+        /*GameplayManager.Instance.player.damage *= 2;
         Debug.Log(GameplayManager.Instance.player.damage);
         textControls.aggressionAmount *= 2;
         Debug.Log(textControls.aggressionAmount);
 
         StartCoroutine(GameplayManager.Instance.Attack(time));
         StartCoroutine(textControls.Attack(dialogueRepo.passiveStrings, textControls.spawnBox, Screen.width/2, 2, time));
-        StartCoroutine(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], time));
+        StartCoroutine(textControls.Affirm(dialogueRepo.healingStrings[Random.Range(0, dialogueRepo.healingStrings.Length)], time));*/
+
+        // NEW CONFRONT ACTION
 
         yield return new WaitForSeconds(time);
 
@@ -130,8 +160,8 @@ public class SequenceManager : MonoBehaviour
             ui.SetActive(false);
         }
 
-        GameplayManager.Instance.player.damage /= 2;
-        textControls.aggressionAmount /= 2;
+        //GameplayManager.Instance.player.damage /= 2;
+        //textControls.aggressionAmount /= 2;
     }
 
     float Remap(float s, float a1, float a2, float b1, float b2)
@@ -139,8 +169,15 @@ public class SequenceManager : MonoBehaviour
         return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
 
+    public void SettupConfront()
+    {
+        ResultOfAction(Actions.Confront);
+    }
+
     public void ResultOfAction(Actions action)
     {
+        StartCoroutine(buttonController.MoveButtonOutOfView(true, 1f));
+
         string resultText = "";
 
         switch (action)
@@ -162,9 +199,7 @@ public class SequenceManager : MonoBehaviour
                 resultText = "Gained: " + textControls.lastHealedHP + " Health" + "\nPress any key to Continue";
                 break;
             case Actions.Confront:
-                resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
-                "\nRecieved: " + textControls.aggressionGained + " Aggression" + 
-                "\nGained: " + (textControls.lastHealedHP - (textControls.damageTaken + GameplayManager.Instance.damageTaken)) + " Health" + 
+                resultText = "Disarmed their " + GameplayManager.Instance.tempObstacle + "." +
                 "\nPress any key to Continue";
                 break;
             case Actions.BossAction:
@@ -195,7 +230,7 @@ public class SequenceManager : MonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        if(lastAction != Actions.BossAction && lastAction != Actions.Confront)
+        if(lastAction != Actions.BossAction && lastAction != Actions.Confront && enemy.hp <= 0)
         {
             bossUI.SetActive(false);
 
