@@ -15,6 +15,7 @@ public class GameplayManager : MonoBehaviour
     public SequenceManager sequence;
     public DialogueManager dialogue;
     public AudioManager audioManager;
+    public TutorialManager tutorial;
     //public DiamondScript[] diamonds;
     //public UIManager ui;
     public int logicAmount, emotionAmount, passiveAmount, confrontAmount;
@@ -91,6 +92,17 @@ public class GameplayManager : MonoBehaviour
         player.heart.SetActive(false);
         //Destroy(heart);
         player.diamond.SetActive(false);
+    }
+
+    public void DodgeTutorial(int time, int difficulty)
+    {
+        damageTaken = 0;
+        player.diamond.SetActive(true);
+        //GameObject heart = Instantiate(player.heart, new Vector3(0, 0, 0), Quaternion.Euler(0,0,0));
+        player.heart.transform.position = new Vector3(0, 0, player.heart.transform.position.z);
+        player.heart.SetActive(true);
+        tutorial.gameObject.SetActive(true);
+        tutorial.ActionTutorial(4);
     }
 
     public IEnumerator Comfort(int time)

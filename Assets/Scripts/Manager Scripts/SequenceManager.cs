@@ -139,7 +139,14 @@ public class SequenceManager : MonoBehaviour
         lastAction = actionType;
         actionAmount[(int)lastAction]++;
 
-        StartCoroutine(StartAction(action , actionType));
+        if(GameplayManager.Instance.enemy.phase == 0 && _actionType == 4 && actionAmount[(int)lastAction] == 1)
+        {
+            GameplayManager.Instance.DodgeTutorial(30, 1);
+        }
+        else
+        {
+            StartCoroutine(StartAction(action , actionType));
+        }
     }
 
     public IEnumerator Confront(int time)
@@ -288,6 +295,15 @@ public class SequenceManager : MonoBehaviour
         yield return actionRoutine;
 
         ActionCompleted.Invoke(actionTag);
+    }
+
+    public void DodgeTutorial()
+    {
+        IEnumerator action = null;
+
+        action = GameplayManager.Instance.Dodge(30, 1);
+
+        StartCoroutine(StartAction(action, (Actions)4));
     }
 
     IEnumerator WaitForInput()
