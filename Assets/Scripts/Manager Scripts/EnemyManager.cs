@@ -85,6 +85,19 @@ public class EnemyManager : MonoBehaviour
             case 1:
             {
                 schoolObstacles[weapon] = null;
+                int obstacleAmount = 0;
+                for(int i = 0; i < schoolObstacles.Length; i++)
+                {
+                    if(schoolObstacles[i] != null)
+                    {
+                        obstacleAmount++;
+                    }
+                }
+
+                if(obstacleAmount < 3)
+                {
+                    GameplayManager.Instance.Win();
+                }
 
                 break;
             }
@@ -92,6 +105,19 @@ public class EnemyManager : MonoBehaviour
             case 2:
             {
                 homeObstacles[weapon] = null;
+                int obstacleAmount = 0;
+                for(int i = 0; i < homeObstacles.Length; i++)
+                {
+                    if(homeObstacles[i] != null)
+                    {
+                        obstacleAmount++;
+                    }
+                }
+
+                if(obstacleAmount < 3)
+                {
+                    GameplayManager.Instance.Win();
+                }
 
                 break;
             }
@@ -99,6 +125,19 @@ public class EnemyManager : MonoBehaviour
             case 3:
             {
                 clinicObstacles[weapon] = null;
+                int obstacleAmount = 0;
+                for(int i = 0; i < clinicObstacles.Length; i++)
+                {
+                    if(clinicObstacles[i] != null)
+                    {
+                        obstacleAmount++;
+                    }
+                }
+
+                if(obstacleAmount < 3)
+                {
+                    GameplayManager.Instance.Win();
+                }
 
                 break;
             }
