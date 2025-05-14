@@ -190,27 +190,27 @@ public class SequenceManager : MonoBehaviour
             case Actions.Attack:
                 resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
                 "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" + 
-                "\nPress any key to Continue";
+                "\nClick to Continue";
 
                 BossShader.instance.StartCoroutine(BossShader.instance.LerpDissolve(Remap(EnemyManager.instance.hp / EnemyManager.instance.maxHP, 0, 1, -1, 1), 2f));
 
                 break;
             case Actions.Passive:
                 resultText = "Recieved: " + textControls.aggressionGained + " Aggression" +
-                "\nTook: " + textControls.damageTaken + " Damage" + 
-                "\nPress any key to Continue";
+                "\nTook: " + textControls.damageTaken + " Damage" +
+                "\nClick to Continue";
                 break;
             case Actions.Affirm:
-                resultText = "Gained: " + textControls.lastHealedHP + " Health" + "\nPress any key to Continue";
+                resultText = "Gained: " + textControls.lastHealedHP + " Health" + "\nClick to Continue";
                 break;
             case Actions.Confront:
                 resultText = "Disarmed their " + GameplayManager.Instance.tempObstacle + "." +
-                "\nPress any key to Continue";
+                "\nClick to Continue";
                 break;
             case Actions.BossAction:
                 bossAttacking = false;
-                resultText = "Took " + GameplayManager.Instance.damageTaken + " damage." + 
-                "\nPress any key to Continue";
+                resultText = "Took " + GameplayManager.Instance.damageTaken + " damage." +
+                "\nClick to Continue";
                 break;
         }
 

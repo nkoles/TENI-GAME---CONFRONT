@@ -1240,7 +1240,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  textspeed: 0
+  textspeed: 0.03
   anim: {fileID: 648594055}
   choices: {fileID: 0}
   enemy: {fileID: 195812178}
@@ -1482,6 +1482,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &304571332
@@ -2399,7 +2400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.89583325}
+  m_AnchoredPosition: {x: 0, y: 44.6}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &648594055
@@ -4020,6 +4021,8 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
+  confrontButtonShader: {fileID: 0}
+  defaultButton: {fileID: 0}
   confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
 --- !u!4 &1032452449
 Transform:
@@ -4652,7 +4655,7 @@ MonoBehaviour:
   - 'Stay calm '
   - 'Just breathe '
   - Just keep pushing
-  - "I\u2019ve waited long enough"
+  - I waited long enough
   - "I know what I\u2019m doing"
   - It will work out
   - This is right
@@ -4660,19 +4663,18 @@ MonoBehaviour:
   - My challenges help me grow
   - I am in control
   passiveStrings:
-  - 'Have you discussed this with your parents? '
-  - 'The uniforms are divided by gender for a reason. '
-  - "I\u2019m just worried you might get bullied. "
-  - 'Are you doing this as a joke? '
+  - Have you discussed this with your parents?
+  - The uniforms are divided by gender for a reason.
+  - "I\u2019m just worried you might get bullied."
+  - Are you doing this as a joke?
   - "There\u2019s nothing wrong with your name. "
   - Changing your name across the system would cause problems
-  - "Do you want to switch bathrooms, too? I don\u2019t understand."
+  - "Do you want to switch bathrooms too? I don\u2019t understand."
   - "We can\u2019t just change all of this on a whim"
-  - "What if you\u2019re laughed at, or bullied?"
+  - "What if you\u2019re laughed at or bullied?"
   - You know you need to use your real name on exams.
   - "What\u2019s wrong with being seen as a ||||||||?"
   - Where did you get this idea into your head?
-  - You never used to act out like this before, what happened?
   - "You\u2019re springing this on me out of nowhere\u2026"
   - What if you change your mind later?
   - "I don\u2019t think you\u2019ve thought this through enough."
@@ -6964,7 +6966,7 @@ MonoBehaviour:
   invulnerableTime: 1
   hp: 20
   maxHP: 20
-  aggression: 50
+  aggression: 0
   maxAggression: 50
   damage: 1
   invulnerable: 0

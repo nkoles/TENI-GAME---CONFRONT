@@ -1268,7 +1268,7 @@ MonoBehaviour:
   - "I\u2019d rather not answer that. "
   - "I\u2019m not gonna become a different person. "
   - "For future reference, that\u2019s invasive. "
-  - "If that\u2019s weird to say to cis people, then don\u2019t say it to me either. "
+  - "If it\u2019s weird to say to cis people, then don\u2019t say it to me either. "
   - "What I do with my body isn\u2019t anyone else\u2019s business. "
   - "I\u2019m still me. "
   lateralSpawnPoints:
@@ -2036,7 +2036,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  textspeed: 0
+  textspeed: 0.03
   anim: {fileID: 648594055}
   choices: {fileID: 113430272}
   enemy: {fileID: 195812178}
@@ -5137,6 +5137,8 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
+  confrontButtonShader: {fileID: 0}
+  defaultButton: {fileID: 0}
   confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
 --- !u!4 &1032452449
 Transform:
@@ -5754,45 +5756,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackStrings:
-  - "It\u2019s not hard. "
-  - 'Can you help me? '
-  - "It\u2019s just a uniform. "
-  - 'My friends support me. '
-  - "It\u2019s just a name. "
-  - 'I would never joke about something like this. '
-  - 'This name is better. '
-  - 'I hate this uniform. '
-  - "You just don\u2019t want to try. "
-  - 'Do you hate having a trans student that much? '
+  - "I don\u2019t have to \u201Cact trans\u201D to be trans. "
+  - "Just because I\u2019m trans, that doesn\u2019t mean my sexuality changed as
+    well. "
+  - "I\u2019d rather not answer that. "
+  - "I\u2019m not gonna become a different person. "
+  - "For future reference, that\u2019s invasive. "
+  - "If it\u2019s weird to say to cis people, then don\u2019t say it to me either. "
+  - "What I do with my body isn\u2019t anyone else\u2019s business. "
+  - "I\u2019m still me. "
   healingStrings:
-  - I deserve better than this
-  - 'Stay calm '
-  - 'Just breathe '
-  - Just keep pushing
-  - "I\u2019ve waited long enough"
-  - "I know what I\u2019m doing"
-  - It will work out
-  - This is right
-  - Its okay to take things one step at a time
-  - My challenges help me grow
-  - I am in control
+  - I am proud of who I am
+  - I am stronger than I think
+  - I am more than just my dysphoria
+  - "I don\u2019t deserve to have assumptions made about me"
+  - Only I can decide who I am
+  - I will be kind to myself
+  - I trust my decisions
+  - "Its okay if I don\u2019t know everything right now"
+  - I am not alone
   passiveStrings:
-  - 'Have you discussed this with your parents? '
-  - 'The uniforms are divided by gender for a reason. '
-  - "I\u2019m just worried you might get bullied. "
-  - 'Are you doing this as a joke? '
-  - "There\u2019s nothing wrong with your name. "
-  - Changing your name across the system would cause problems
-  - "Do you want to switch bathrooms, too? I don\u2019t understand."
-  - "We can\u2019t just change all of this on a whim"
-  - "What if you\u2019re laughed at, or bullied?"
-  - You know you need to use your real name on exams.
-  - "What\u2019s wrong with being seen as a ||||||||?"
-  - Where did you get this idea into your head?
-  - You never used to act out like this before, what happened?
-  - "You\u2019re springing this on me out of nowhere\u2026"
-  - What if you change your mind later?
-  - "I don\u2019t think you\u2019ve thought this through enough."
+  - Does that mean youre gay?
+  - You never acted like it before.
+  - Should I use neutral terms like buddy?
+  - "Does that mean you\u2019re going to act differently?"
+  - Are you going to change your hair then?
+  - Are you going to get the surgery?
+  - Which bathroom are you going to use?
+  - How come you didnt realise sooner?
+  - How did you figure it out?
+  - I think youre the first trans person I met!
+  - Are you sure?
   confrontStrings: []
 --- !u!114 &1177756815
 MonoBehaviour:
@@ -8440,7 +8434,7 @@ MonoBehaviour:
   invulnerableTime: 1
   hp: 20
   maxHP: 20
-  aggression: 50
+  aggression: 0
   maxAggression: 50
   damage: 1
   invulnerable: 0

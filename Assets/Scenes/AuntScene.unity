@@ -1481,6 +1481,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &304571332
@@ -4019,6 +4020,8 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
+  confrontButtonShader: {fileID: 0}
+  defaultButton: {fileID: 0}
   confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
 --- !u!4 &1032452449
 Transform:
@@ -4650,7 +4653,7 @@ MonoBehaviour:
   - I am worthy of more respect than this
   - I am worthy of love just for being who I am
   - I deserve fulfilling relationships
-  - I belong, and I am good enough
+  - I belong and I am good enough
   - "This isn\u2019t too much to ask for"
   - I will stand up for myself
   - I can do this
@@ -6963,7 +6966,7 @@ MonoBehaviour:
   invulnerableTime: 1
   hp: 20
   maxHP: 20
-  aggression: 50
+  aggression: 0
   maxAggression: 50
   damage: 1
   invulnerable: 0

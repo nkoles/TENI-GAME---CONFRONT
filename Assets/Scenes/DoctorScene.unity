@@ -1238,7 +1238,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  textspeed: 0
+  textspeed: 0.03
   anim: {fileID: 648594055}
   choices: {fileID: 0}
   enemy: {fileID: 195812178}
@@ -1480,6 +1480,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &304571332
@@ -4018,6 +4019,8 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
+  confrontButtonShader: {fileID: 0}
+  defaultButton: {fileID: 0}
   confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
 --- !u!4 &1032452449
 Transform:
@@ -4638,24 +4641,24 @@ MonoBehaviour:
   - "The gender of my friends doesn\u2019t matter. "
   - 'Are some of these questions really necessary? '
   - "I\u2019ve talked about this many times by now, I know who I am. "
-  - "I wear what I\u2019m comfortable with, that doesn\u2019t affect my identity. "
+  - "I wear what I\u2019m comfortable with, that doesn\u2019t determine my identity. "
   - "Why should I have to prove to you that I\u2019m trans? "
   - 'These questions are just invasive and insulting. '
   - "Gender dysphoria is a feeling, not a condition, you can\u2019t diagnose that. "
   - "Other countries use the informed consent system, why doesn\u2019t Ireland? "
   - "You shouldn\u2019t get to judge whether I\u2019m trans enough to go on hrt. "
   healingStrings:
-  - "I\u2019ve made it this far and I won\u2019t stop now"
-  - "My value doesn\u2019t depend on how I look"
+  - I made it this far and I wont stop now
+  - My value doesnt depend on how I look
   - My worth is not determined by my identity
-  - "I\u2019m proud of how far I\u2019ve come"
+  - I am proud of how far Ive come
   - I can make it through this
   - I am the one in charge of my life
   - I am strong
   - Remember to breathe
   - I have confidence in myself
   - I am resilient in the face of any challenge
-  - "I am focusing on what\u2019s most important for me"
+  - I am focusing on whats most important for me
   - I view my body without judgement
   passiveStrings:
   - Growing up, what was the gender ratio of friends you had?
@@ -6963,7 +6966,7 @@ MonoBehaviour:
   invulnerableTime: 1
   hp: 20
   maxHP: 20
-  aggression: 50
+  aggression: 0
   maxAggression: 50
   damage: 1
   invulnerable: 0
