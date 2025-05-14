@@ -110,6 +110,8 @@ public class TextControls : MonoBehaviour
             {
                 lastHealedHP = /*(GameplayManager.Instance.enemy.phase * 5)*/ 10 + 0;
 
+                GameplayManager.Instance.UpdatePlayerHealth(-lastHealedHP);
+
                 break;
             }
 
