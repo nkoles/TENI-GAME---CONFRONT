@@ -1480,6 +1480,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &304571332
@@ -4010,6 +4011,7 @@ MonoBehaviour:
   sequence: {fileID: 1177756812}
   dialogue: {fileID: 271116215}
   audioManager: {fileID: 304571331}
+  tutorial: {fileID: 0}
   logicAmount: 0
   emotionAmount: 0
   passiveAmount: 0
@@ -4018,7 +4020,11 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
+  confrontButtonShader: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  defaultButton: {fileID: 0}
   confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  isWin: 0
+  isLose: 0
 --- !u!4 &1032452449
 Transform:
   m_ObjectHideFlags: 0
@@ -5496,6 +5502,9 @@ MonoBehaviour:
   slip: {fileID: 11400000, guid: 92e88fca97e2fc641bd41e8e8b2474ba, type: 2}
   stick: {fileID: 11400000, guid: 4ab40f55755e8434a9860576a4f72465, type: 2}
   damage: {fileID: 11400000, guid: e7d49890d0902d647ac4df90d545d6f4, type: 2}
+  isDamaged: 0
+  damageInvulTime: 3
+  tempTimer: 0
 --- !u!19719996 &1441420800
 TilemapCollider2D:
   m_ObjectHideFlags: 0

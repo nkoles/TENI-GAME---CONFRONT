@@ -54,8 +54,11 @@ public class TransitionShader : MonoBehaviour
         if(!isFadingOut)
         {
             //AudioManager.instance.PlaySFX("Transition");
+            //AudioManager.instance.pitchDown = false;
+
             for (float i = 0; i < 1; i += Time.deltaTime / fadeTime)
             {
+                //StartCoroutine(AudioManager.instance.FadeOut());
                 transitionMaterial.SetFloat("_DisolveFactor", i);
 
                 if (i + Time.deltaTime / fadeTime > 1)
@@ -69,7 +72,8 @@ public class TransitionShader : MonoBehaviour
         } else
         {
             //AudioManager.instance.PlaySFX("Transition");
-            StartCoroutine(AudioManager.instance.FadeOut());
+            //StartCoroutine(AudioManager.instance.FadeOut());
+            //AudioManager.instance.pitchDown = true;
             for (float i = 1; i > -0.01; i -= Time.deltaTime / fadeTime)
             {
                 transitionMaterial.SetFloat("_DisolveFactor", i);

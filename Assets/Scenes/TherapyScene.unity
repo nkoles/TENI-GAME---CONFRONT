@@ -793,6 +793,7 @@ MonoBehaviour:
   hp: 50
   maxHP: 50
   dialogueText: []
+  parkObstacles: []
   schoolObstacles:
   - {fileID: 5570629096200125083, guid: ff36b68660d64da42bb9679e485118d8, type: 3}
   - {fileID: 6103278566705476294, guid: 91c721c195b7a784f8a2ccc91a273a16, type: 3}
@@ -814,49 +815,7 @@ MonoBehaviour:
   - {fileID: 6175128226606027744, guid: b1abed9f5882d54459cd6f500dd79636, type: 3}
   - {fileID: 6432817693181164028, guid: 69d5d57343d59d7438cab1b045649461, type: 3}
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
-  ParkAttackingWords:
-  - "I don\u2019t have to \u201Cact trans\u201D to be trans."
-  - "Just because I\u2019m trans, that doesn\u2019t mean my sexuality changed as
-    well."
-  - "I\u2019d rather not answer that."
-  - "I\u2019m not gonna become a different person."
-  - "For future reference, that\u2019s invasive."
-  - "If that\u2019s weird to say to cis people, then don\u2019t say it to me either."
-  - "What I do with my body isn\u2019t anyone else\u2019s business."
-  - "I\u2019m still me."
-  SchoolAttackingWords:
-  - 'It''s not hard. '
-  - 'Can you help me? '
-  - 'It''s just a uniform. '
-  - 'My friends support me. '
-  - 'It''s just a name. '
-  - 'I''m serious. '
-  - I would never joke about something like this.
-  - This name is better.
-  - I hate this uniform.
-  - "You just don\u2019t want to try."
-  - Do you hate having a trans student that much?
-  HomeAttackingWords:
-  - "I\u2019m still the same person."
-  - "There were signs, they just weren\u2019t obvious."
-  - I use this name with my friends.
-  - "People change as they grow up, and you have to accept that, even if it\u2019s
-    hard."
-  - "I\u2019ve thought this through more than you think."
-  - "My identity shouldn\u2019t embarrass you."
-  - "Just because you don\u2019t get it, that doesn\u2019t mean it\u2019s not important."
-  - "Trans people have existed all throughout history, this isn\u2019t just \u201Cmy
-    generation\u201D."
-  ClinicAttackingWords:
-  - "The gender of my friends doesn\u2019t matter."
-  - Are some of these questions really necessary?
-  - "I\u2019ve talked about this many times by now, I know who I am."
-  - "I wear what I\u2019m comfortable with, that doesn\u2019t affect my identity."
-  - "Why should I have to prove to you that I\u2019m trans?"
-  - These questions are just invasive and insulting.
-  - "Gender dysphoria is a feeling, not a condition, you can\u2019t diagnose that."
-  - "Other countries use the informed consent system, why doesn\u2019t Ireland?"
-  - "You shouldn\u2019t get to judge whether I\u2019m trans enough to go on hrt."
+  AttackingWords: []
   lateralSpawnPoints:
   - {x: 0, y: 10, z: 0}
   - {x: 10, y: 0, z: 0}
@@ -864,6 +823,7 @@ MonoBehaviour:
   - {x: -10, y: 0, z: 0}
   enemyWords: []
   phase: 4
+  timeMod: 0
   arrow: {fileID: 1108795952560434591, guid: a60dcb50627811d47877fcc841573877, type: 3}
 --- !u!4 &195812179
 Transform:
@@ -1490,6 +1450,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d3a215e751c19d5438f81744a8036e20, type: 3}
   musicSource: {fileID: 979977658}
   sfxSource: {fileID: 1437940377}
+  musicVolume: 0
+  sfxVolume: 0
+  musicMaxVolume: 0
+  sfxMaxVolume: 0
+  musicMinVolume: 0
+  sfxMinVolume: 0
+  fadeOutDelay: 0
+  fadeInDelay: 0
+  fadeOut: 0
+  fadeIn: 0
   friendStart: 0
   friendEnd: 0
   principalStart: 0
@@ -1501,6 +1471,7 @@ MonoBehaviour:
   doctorStart: 0
   doctorGoodEnd: 0
   doctorBadEnd: 0
+  mainTheme: 0
   therapistEnd: 0
   battleEnd: 0
 --- !u!4 &304571332
@@ -3193,6 +3164,10 @@ MonoBehaviour:
   - {fileID: 2084315889}
   - {fileID: 1738023403}
   - {fileID: 1351301462}
+  parkSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   schoolSprites:
   - {fileID: 21300000, guid: 7e3b83c3b3e4af1489cdac5e6e40bbfd, type: 3}
   - {fileID: 21300000, guid: 282f10ce004305a488f55bad660b05a7, type: 3}
@@ -3214,6 +3189,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4ee9719155a0671479d71b5c6c93bfb0, type: 3}
   - {fileID: 21300000, guid: db64d737ef700cf40b177d75bcc0bdb7, type: 3}
   - {fileID: 21300000, guid: 29760b9af15dc284dac727c47d5b8fc3, type: 3}
+  parkText:
+  - 
+  - 
+  - 
   schoolText:
   - Pencil
   - Eraser
@@ -3256,6 +3235,10 @@ MonoBehaviour:
     behind it. The trail deals no damage, but the tape roller deals medium damage.
   - Labels target the player, moving towards them with different movement patterns.
     Deals low damage.
+  parkDescription:
+  - 
+  - 
+  - 
   weapons: 000000000000000000000000
   description: {fileID: 273629255}
   selectedWeapon: 0
@@ -4028,6 +4011,7 @@ MonoBehaviour:
   sequence: {fileID: 1177756812}
   dialogue: {fileID: 271116215}
   audioManager: {fileID: 304571331}
+  tutorial: {fileID: 0}
   logicAmount: 0
   emotionAmount: 0
   passiveAmount: 0
@@ -4036,7 +4020,11 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
+  confrontButtonShader: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  defaultButton: {fileID: 0}
   confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
+  isWin: 0
+  isLose: 0
 --- !u!4 &1032452449
 Transform:
   m_ObjectHideFlags: 0
@@ -5481,6 +5469,9 @@ MonoBehaviour:
   slip: {fileID: 11400000, guid: 92e88fca97e2fc641bd41e8e8b2474ba, type: 2}
   stick: {fileID: 11400000, guid: 4ab40f55755e8434a9860576a4f72465, type: 2}
   damage: {fileID: 11400000, guid: e7d49890d0902d647ac4df90d545d6f4, type: 2}
+  isDamaged: 0
+  damageInvulTime: 3
+  tempTimer: 0
 --- !u!19719996 &1441420800
 TilemapCollider2D:
   m_ObjectHideFlags: 0

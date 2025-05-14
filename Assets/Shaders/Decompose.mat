@@ -78,11 +78,11 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DecomposingFactor: -1
+    - _DecomposingFactor: -0.8583099
     - _DetailNormalMapScale: 1
     - _DitherSize: 1
     - _DstBlend: 0
-    - _EdgeWidth: 3.5
+    - _EdgeWidth: 30
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1

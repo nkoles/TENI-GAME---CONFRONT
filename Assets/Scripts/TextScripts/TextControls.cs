@@ -39,6 +39,8 @@ public class TextControls : MonoBehaviour
 
     public IEnumerator Affirm(string text, float time)
     {
+        //AudioManager.instance.pitchDown = true;
+
         yield return TransitionShader.instance.Fade(false, 3f, TransitionShader.instance.affirmationTransition);
 
         print("entered");
@@ -140,8 +142,12 @@ public class TextControls : MonoBehaviour
 
             timePassed += Time.deltaTime;
 
+            //AudioManager.instance.pitchDown = false;
+
             yield return null;
         }
+
+        //AudioManager.instance.pitchDown = false;
 
         print("yippee");
 

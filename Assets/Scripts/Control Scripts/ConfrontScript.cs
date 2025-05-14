@@ -255,7 +255,10 @@ public class ConfrontScript : MonoBehaviour
             {
                 foreach(GameObject thing in enemy.parkObstacles)
                 {
-                    objects.Add(thing);
+                    if(thing != null)
+                    {
+                        objects.Add(thing);
+                    }
                 }
 
                 for(int i = 0; i < buttons.Length; i++)

@@ -9,7 +9,9 @@ public class TutorialManager : MonoBehaviour
     public Button[] buttons;
     public TMP_Text text;
     public string[] descriptions;
-    int tutorialAmount;
+    public GameObject battleUI;
+    private int tutorialAmount;
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,7 @@ public class TutorialManager : MonoBehaviour
         if(tutorialAmount == descriptions.Length)
         {
             GameplayManager.Instance.Win();
+            battleUI.SetActive(true);
         }
     }
 }
