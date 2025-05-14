@@ -12,8 +12,35 @@ public class SceneLoadingManager : MonoBehaviour
         instance = this;
     }
 
+    public void PlayMusic(string music)
+    {
+        AudioManager.instance.PlayMusic("music");
+    }
+
     public void LoadScene(int buildIndex)
     {
+        if(buildIndex == 0)
+        {
+            AudioManager.instance.principalBadEnd = false;
+            AudioManager.instance.auntBadEnd = false;
+            AudioManager.instance.doctorBadEnd = false;
+            AudioManager.instance.battleEnd = false;
+            AudioManager.instance.therapistEnd = false;
+            //AudioManager.instance.fadeIn = true;
+            AudioManager.instance.mainTheme = true;
+
+            AudioManager.instance.PlayMusic("Main Theme");
+            AudioManager.instance.mainTheme = false;
+        }
+        if(buildIndex == 5)
+        {
+            AudioManager.instance.principalBadEnd = false;
+            AudioManager.instance.auntBadEnd = false;
+            AudioManager.instance.doctorBadEnd = false;
+            AudioManager.instance.battleEnd = false;
+            AudioManager.instance.therapistEnd = true;
+            //AudioManager.instance.fadeIn = true;
+        }
         StartCoroutine(SwitchScene(buildIndex));
     }
     public void openLink(string link)

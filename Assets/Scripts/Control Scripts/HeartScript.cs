@@ -65,11 +65,11 @@ public class HeartScript : MonoBehaviour
         {*/
             for(int j = 0; j < 6; j++)
             {
-                sr.color = new Color(255, 255, 255, 0);
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
                 
                 yield return new WaitForSeconds(.125f);
 
-                sr.color = color;
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 255);
                 
                 yield return new WaitForSeconds(.125f);
             }
