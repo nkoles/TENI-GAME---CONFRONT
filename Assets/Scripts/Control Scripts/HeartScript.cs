@@ -78,24 +78,22 @@ public class HeartScript : MonoBehaviour
 
     public IEnumerator Stun(float time)
     {
-        if(stun)
-        {
-            stunTime += time;
-        }
-        else
+        if(!stun)
         {
             rb.velocity = new Vector3(0, 0, 0);
             stun = true;
-            stunTime = time;
+            //stunTime = time;
 
-            while(stunTime > 0)
+            /*while(stunTime > 0)
             {
-                float currentStunTime = stunTime;
+                //float currentStunTime = stunTime;
 
-                yield return new WaitForSeconds(stunTime);
+                yield return new WaitForSeconds(stunTimetime);
 
-                stunTime -= currentStunTime;
-            }
+                //stunTime -= currentStunTime;
+            }*/
+
+            yield return new WaitForSeconds(/*stunTime*/time);
 
             stun = false;
         }
