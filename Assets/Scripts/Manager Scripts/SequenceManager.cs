@@ -109,7 +109,7 @@ public class SequenceManager : MonoBehaviour
                 int phase = EnemyManager.instance.phase;
                 int buttonClicked = GameplayManager.Instance.emotionAmount;
 
-                float typingTime = typingTime = 20;
+                float typingTime = typingTime = 30;
                 int dialogueID = buttonClicked;
 
 
@@ -128,7 +128,8 @@ public class SequenceManager : MonoBehaviour
 
                 action = Confront(30);
 
-                //GameplayManager.Instance.confrontAmount++;
+                GameplayManager.Instance.UpdateAggression(-GameplayManager.Instance.player.maxAggression);
+
                 break;
             case Actions.BossAction:
 
@@ -254,25 +255,15 @@ public class SequenceManager : MonoBehaviour
         {
             if (lastAction != Actions.BossAction && lastAction != Actions.Confront)
             {
-                //bossUI.SetActive(false);
+                bossUI.SetActive(false);
 
-                if (enemy.hp > 0)
+                foreach (var t in battleUIObjects.GetComponentsInChildren<Transform>())
                 {
-                    bossUI.SetActive(false);
-
-                    foreach (var t in battleUIObjects.GetComponentsInChildren<Transform>())
-                    {
-                        t.gameObject.SetActive(false);
-                    }
-
-                    SetupAction((int)Actions.BossAction);
-                    bossAttacking = true;
+                    t.gameObject.SetActive(false);
                 }
-                else
-                {
-                    bossUI.SetActive(true);
-                    bossAttacking = false;
-                }
+
+                SetupAction((int)Actions.BossAction);
+                bossAttacking = true;
             }
             else
             {

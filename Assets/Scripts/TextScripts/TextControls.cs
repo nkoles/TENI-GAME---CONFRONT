@@ -99,7 +99,7 @@ public class TextControls : MonoBehaviour
 
             if (currentCharIdx == parsedString.Length)
             {
-                lastHealedHP = (int)(time - timePassed);
+                lastHealedHP = /*(GameplayManager.Instance.enemy.phase * 5)*/ 10 + (int)(time - timePassed);
 
                 GameplayManager.Instance.UpdatePlayerHealth(-lastHealedHP);
 
@@ -108,7 +108,7 @@ public class TextControls : MonoBehaviour
 
             if (timePassed > time)
             {
-                lastHealedHP = 0;
+                lastHealedHP = /*(GameplayManager.Instance.enemy.phase * 5)*/ 10 + 0;
 
                 break;
             }
