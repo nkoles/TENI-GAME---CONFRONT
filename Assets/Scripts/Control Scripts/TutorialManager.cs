@@ -56,7 +56,7 @@ public class TutorialManager : MonoBehaviour
         if (tutorialAmount == descriptions.Length)
         {
             GameplayManager.Instance.isWin = true;
-            GameplayManager.Instance.Win();
+            //GameplayManager.Instance.Win();
         }
     }
 }

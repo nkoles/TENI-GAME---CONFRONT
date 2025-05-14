@@ -220,7 +220,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
-                        GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
+                        GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 1.5f, Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
@@ -228,7 +228,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
-                        GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
+                        GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 1.5f, Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
@@ -236,7 +236,7 @@ public class EnemyManager : MonoBehaviour
                     {
                         float randX = Random.Range(-3.0f, 3.0f);
                         float randY = Random.Range((-3.0f + Mathf.Abs(randX)), 3.0f - Mathf.Abs(randX));
-                        GameObject temp = Instantiate(objects[randObject], new Vector3(randX, randY, 0), Quaternion.Euler(0, 0, 0));
+                        GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 1.5f, Quaternion.Euler(0, 0, 0));
                         Destroy(temp, time);
                         objects.Remove(objects[randObject]);
                     }
@@ -422,12 +422,17 @@ public class EnemyManager : MonoBehaviour
                     
                     int randObject = Random.Range(0, objects.Count);
                     GameObject temp = Instantiate(objects[randObject], Random.insideUnitCircle.normalized * 5, Quaternion.Euler(0, 0, Random.Range(-180, 180)));
-                    Destroy(temp, time);
+                    Destroy(temp, time/3);
                     objects.Remove(objects[randObject]);
                 }
 
                 break;
             }
+        }
+
+        if(phase == 0)
+        {
+            time = time/3;
         }
 
         for(int i = 0; i < time; i++)

@@ -144,7 +144,7 @@ public class SequenceManager : MonoBehaviour
         {
             GameplayManager.Instance.DodgeTutorial(30, 1);
         }
-        else
+        else if( _actionType != 3)
         {
             StartCoroutine(StartAction(action , actionType));
         }
