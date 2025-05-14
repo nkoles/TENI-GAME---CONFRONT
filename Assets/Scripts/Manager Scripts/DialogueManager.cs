@@ -309,7 +309,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 else if (GameplayManager.Instance.isLose == true)
                 {
-                    SceneLoadingManager.instance.LoadScene(6);
+                    SceneLoadingManager.instance.LoadScene(7);
                 }
             }
             else
