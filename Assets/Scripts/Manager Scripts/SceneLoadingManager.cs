@@ -9,19 +9,13 @@ public class SceneLoadingManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(instance.gameObject);
-
-        DontDestroyOnLoad(this);
+        instance = this;
     }
 
     public void LoadScene(int buildIndex)
     {
         StartCoroutine(SwitchScene(buildIndex));
     }
-
     public void openLink(string link)
     {
         Application.OpenURL(link);
@@ -42,7 +36,7 @@ public class SceneLoadingManager : MonoBehaviour
         LoadScene(SceneManager.GetSceneByName(sceneName).buildIndex);
     }
 
-    private IEnumerator SwitchScene(int buildIndex)
+    static private IEnumerator SwitchScene(int buildIndex)
     {
         yield return TransitionShader.instance.Fade(false, 5, TransitionShader.instance._transitionShader);
 

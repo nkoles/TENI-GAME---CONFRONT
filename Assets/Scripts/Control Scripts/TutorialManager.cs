@@ -50,10 +50,11 @@ public class TutorialManager : MonoBehaviour
         text.gameObject.SetActive(false);
         tutorialAmount++;
 
-        if(tutorialAmount == descriptions.Length)
+        foreach (var b in battleUI)
+            b.SetActive(true);
+
+        if (tutorialAmount == descriptions.Length)
         {
-            foreach(var b in battleUI)
-                b.SetActive(true);
             GameplayManager.Instance.isWin = true;
             GameplayManager.Instance.Win();
         }

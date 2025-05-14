@@ -1717,8 +1717,11 @@ MonoBehaviour:
   sfxMinVolume: 0
   fadeOutDelay: 5
   fadeInDelay: 5
+  pitchChange: 0
   fadeOut: 0
   fadeIn: 1
+  pitchUp: 0
+  pitchDown: 0
   friendStart: 0
   friendEnd: 0
   principalStart: 0
@@ -3095,7 +3098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362902505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5633cb15f2f723141822bf1a3941ea78, type: 3}
   m_Name: 
