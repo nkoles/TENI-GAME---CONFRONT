@@ -3198,7 +3198,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.534
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -7812,13 +7812,18 @@ MonoBehaviour:
   buttonDescriptionTMProTarget: {fileID: 1839031824}
   textSpeed: 0.3
   buttonDescription:
-  - Deal damage to your opponent by using the arrowkeys to form your sentences
-  - Build up aggression by clicking on your opponent's sentences, but risk taking
-    damage
-  - Heal damage taken by typing out a personal affirmation to yourself
-  - Once you have max aggression, confront your opponent to attack, heal, and charge
-    up more aggression all at the same time
-  buttons: []
+  - Destroy your opponent's Willpower uing your opponent by using the arrowkeys to
+    form your sentences, But risk losing willpower if you mess up.
+  - Build up aggression by clicking on your opponent's sentences, but risk losing
+    willpower
+  - Regain lost willpower by typing out a personal affirmation to yourself
+  - Speak your mind, and Disarm your opponents argument by removing one of their
+    available weapons permanently.
+  buttons:
+  - {fileID: 96080439}
+  - {fileID: 513961454}
+  - {fileID: 1996105911}
+  - {fileID: 98410227}
   initPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1405053123
 GameObject:

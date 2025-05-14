@@ -5245,7 +5245,7 @@ MonoBehaviour:
   buttonDescriptionTMProTarget: {fileID: 1839031824}
   textSpeed: 0.3
   buttonDescription:
-  - Destroy your opponents Willpower uing your opponent by using the arrowkeys to
+  - Destroy your opponent's Willpower uing your opponent by using the arrowkeys to
     form your sentences, But risk losing willpower if you mess up.
   - Build up aggression by clicking on your opponent's sentences, but risk losing
     willpower
