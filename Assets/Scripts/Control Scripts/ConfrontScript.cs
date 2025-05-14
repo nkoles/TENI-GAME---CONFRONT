@@ -5,11 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ConfrontScript : MonoBehaviour
 {
     public EnemyManager enemy;
-    public Button[] buttons;
+    public UnityEngine.UI.Button[] buttons;
     public Image[] images;
     public TMP_Text[] text;
     public Sprite[] parkSprites = new Sprite[3];
@@ -53,8 +54,14 @@ public class ConfrontScript : MonoBehaviour
 
         if(timesClicked != 0)
         {
-            Destroy(inputFields[timesClicked-1]);
+            inputFields[timesClicked - 1].SetActive(false);
+            //inputFields.GetComponent<TMP_InputField>().ActivateInputField();
+            TMP_InputField currentField = inputFields[timesClicked].GetComponent<TMP_InputField>();
+            currentField.text = "";
+            currentField.DeactivateInputField();
+
         }
+        inputFields[timesClicked].GetComponent<TMP_InputField>().ActivateInputField();
     }
 
     public void OnClick()
