@@ -18,7 +18,7 @@ public class ConfrontScript : MonoBehaviour
     public string[] parkText = new string[3];
     public string[] schoolText, homeText, clinicText, schoolDescription, homeDescription, clinicDescription;
     public string[] parkDescription = new string[3];
-    public GameObject[] inputFields;
+    public GameObject inputField;
     public int[] weapons = new int[3];
     public TMP_Text description;
     public int selectedWeapon, hoveredButton, timesClicked;
@@ -49,19 +49,12 @@ public class ConfrontScript : MonoBehaviour
 
     public void OnConfront()
     {
+        description.gameObject.SetActive(false);
 
-        inputFields[timesClicked].SetActive(true);
-
-        if(timesClicked != 0)
-        {
-            inputFields[timesClicked - 1].SetActive(false);
-            //inputFields.GetComponent<TMP_InputField>().ActivateInputField();
-            TMP_InputField currentField = inputFields[timesClicked].GetComponent<TMP_InputField>();
-            currentField.text = "";
-            currentField.DeactivateInputField();
-
-        }
-        inputFields[timesClicked].GetComponent<TMP_InputField>().ActivateInputField();
+        TMP_InputField _inputField = inputField.GetComponent<TMP_InputField>();
+        _inputField.ActivateInputField();
+        _inputField.text = "";
+        inputField.SetActive(true);
     }
 
     public void OnClick()
@@ -69,7 +62,12 @@ public class ConfrontScript : MonoBehaviour
 
         timesClicked++;
 
-        switch(enemy.phase)
+        if (timesClicked > 3)
+            GameplayManager.Instance.isWin = true;
+
+        GameplayManager.Instance.UpdateAggression(-PlayerManager.instance.maxAggression);
+
+        switch (enemy.phase)
         {
             case 1:
             {

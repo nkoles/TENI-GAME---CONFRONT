@@ -11,7 +11,14 @@ public class PlayerManager : MonoBehaviour
     public bool invulnerable;
     
     public GameObject heart, diamond, spade, club;
-    
+
+    static public PlayerManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

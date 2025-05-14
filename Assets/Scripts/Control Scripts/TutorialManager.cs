@@ -9,7 +9,7 @@ public class TutorialManager : MonoBehaviour
     public Button[] buttons;
     public TMP_Text text;
     public string[] descriptions;
-    public GameObject battleUI;
+    public GameObject[] battleUI;
     private int tutorialAmount;
 
 
@@ -52,7 +52,8 @@ public class TutorialManager : MonoBehaviour
 
         if(tutorialAmount == descriptions.Length)
         {
-            battleUI.SetActive(true);
+            foreach(var b in battleUI)
+                b.SetActive(true);
             GameplayManager.Instance.isWin = true;
             GameplayManager.Instance.Win();
         }

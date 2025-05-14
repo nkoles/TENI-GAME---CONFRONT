@@ -2229,8 +2229,11 @@ MonoBehaviour:
   sfxMinVolume: 0
   fadeOutDelay: 3
   fadeInDelay: 3
+  pitchChange: 0
   fadeOut: 0
   fadeIn: 0
+  pitchUp: 0
+  pitchDown: 0
   friendStart: 0
   friendEnd: 0
   principalStart: 0
@@ -5058,10 +5061,12 @@ MonoBehaviour:
   - Moves in a straight line, but rotates. Causes Stun effect.
   - Moves in a spiral shaped line forwards. Are solid
   - Moves in a zig-zag pattern forwards. Are bouncy
+  inputField: {fileID: 0}
   weapons: 000000000000000000000000
   description: {fileID: 273629255}
   selectedWeapon: 0
   hoveredButton: 0
+  timesClicked: 0
 --- !u!114 &857373494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7527,6 +7532,10 @@ MonoBehaviour:
   - 'WASD: DODGE the other characters attacks by maneuvering around the space, to
     avoid losing WILLPOWER. Generally, obstacles with WHITE reduce your willpower.
     Some obstacles have special effects.'
+  battleUI:
+  - {fileID: 686119535}
+  - {fileID: 271116213}
+  - {fileID: 1839031822}
 --- !u!114 &1356542366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7809,6 +7818,7 @@ MonoBehaviour:
   - Heal damage taken by typing out a personal affirmation to yourself
   - Once you have max aggression, confront your opponent to attack, heal, and charge
     up more aggression all at the same time
+  buttons: []
   initPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1405053123
 GameObject:

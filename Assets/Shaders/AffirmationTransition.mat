@@ -91,15 +91,15 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DisolveFactor: 0.50030243
+    - _DisolveFactor: -0.01
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseSpeed: 0.1
-    - _NoiseStrength: 0.852
+    - _NoiseSpeed: 0.01
+    - _NoiseStrength: 0.6
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0

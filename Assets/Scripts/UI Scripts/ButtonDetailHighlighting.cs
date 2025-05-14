@@ -20,6 +20,8 @@ public class ButtonDetailHighlighting : MonoBehaviour
     [Header("0 = Attack, 1 = Passive, 2 = Affirm, 3 = Confront")]
     public string[] buttonDescription;
 
+    public Button[] buttons;
+
     public Vector3 initPos;
 
     public void Awake()
@@ -29,7 +31,10 @@ public class ButtonDetailHighlighting : MonoBehaviour
             instance = this;
         }
 
+        buttons = GetComponentsInChildren<Button>();
+
         initPos = transform.position;
+
         OnChoosingAction();
     }
 
@@ -61,6 +66,11 @@ public class ButtonDetailHighlighting : MonoBehaviour
 
     public void OnChoosingAction()
     {
+        foreach (Button button in buttons)
+        {
+            button.interactable = true;
+        }
+
         buttonDescriptionTMProTarget.gameObject.SetActive(true);
         buttonDescriptionTMProTarget.text = "";
 
@@ -72,6 +82,11 @@ public class ButtonDetailHighlighting : MonoBehaviour
     {
         ButtonSelected.RemoveListener(OnButtonSelected);
         ButtonDeselected.RemoveListener(OnButtonDeselected);
+
+        foreach(Button button in buttons)
+        {
+            button.interactable = false;
+        }
 
         //StartCoroutine(MoveDecisionsAway(true));
     }

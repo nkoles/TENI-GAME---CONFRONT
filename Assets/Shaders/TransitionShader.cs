@@ -23,6 +23,7 @@ public class TransitionShader : MonoBehaviour
 
         //_transitionShader = GetComponent<Image>().material;
 
+        affirmationTransition.SetFloat("_DisolveFactor", -0.01f);
         _transitionShader.SetFloat("_DisolveFactor", 1);
     }
 

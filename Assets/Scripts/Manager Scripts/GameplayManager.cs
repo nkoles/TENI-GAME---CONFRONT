@@ -171,12 +171,15 @@ public class GameplayManager : MonoBehaviour
             {
                 player.hp = player.maxHP;
             }
+            else if(amount > 0)
+            {
+                player.StartCoroutine(player.Invulnerable(amount));
+            }
 
             if(amount > 0)
             {
-                player.StartCoroutine(player.Invulnerable(amount));
                 PostProcessingManager.instance.StopAllCoroutines();
-                StartCoroutine(PostProcessingManager.instance.TakeDamagePPEffect(.25f, 1.5f, 0f));
+                StartCoroutine(PostProcessingManager.instance.TakeDamagePPEffect(.25f, 3f, 0f));
             }
 
             HealthManager.instance.UpdateUIHealth(true);
@@ -208,14 +211,9 @@ public class GameplayManager : MonoBehaviour
         {
             player.aggression = player.maxAggression;
         }
-        else if(player.aggression < 0)
-        {
+
+        if (player.aggression < 0)
             player.aggression = 0;
-        }
-        else if(amount < 0)
-        {
-            player.aggression = 0;
-        }
 
         confrontButtonShader.SetFloat("_Strength", (float)player.aggression / (float)player.maxAggression);
 
