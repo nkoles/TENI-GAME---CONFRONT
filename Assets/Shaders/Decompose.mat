@@ -78,7 +78,7 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _DecomposingFactor: -1
+    - _DecomposingFactor: -0.8583099
     - _DetailNormalMapScale: 1
     - _DitherSize: 1
     - _DstBlend: 0
@@ -91,7 +91,7 @@ Material:
     - _Mode: 0
     - _NoiseAmount: 25.5
     - _NoiseScale: 28.6
-    - _NoiseStrength: -0.7
+    - _NoiseStrength: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0

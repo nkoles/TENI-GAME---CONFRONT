@@ -37,6 +37,11 @@ public class SceneLoadingManager : MonoBehaviour
         LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void LoadScene(string sceneName)
+    {
+        LoadScene(SceneManager.GetSceneByName(sceneName).buildIndex);
+    }
+
     private IEnumerator SwitchScene(int buildIndex)
     {
         yield return TransitionShader.instance.Fade(false, 5, TransitionShader.instance._transitionShader);

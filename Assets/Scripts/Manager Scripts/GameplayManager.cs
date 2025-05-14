@@ -165,7 +165,7 @@ public class GameplayManager : MonoBehaviour
 
             if(player.hp <= 0)
             {
-                Lose();
+                isLose = true;
             }
             else if(player.hp > player.maxHP)
             {
@@ -178,6 +178,7 @@ public class GameplayManager : MonoBehaviour
 
             if(amount > 0)
             {
+                PostProcessingManager.instance.StopAllCoroutines();
                 StartCoroutine(PostProcessingManager.instance.TakeDamagePPEffect(.25f, 3f, 0f));
             }
 
@@ -192,7 +193,7 @@ public class GameplayManager : MonoBehaviour
 
         if((enemy.hp == 0) && (sequence.bossAttacking == false))
         {
-            Win();
+            isWin = true;
         }
         else if(enemy.hp > enemy.maxHP)
         {
@@ -211,20 +212,25 @@ public class GameplayManager : MonoBehaviour
             player.aggression = player.maxAggression;
         }
 
-        confrontButtonShader.SetFloat("_Strength", player.aggression / player.maxAggression);
+        confrontButtonShader.SetFloat("_Strength", (float)player.aggression / (float)player.maxAggression);
 
-        if(player.aggression == player.maxAggression)
-        {
-            confrontButton.GetComponent<Image>().material = confrontButtonShader;
-        }
-        else
-        {
-            confrontButton.GetComponent<Image>().material = defaultButton;
-        }
+        //if (player.aggression == player.maxAggression)
+        //{
+        //    confrontButton.GetComponent<Image>().material = confrontButtonShader;
+        //}
+        //else
+        //{
+        //    confrontButton.GetComponent<Image>().material = defaultButton;
+        //}
     }
+
+    public bool isWin;
+    public bool isLose;
 
     public void Win()
     {
+        ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
+
         SetupSequence.isWon = true;
         if (enemy.phase == 0)
         {
@@ -262,6 +268,8 @@ public class GameplayManager : MonoBehaviour
 
     public void Lose()
     {
+        ButtonDetailHighlighting.instance.MoveButtonOutOfView(false);
+
         SetupSequence.isWon = false;
         if (enemy.phase == 1)
         {

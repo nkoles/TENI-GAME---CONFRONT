@@ -99,7 +99,7 @@ public class SequenceManager : MonoBehaviour
 
                 action = textControls.Attack(randomString.ToArray(), textControls.spawnBox, Screen.width/2, 3, 20, speed);
 
-                //GameplayManager.Instance.passiveAmount++;
+                GameplayManager.Instance.passiveAmount++;
                 break;
             case Actions.Affirm:
                 print("Affirm Action");
@@ -121,7 +121,7 @@ public class SequenceManager : MonoBehaviour
 
                 action = textControls.Affirm(dialogueRepo.healingStrings[dialogueID], typingTime);
 
-                //GameplayManager.Instance.emotionAmount++;
+                GameplayManager.Instance.emotionAmount++;
                 break;
             case Actions.Confront:
                 print("Confront Action");
@@ -175,11 +175,6 @@ public class SequenceManager : MonoBehaviour
         //textControls.aggressionAmount /= 2;
     }
 
-    float Remap(float s, float a1, float a2, float b1, float b2)
-    {
-        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
-    }
-
     public void SettupConfront()
     {
         lastAction = Actions.Confront;
@@ -195,16 +190,14 @@ public class SequenceManager : MonoBehaviour
         switch (action)
         {
             case Actions.Attack:
-                resultText = "Dealt: " + GameplayManager.Instance.damageDealt +  " Damage" + 
-                "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" + 
+                resultText = "Dealt: " + GameplayManager.Instance.damageDealt + " Damage" +
+                "\nTook: " + GameplayManager.Instance.damageTaken + " Damage" +
                 "\nPress any key to Continue";
-
-                BossShader.instance.StartCoroutine(BossShader.instance.LerpDissolve(Remap(EnemyManager.instance.hp / EnemyManager.instance.maxHP, 0, 1, -1, 1), 2f));
 
                 break;
             case Actions.Passive:
                 resultText = "Recieved: " + textControls.aggressionGained + " Aggression" +
-                "\nTook: " + textControls.damageTaken + " Damage" + 
+                "\nTook: " + textControls.damageTaken + " Damage" +
                 "\nPress any key to Continue";
                 break;
             case Actions.Affirm:
@@ -216,7 +209,7 @@ public class SequenceManager : MonoBehaviour
                 break;
             case Actions.BossAction:
                 bossAttacking = false;
-                resultText = "Took " + GameplayManager.Instance.damageTaken + " damage." + 
+                resultText = "Took " + GameplayManager.Instance.damageTaken + " damage." +
                 "\nPress any key to Continue";
                 break;
         }
@@ -238,53 +231,69 @@ public class SequenceManager : MonoBehaviour
         {
             t.gameObject.SetActive(true);
         }
-
-        yield return buttonController.TypeText(.3f, text, helperText);
-        yield return WaitForInput();
-
-        yield return new WaitForSeconds(.5f);
-
-        if(lastAction != Actions.BossAction && lastAction != Actions.Confront)
+        
+        if(text != "")
         {
-            //bossUI.SetActive(false);
-
-            if(enemy.hp > 0)
-            {
-                bossUI.SetActive(false);
-
-                foreach (var t in battleUIObjects.GetComponentsInChildren<Transform>())
-                {
-                    t.gameObject.SetActive(false);
-                }
-
-                SetupAction((int)Actions.BossAction);
-                bossAttacking = true;
-            }
-            else
-            {
-                bossUI.SetActive(true);
-                bossAttacking = false;
-            }
+            yield return buttonController.TypeText(.3f, text, helperText);
+            yield return WaitForInput();
+            yield return new WaitForSeconds(.5f);
         }
-        else
-        {
-            int buttonNo = 0;
 
-            foreach(Button button in buttonController.gameObject.GetComponentsInChildren<Button>())
+        if (GameplayManager.Instance.isWin || GameplayManager.Instance.isLose)
+        {
+            if (GameplayManager.Instance.isWin)
             {
-                if(buttonNo == 3 && GameplayManager.Instance.player.aggression < GameplayManager.Instance.player.maxAggression)
+                GameplayManager.Instance.Win();
+            }
+
+            if (GameplayManager.Instance.isLose)
+            {
+                GameplayManager.Instance.Lose();
+            }
+        } else
+        {
+            if (lastAction != Actions.BossAction && lastAction != Actions.Confront)
+            {
+                //bossUI.SetActive(false);
+
+                if (enemy.hp > 0)
                 {
-                    button.enabled = false;
+                    bossUI.SetActive(false);
+
+                    foreach (var t in battleUIObjects.GetComponentsInChildren<Transform>())
+                    {
+                        t.gameObject.SetActive(false);
+                    }
+
+                    SetupAction((int)Actions.BossAction);
+                    bossAttacking = true;
                 }
                 else
                 {
-                    button.enabled = true;
+                    bossUI.SetActive(true);
+                    bossAttacking = false;
+                }
+            }
+            else
+            {
+                int buttonNo = 0;
+
+                foreach (Button button in buttonController.gameObject.GetComponentsInChildren<Button>())
+                {
+                    if (buttonNo == 3 && GameplayManager.Instance.player.aggression < GameplayManager.Instance.player.maxAggression)
+                    {
+                        button.enabled = false;
+                    }
+                    else
+                    {
+                        button.enabled = true;
+                    }
+
+                    buttonNo++;
                 }
 
-                buttonNo++;
+                buttonController.OnChoosingAction();
             }
-
-            buttonController.OnChoosingAction();    
         }
     }
 

@@ -28,6 +28,16 @@ public class BossShader : MonoBehaviour
         bossShader.SetFloat("_EdgeWidth", defaultOutlineWidth);
     }
 
+    float Remap(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
+
+    public void Update()
+    {
+        bossShader.SetFloat("_DecomposingFactor", Mathf.Lerp(-1, Remap(1 - (float)EnemyManager.instance.hp / (float)EnemyManager.instance.maxHP, 0, 1, -1, 1), Mathf.PingPong(Time.time/2, 1)));
+    }
+
     public IEnumerator LerpOutline(float targetValue, float lerpSpeed)
     {
         for (float i = 0; i < 1; i += Time.fixedDeltaTime / lerpSpeed)

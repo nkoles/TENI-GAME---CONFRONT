@@ -24,8 +24,17 @@ public class TransitionShader : MonoBehaviour
         //_transitionShader = GetComponent<Image>().material;
 
         _transitionShader.SetFloat("_DisolveFactor", 1);
+    }
 
-        StartCoroutine(Fade(true, 3f, _transitionShader));
+    private void Start()
+    {
+        StartCoroutine(SceneStart());
+    }
+
+    private IEnumerator SceneStart()
+    {
+        yield return StartCoroutine(Fade(true, 3f, _transitionShader));
+        DialogueManager.instance.StartDialogue();
     }
 
     public void SetColor(Color color)
