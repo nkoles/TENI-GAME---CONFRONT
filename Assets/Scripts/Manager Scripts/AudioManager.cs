@@ -9,8 +9,8 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
-    public float musicVolume, sfxVolume, musicMaxVolume, sfxMaxVolume, musicMinVolume, sfxMinVolume, fadeOutDelay, fadeInDelay;
-    public bool fadeOut, fadeIn;
+    public float musicVolume, sfxVolume, musicMaxVolume, sfxMaxVolume, musicMinVolume, sfxMinVolume, fadeOutDelay, fadeInDelay, pitchChange;
+    public bool fadeOut, fadeIn, pitchUp, pitchDown;
 
     public bool friendStart;
     public bool friendEnd;
@@ -67,6 +67,45 @@ public class AudioManager : MonoBehaviour
             {
                 musicSource.volume = musicMinVolume;
                 fadeOut = false;
+            }
+        }
+
+        if(pitchUp)
+        {
+            if(musicSource.pitch >= 1.05f)
+            {
+                pitchUp = false;
+                musicSource.pitch = 1.05f;
+            }
+            else
+            {
+                musicSource.pitch += Time.fixedDeltaTime/pitchChange;
+            }
+        }
+        else if(pitchDown)
+        {
+            if(musicSource.pitch >= .95f)
+            {
+                musicSource.pitch = .95f;
+            }
+            else
+            {
+                musicSource.pitch -= Time.fixedDeltaTime/pitchChange;
+            }
+        }
+        else
+        {
+            if(musicSource.pitch >= 1.01f)
+            {
+                musicSource.pitch -= Time.fixedDeltaTime/pitchChange;
+            }
+            else if(musicSource.pitch <= 0.99f)
+            {
+                musicSource.pitch += Time.fixedDeltaTime/pitchChange;
+            }
+            else
+            {
+                musicSource.pitch = 1;
             }
         }
     }

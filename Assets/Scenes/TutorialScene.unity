@@ -2229,8 +2229,11 @@ MonoBehaviour:
   sfxMinVolume: 0
   fadeOutDelay: 3
   fadeInDelay: 3
+  pitchChange: 0
   fadeOut: 0
   fadeIn: 0
+  pitchUp: 0
+  pitchDown: 0
   friendStart: 0
   friendEnd: 0
   principalStart: 0
@@ -6149,6 +6152,8 @@ MonoBehaviour:
   damageTaken: 0
   aggro: 0
   tempObstacle: 
+  confrontButtonShader: {fileID: 0}
+  defaultButton: {fileID: 0}
   confrontButton: {fileID: 2100000, guid: b4597ef90a66321449e3fd04391f78b2, type: 2}
 --- !u!4 &1032452449
 Transform:
@@ -7523,6 +7528,7 @@ MonoBehaviour:
   - 'WASD: DODGE the other characters attacks by maneuvering around the space, to
     avoid losing WILLPOWER. Generally, obstacles with WHITE reduce your willpower.
     Some obstacles have special effects.'
+  battleUI: {fileID: 686119535}
 --- !u!114 &1356542366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7579,7 +7585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -131.99997}
+  m_AnchoredPosition: {x: 0, y: -131.99995}
   m_SizeDelta: {x: -277.45923, y: -359.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1360444685
