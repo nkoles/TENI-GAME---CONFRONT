@@ -69,6 +69,8 @@ public class TransitionShader : MonoBehaviour
 
                 yield return null;
             }
+
+            transitionMaterial.SetFloat("_DisolveFactor", 1);
         } else
         {
             //AudioManager.instance.PlaySFX("Transition");
@@ -86,6 +88,8 @@ public class TransitionShader : MonoBehaviour
 
                 yield return null;
             }
+
+            transitionMaterial.SetFloat("_DisolveFactor", -0.01f);
         }
 
             print("TransitionFade Complete");
