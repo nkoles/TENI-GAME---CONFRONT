@@ -61,9 +61,9 @@ public class HeartScript : MonoBehaviour
 
     public IEnumerator Damage(int amount)
     {
-        for(int i = 0; i < amount; i++)
-        {
-            for(int j = 0; j < 2; j++)
+        /*for(int i = 0; i < amount; i++)
+        {*/
+            for(int j = 0; j < 6; j++)
             {
                 sr.color = new Color(255, 255, 255, 0);
                 
@@ -73,7 +73,7 @@ public class HeartScript : MonoBehaviour
                 
                 yield return new WaitForSeconds(.125f);
             }
-        }
+        //}
     }
 
     public IEnumerator Stun(float time)

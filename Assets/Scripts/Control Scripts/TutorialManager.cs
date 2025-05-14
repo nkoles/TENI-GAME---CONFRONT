@@ -52,8 +52,9 @@ public class TutorialManager : MonoBehaviour
 
         if(tutorialAmount == descriptions.Length)
         {
-            GameplayManager.Instance.Win();
             battleUI.SetActive(true);
+            GameplayManager.Instance.isWin = true;
+            GameplayManager.Instance.Win();
         }
     }
 }

@@ -17,9 +17,10 @@ public class ConfrontScript : MonoBehaviour
     public string[] parkText = new string[3];
     public string[] schoolText, homeText, clinicText, schoolDescription, homeDescription, clinicDescription;
     public string[] parkDescription = new string[3];
+    public GameObject[] inputFields;
     public int[] weapons = new int[3];
     public TMP_Text description;
-    public int selectedWeapon, hoveredButton;
+    public int selectedWeapon, hoveredButton, timesClicked;
     public UnityAction click;
     public UnityAction hoverEnter;
 
@@ -45,8 +46,22 @@ public class ConfrontScript : MonoBehaviour
         selectedWeapon = button;
     }
 
+    public void OnConfront()
+    {
+
+        inputFields[timesClicked].SetActive(true);
+
+        if(timesClicked != 0)
+        {
+            Destroy(inputFields[timesClicked-1]);
+        }
+    }
+
     public void OnClick()
     {
+
+        timesClicked++;
+
         switch(enemy.phase)
         {
             case 1:
@@ -61,7 +76,7 @@ public class ConfrontScript : MonoBehaviour
             case 2:
             {
                 enemy.homeObstacles[weapons[selectedWeapon]] = null;
-                GameplayManager.Instance.tempObstacle = schoolText[weapons[selectedWeapon]];
+                GameplayManager.Instance.tempObstacle = homeText[weapons[selectedWeapon]];
                 GameplayManager.Instance.sequence.SettupConfront();
 
                 break;
@@ -70,7 +85,7 @@ public class ConfrontScript : MonoBehaviour
             case 3:
             {
                 enemy.clinicObstacles[weapons[selectedWeapon]] = null;
-                GameplayManager.Instance.tempObstacle = schoolText[weapons[selectedWeapon]];
+                GameplayManager.Instance.tempObstacle = clinicText[weapons[selectedWeapon]];
                 GameplayManager.Instance.sequence.SettupConfront();
 
                 break;

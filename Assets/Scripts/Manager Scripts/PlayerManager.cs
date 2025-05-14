@@ -21,10 +21,10 @@ public class PlayerManager : MonoBehaviour
 
     public IEnumerator Invulnerable(int amount)
     {
-        GameplayManager.Instance.damageTaken += amount;
         invulnerable = true;
+        GameplayManager.Instance.damageTaken += amount;
         StartCoroutine(heart.GetComponent<HeartScript>().Damage(amount));
-        yield return new WaitForSeconds(/*invulnerableTime*/amount/2);
+        yield return new WaitForSeconds(/*invulnerableTime*/1.5f);
         invulnerable = false;
     }
 
@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(hp <=0)
         {
-            heart.SetActive(false);
+            //heart.SetActive(false);
             //GameplayManager.Instance.logicAmount = 0;
             //GameplayManager.Instance.emotionAmount = 0;
             //GameplayManager.Instance.passiveAmount = 0;
