@@ -303,7 +303,7 @@ public class DialogueManager : MonoBehaviour
         {
             if((audioManager.battleEnd == true) || (enemy.phase == 4))
             {
-                if(GameplayManager.Instance.isWin == true)
+                if(GameplayManager.Instance.isWin == true || enemy.phase == 4)
                 {
                     SceneLoadingManager.instance.LoadNextScene();
                 }
