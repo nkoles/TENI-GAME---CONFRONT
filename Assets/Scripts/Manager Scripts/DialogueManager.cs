@@ -193,7 +193,7 @@ public class DialogueManager : MonoBehaviour
         {
             AudioManager.instance.PlayMusic("Friend (Pre-battle)");
         }
-        else if ((audioManager.friendEnd != true))
+        else if ((audioManager.friendEnd == true))
         {
             AudioManager.instance.PlayMusic("Friend (Post-battle)");
         }
