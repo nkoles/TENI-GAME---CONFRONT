@@ -87,6 +87,10 @@ public class GameplayManager : MonoBehaviour
         //GameObject heart = Instantiate(player.heart, new Vector3(0, 0, 0), Quaternion.Euler(0,0,0));
         player.heart.transform.position = new Vector3(0, 0, player.heart.transform.position.z);
         player.heart.SetActive(true);
+        if(enemy.phase == 0)
+        {
+            time = time/3;
+        }
         StartCoroutine(enemy.Dodging(time, difficulty));
 
         yield return new WaitForSeconds(time);

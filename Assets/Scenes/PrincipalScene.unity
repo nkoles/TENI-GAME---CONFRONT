@@ -5085,7 +5085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Teacher
+  m_text: Principal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7e57f9c666100db41be3f1765cba4b7f, type: 2}
   m_sharedMaterial: {fileID: -8376005101353374669, guid: 7e57f9c666100db41be3f1765cba4b7f, type: 2}
