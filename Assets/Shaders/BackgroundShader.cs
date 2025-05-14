@@ -47,6 +47,10 @@ public class BackgroundShader : MonoBehaviour
             yield return null;
         }
 
+        backgroundShader.SetColor("_ColorOverlay", targetColor);
+        backgroundShader.SetColor("_NoiseColor", targetNoiseColor);
+        backgroundShader.SetFloat("_Progression", targetProgression);
+
         print("Im losing it chat");
     }
 }
