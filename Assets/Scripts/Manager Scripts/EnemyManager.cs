@@ -111,7 +111,7 @@ public class EnemyManager : MonoBehaviour
             }
         }*/
 
-        yield return new WaitForSeconds(((4+phase)*timeMod));
+        yield return new WaitForSeconds(((5+phase)*timeMod));
     }
 
     public void RemoveWeapon(int weapon)
