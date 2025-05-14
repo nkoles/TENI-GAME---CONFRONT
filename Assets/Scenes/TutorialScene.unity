@@ -1227,12 +1227,11 @@ MonoBehaviour:
   - {fileID: 1912567758673012557, guid: f42940463ccd17841ad62871f14fa4eb, type: 3}
   AttackingWords:
   - "I don\u2019t have to \u201Cact trans\u201D to be trans. "
-  - "Just because I\u2019m trans, that doesn\u2019t mean my sexuality changed as
-    well. "
+  - "Just because I\u2019m trans doesn\u2019t mean my sexuality changed as well. "
   - "I\u2019d rather not answer that. "
   - "I\u2019m not gonna become a different person. "
   - "For future reference, that\u2019s invasive. "
-  - "If that\u2019s weird to say to cis people, then don\u2019t say it to me either. "
+  - "If that\u2019s weird to say to cis people, don\u2019t say it. "
   - "What I do with my body isn\u2019t anyone else\u2019s business. "
   - "I\u2019m still me. "
   lateralSpawnPoints:
@@ -7004,14 +7003,14 @@ MonoBehaviour:
   - "Does that mean you\u2019re gay? "
   - 'You never acted like it before. '
   - "Should I use neutral terms like \u201Cbuddy\u201D? "
-  - "Does that mean you\u2019re going to act differently? "
-  - 'Are you going to change your hair, then? '
+  - "Does that mean you\u2019re gonna act differently? "
+  - 'Are you gonna change your hair, then? '
   - 'Are you going to get the surgery? '
   - 'Which bathroom are you going to use? '
   - "How come you didn\u2019t realise sooner? "
   - 'How did you figure it out? '
   - "So we\u2019re still friends? "
-  - "I think you\u2019re the first trans person I\u2019ve met! "
+  - "You\u2019re the first trans person I\u2019ve met! "
   - 'Are you sure? '
   confrontStrings: []
 --- !u!114 &1177756815
@@ -7592,7 +7591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -131.99997}
+  m_AnchoredPosition: {x: 0, y: -131.99995}
   m_SizeDelta: {x: -277.45923, y: -359.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1360444685
@@ -10292,7 +10291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invulnerableTime: 1
   hp: 20
-  maxHP: 50
+  maxHP: 20
   aggression: 0
   maxAggression: 50
   damage: 1
